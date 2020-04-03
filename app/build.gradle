@@ -51,32 +51,13 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.1.0'
 
-    implementation 'com.bernaferrari.emojislider:emojislider:0.3.2'
     implementation 'com.freeletics.rxredux:rxredux:1.0.1'
-    implementation 'com.github.duanhong169:drawabletoolbox:1.0.7'
-    implementation 'com.github.duanhong169:colorpicker:1.1.6'
-    implementation 'com.github.okdroid:checkablechipview:1.0.3'
     implementation 'com.tbuonomo:creative-viewpager:1.0.1'
     implementation 'me.saket:inboxrecyclerview:2.0.0-beta3'
-    implementation 'ru.cleverpumpkin:crunchycalendar:2.0.0'
-    implementation 'nz.co.trademe.covert:covert:2.0.0'
-    implementation "io.saeid:dialer-loading:1.0.0"
-    implementation 'com.github.pwittchen:rxbiometric:0.1.0'
-    implementation 'com.github.florent37:shapeofview:1.2.0'
-    implementation 'com.shopify:livedata-ktx:3.0.0'
-    implementation 'com.afollestad.rxkprefs:core:2.0.3'
-    implementation 'com.tinder.scarlet:scarlet:0.1.9'
-    implementation 'co.infinum:complexify-android:2.0.1'
-    implementation 'co.infinum:goldfinger:2.0.0'
 
     implementation 'com.squareup.retrofit2:retrofit:2.7.2'
     implementation 'com.squareup.moshi:moshi:1.9.2'
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.2'
-    implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation "io.reactivex.rxjava3:rxjava:3.0.1"
-
-    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
-    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
