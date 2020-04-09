@@ -17,11 +17,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/padding_40"
-        android:layout_marginTop="@dimen/padding_200"
         android:text="@string/login_title"
         android:textSize="@dimen/text_size_36"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="@dimen/padding_40"
+        app:layout_constraintBottom_toTopOf="@id/input_layout_email"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/login_subtitle_tv"
@@ -39,12 +39,12 @@
         android:id="@+id/input_layout_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_70"
         android:background="@color/white"
         android:textColorHint="@color/gray_3"
         app:layout_constraintLeft_toLeftOf="@id/login_title_tv"
         app:layout_constraintRight_toRightOf="@id/login_subtitle_tv"
-        app:layout_constraintTop_toBottomOf="@id/login_title_tv">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <AutoCompleteTextView
             android:id="@+id/email_et"
@@ -58,6 +58,7 @@
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="@dimen/divider_height"
+        android:background="@color/gray_3"
         app:layout_constraintLeft_toLeftOf="@id/input_layout_email"
         app:layout_constraintRight_toRightOf="@id/input_layout_email"
         app:layout_constraintTop_toBottomOf="@id/input_layout_email" />
@@ -99,13 +100,13 @@
         style="@style/RoundedCornerButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_40"
         android:elevation="10dp"
         android:text="@string/login"
         android:textSize="@dimen/text_size_14"
         app:layout_constraintLeft_toLeftOf="@id/login_title_tv"
         app:layout_constraintRight_toRightOf="@id/login_subtitle_tv"
-        app:layout_constraintTop_toBottomOf="@id/forgot_password_tv" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_layout_password" />
 
     <TextView
         android:id="@+id/not_exist_acc_tv"
