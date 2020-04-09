@@ -1,13 +1,12 @@
-package ru.ok.technopolis.training.personal.login
+package ru.ok.technopolis.training.personal.activities.login
 
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import ru.ok.technopolis.training.personal.BaseActivity
+import ru.ok.technopolis.training.personal.activities.BaseActivity
 import ru.ok.technopolis.training.personal.R
 
 class LoginActivity : BaseActivity() {
