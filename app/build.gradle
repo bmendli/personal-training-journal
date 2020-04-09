@@ -1,8 +1,16 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         applicationId "ru.ok.technopolis.training.personal"
@@ -24,11 +32,15 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     def room_version = "2.2.5"
 
+    implementation "androidx.core:core-ktx:1.2.0"
+
     implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-    // For Kotlin use kapt instead of annotationProcessor
+    kapt "androidx.room:room-compiler:$room_version"
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$room_version"
@@ -42,13 +54,11 @@ dependencies {
     // Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     api 'com.google.dagger:dagger:2.27'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.27'
+    kapt 'com.google.dagger:dagger-compiler:2.27'
     api 'com.google.dagger:dagger-android:2.27'
     api 'com.google.dagger:dagger-android-support:2.27'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.27'
+    kapt 'com.google.dagger:dagger-android-processor:2.27'
 
     implementation 'com.google.android.material:material:1.1.0'
 
@@ -56,8 +66,9 @@ dependencies {
     implementation 'com.tbuonomo:creative-viewpager:1.0.1'
     implementation 'me.saket:inboxrecyclerview:2.0.0-beta3'
 
-    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation 'com.squareup.moshi:moshi:1.9.2'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation "io.reactivex.rxjava3:rxjava:3.0.1"
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
