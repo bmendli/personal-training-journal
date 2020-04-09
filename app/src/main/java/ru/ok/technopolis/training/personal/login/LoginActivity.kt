@@ -5,20 +5,28 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import ru.ok.technopolis.training.personal.BaseActivity
 import ru.ok.technopolis.training.personal.R
 
 class LoginActivity : BaseActivity() {
 
-    private val imageView: ImageView = findViewById(R.id.person_iv)
-    private val emailEditText: EditText = findViewById(R.id.email_et)
-    private val passwordEditText: EditText = findViewById(R.id.password_et)
-    private val forgotPasswordTextView: TextView = findViewById(R.id.forgot_password_tv)
-    private val notExistAccTextView: TextView = findViewById(R.id.not_exist_acc_tv)
-    private val loginButton: Button = findViewById(R.id.login_button)
+    private var imageView: ImageView? = null
+    private var emailEditText: EditText? = null
+    private var passwordEditText: EditText? = null
+    private var forgotPasswordTextView: TextView? = null
+    private var notExistAccTextView: TextView? = null
+    private var loginButton: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        imageView = person_iv
+        emailEditText = email_et
+        passwordEditText = password_et
+        forgotPasswordTextView = forgot_password_tv
+        notExistAccTextView = not_exist_acc_tv
+        loginButton = login_button
     }
 
     override fun getLayoutId(): Int = R.layout.activity_login

@@ -1,13 +1,16 @@
 package ru.ok.technopolis.training.personal
 
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.util.Log
+import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    @CallSuper
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(this::class.java.canonicalName, "Activity created")
         setContentView(getLayoutId())
     }
 
