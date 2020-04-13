@@ -71,4 +71,18 @@
         <item name="android:shadowDy">@integer/integer_1</item>
         <item name="android:shadowRadius">@integer/integer_2</item>
     </style>
+
+    <style name="TextViewExercise">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:layout_marginEnd">@dimen/dimens_16dp</item>
+    </style>
+
+    <style name="TextViewExercise.Action">
+        <item name="android:layout_gravity">end</item>
+        <item name="android:layout_marginTop">@dimen/dimens_8dp</item>
+    </style>
+
 </resources>
