@@ -1,13 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="TrainingJournalTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="TrainingJournalTheme" parent="Theme.AppCompat.Light">
         <item name="android:screenOrientation">portrait</item>
+        <item name="background">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="TrainingJournalTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="ActionBar" parent="Widget.AppCompat.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.Title</item>
+        <item name="android:background">@color/white</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="actionBarSize">60dp</item>
     </style>
 
     <style name="TextAppearance.Title" parent="android:TextAppearance">
