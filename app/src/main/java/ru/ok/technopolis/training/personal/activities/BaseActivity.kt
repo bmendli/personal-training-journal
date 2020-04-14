@@ -64,7 +64,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun setFragments() {
         Log.d(this::class.java.canonicalName, "start add fragment")
-        supportFragmentManager.beginTransaction().add(R.id.main_container, getSupportingFragmentClass().newInstance()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.main_container, getSupportingFragment()).commit()
         supportFragmentManager.executePendingTransactions()
         Log.d(this::class.java.canonicalName, "end add fragment")
     }
@@ -75,5 +75,5 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected open fun getActivityLayoutId(): Int = R.layout.activity_base
 
-    abstract fun getSupportingFragmentClass(): Class<out Fragment>
+    abstract fun getSupportingFragment(): Fragment
 }

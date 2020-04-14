@@ -21,14 +21,14 @@ class LoginFragment : BaseFragment() {
     private var loginButton: Button? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val parent = super.onCreateView(inflater, container, savedInstanceState)
+        val rootView = super.onCreateView(inflater, container, savedInstanceState)
         imageView = person_iv
         emailEditText = email_et
         passwordEditText = password_et
         forgotPasswordTextView = forgot_password_tv
         notExistAccTextView = not_exist_acc_tv
         loginButton = login_button
-        return parent
+        return rootView
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_login

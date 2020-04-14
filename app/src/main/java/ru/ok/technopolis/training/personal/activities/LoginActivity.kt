@@ -5,5 +5,5 @@ import ru.ok.technopolis.training.personal.fragments.LoginFragment
 
 class LoginActivity : BaseNoAppbarActivity() {
 
-    override fun getSupportingFragmentClass(): Class<out Fragment> = LoginFragment::class.java
+    override fun getSupportingFragment(): Fragment = LoginFragment()
 }
