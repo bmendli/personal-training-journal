@@ -1,4 +1,4 @@
-package ru.ok.technopolis.training.personal.base
+package ru.ok.technopolis.training.personal.activities
 
 import ru.ok.technopolis.training.personal.R
 

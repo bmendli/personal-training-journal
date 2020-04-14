@@ -1,4 +1,4 @@
-package ru.ok.technopolis.training.personal.base
+package ru.ok.technopolis.training.personal.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

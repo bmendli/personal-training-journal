@@ -1,4 +1,4 @@
-package ru.ok.technopolis.training.personal.login
+package ru.ok.technopolis.training.personal.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_login.*
 import ru.ok.technopolis.training.personal.R
-import ru.ok.technopolis.training.personal.base.BaseFragment
 
 class LoginFragment : BaseFragment() {
 

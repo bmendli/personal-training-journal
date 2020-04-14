@@ -1,4 +1,4 @@
-package ru.ok.technopolis.training.personal.base
+package ru.ok.technopolis.training.personal.activities
 
 import android.os.Bundle
 import android.util.Log
