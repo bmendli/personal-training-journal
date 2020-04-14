@@ -21,13 +21,13 @@ class LoginFragment : BaseFragment() {
     private var loginButton: Button? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(getFragmentLayoutId(), container, false) as ViewGroup
-        imageView = root.findViewById(R.id.person_iv)
-        emailEditText = root.findViewById(R.id.email_et)
-        passwordEditText = root.findViewById(R.id.password_et)
-        forgotPasswordTextView = root.findViewById(R.id.forgot_password_tv)
-        notExistAccTextView = root.findViewById(R.id.not_exist_acc_tv)
-        loginButton = root.findViewById(R.id.login_button)
+        val root = super.onCreateView(inflater, container, savedInstanceState)
+        imageView = root?.findViewById(R.id.person_iv)
+        emailEditText = root?.findViewById(R.id.email_et)
+        passwordEditText = root?.findViewById(R.id.password_et)
+        forgotPasswordTextView = root?.findViewById(R.id.forgot_password_tv)
+        notExistAccTextView = root?.findViewById(R.id.not_exist_acc_tv)
+        loginButton = root?.findViewById(R.id.login_button)
         return root
     }
 

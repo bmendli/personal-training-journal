@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_base.*
 import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.utils.initHomeButton
 
 abstract class BaseActivity : AppCompatActivity() {
 
