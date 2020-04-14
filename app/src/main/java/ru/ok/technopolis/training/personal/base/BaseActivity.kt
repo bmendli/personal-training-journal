@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.view.Window
 import android.widget.FrameLayout
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +13,6 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_base.*
 import ru.ok.technopolis.training.personal.R
-import ru.ok.technopolis.training.personal.utils.initHomeButton
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -66,7 +64,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun setFragments() {
         Log.d(this::class.java.canonicalName, "start add fragment")
-        supportFragmentManager.beginTransaction().add(R.id.main_container, getSupportingFragment()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.main_container, getSupportingFragmentClass().newInstance()).commit()
         supportFragmentManager.executePendingTransactions()
         Log.d(this::class.java.canonicalName, "end add fragment")
     }
@@ -77,5 +75,5 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected open fun getActivityLayoutId(): Int = R.layout.activity_base
 
-    abstract fun getSupportingFragment(): Fragment
+    abstract fun getSupportingFragmentClass(): Class<out Fragment>
 }
