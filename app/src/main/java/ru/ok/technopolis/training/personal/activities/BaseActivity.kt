@@ -69,7 +69,7 @@ abstract class BaseActivity : AppCompatActivity() {
         Log.d(this::class.java.canonicalName, "end add fragment")
     }
 
-    protected open fun getToolbarTitle(): CharSequence = getString(R.string.app_name)
+    protected open fun getToolbarTitle(): String = getString(R.string.app_name)
 
     protected open fun isToolbarEnabled(): Boolean = true
 
