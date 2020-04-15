@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditText
+        android:id="@+id/exerciseNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:inputType="text"
+        style="@style/Input"
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="@string/enter_exercise_name" />
+
+    <TextView
+        android:id="@+id/exerciseTypeTextView"
+        android:text="@string/exercise_type"
+        android:layout_height="64dp"
+        android:layout_width="0dp"
+        style="@style/TextViewExercise"
+        app:layout_constraintTop_toBottomOf="@id/exerciseNameEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:paddingEnd="@dimen/dimens_16dp"
+        android:paddingStart="@dimen/dimens_16dp"
+        />
+    <Spinner
+        android:id="@+id/addExerciseBackButton"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:entries="@array/exercise_types"
+        app:layout_constraintTop_toTopOf="@id/exerciseTypeTextView"
+        app:layout_constraintBottom_toBottomOf="@id/exerciseTypeTextView"
+        app:layout_constraintStart_toEndOf="@id/exerciseTypeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/exercise_elements"
+        android:text="@string/exercise_elements"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        style="@style/TextViewExercise"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/exerciseTypeTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/addExerciseAddItemButton"
+        />
+
+    <ImageButton
+        android:id="@+id/addExerciseAddItemButton"
+        android:layout_width="64dp"
+        android:layout_height="0dp"
+
+        android:src="@drawable/ic_add_black_24dp"
+        app:layout_constraintTop_toTopOf="@id/exercise_elements"
+        app:layout_constraintBottom_toBottomOf="@id/exercise_elements"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/exercise_elements"
+
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/exercise_elements"
+        app:layout_constraintBottom_toTopOf="@id/addExerciseCancelButton"
+        />
+
+    <Button
+        android:id="@+id/addExerciseCancelButton"
+        android:text="@string/cancel"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        style="@style/TextViewExercise"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/dimens_16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/addExerciseSaveButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_weight="1"
+        />
+    <Button
+        android:id="@+id/addExerciseSaveButton"
+        android:text="@string/save"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        style="@style/TextViewExercise"
+        android:layout_marginStart="@dimen/dimens_16dp"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/addExerciseCancelButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
