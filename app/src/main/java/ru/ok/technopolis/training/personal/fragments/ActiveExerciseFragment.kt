@@ -24,14 +24,14 @@ class ActiveExerciseFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = super.onCreateView(inflater, container, savedInstanceState)
-        goBackView = go_back
-        setStarView = star_border
-        setBookmarkView = bookmark_border
-        parameterGoal1EditText = parameter1_goal
-        parameterGoal2EditText = parameter2_goal
-        parameterGoal3EditText = parameter3_goal
-        doneButton = done_button
-        nextExerciseView = next_exercise_name
+        goBackView = rootView?.findViewById(R.id.go_back) as ImageView
+        setStarView = rootView.findViewById(R.id.star_border) as ImageView
+        setBookmarkView = rootView.findViewById(R.id.bookmark_border) as ImageView
+        parameterGoal1EditText = rootView.findViewById(R.id.parameter1_goal) as EditText
+        parameterGoal2EditText = rootView.findViewById(R.id.parameter2_goal) as EditText
+        parameterGoal3EditText = rootView.findViewById(R.id.parameter3_goal) as EditText
+        doneButton = rootView.findViewById(R.id.done_button) as Button
+        nextExerciseView = rootView.findViewById(R.id.next_exercise_name) as TextView
         return rootView
     }
 
