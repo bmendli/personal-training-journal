@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/TrainingJournalTheme">
         <activity
-            android:name="ru.ok.technopolis.training.personal.activities.LoginActivity"
+            android:name="ru.ok.technopolis.training.personal.activities.WorkoutActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
