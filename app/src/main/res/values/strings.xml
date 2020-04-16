@@ -7,4 +7,9 @@
     <string name="forgot_password"><u>Forgot your password?</u></string>
     <string name="login">Log in</string>
     <string name="not_exist_acc"><u>Don’t have an account?</u></string>
+    <string name="active_exercise_name">Exercise</string>
+    <string name="parameter_goal_dummy">34</string>
+    <string name="parameter_text_dummy">parameter1</string>
+    <string name="button_text_dummy">подход 1/1</string>
+    <string name="next_exercise_dummy">next exercise</string>
 </resources>
