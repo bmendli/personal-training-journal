@@ -44,7 +44,6 @@
         android:src="@drawable/ic_exercise_category_bg"
         app:layout_constraintBottom_toTopOf="@+id/name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bookmark_border" />
 
@@ -55,7 +54,6 @@
         android:text="@string/active_exercise_name"
         android:textSize="@dimen/text_size_36"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category"
 
@@ -70,7 +68,6 @@
         android:textSize="@dimen/text_size_25"
         app:layout_constraintBottom_toTopOf="@+id/parameter2_goal"
         app:layout_constraintEnd_toStartOf="@+id/parameter1"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name" />
 
@@ -78,13 +75,10 @@
         android:id="@+id/parameter1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="@string/parameter_text_dummy"
         android:textSize="@dimen/text_size_25"
-
         app:layout_constraintBottom_toTopOf="@+id/parameter2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/parameter1_goal"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -96,7 +90,6 @@
         android:textSize="@dimen/text_size_25"
         app:layout_constraintBottom_toTopOf="@+id/parameter3_goal"
         app:layout_constraintEnd_toStartOf="@+id/parameter2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/parameter1_goal" />
 
@@ -108,7 +101,6 @@
         android:textSize="@dimen/text_size_25"
         app:layout_constraintBottom_toTopOf="@+id/parameter3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/parameter2_goal"
         app:layout_constraintTop_toBottomOf="@+id/parameter1" />
 
@@ -120,7 +112,6 @@
         android:textSize="@dimen/text_size_25"
         app:layout_constraintBottom_toTopOf="@+id/done_button"
         app:layout_constraintEnd_toStartOf="@+id/parameter3"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/parameter2_goal" />
 
@@ -132,8 +123,6 @@
         android:textSize="@dimen/text_size_25"
         app:layout_constraintBottom_toTopOf="@+id/done_button"
         app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/parameter3_goal"
         app:layout_constraintTop_toBottomOf="@+id/parameter2" />
 
@@ -143,7 +132,6 @@
         android:layout_height="wrap_content"
         android:text="@string/button_text_dummy"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/parameter3" />
