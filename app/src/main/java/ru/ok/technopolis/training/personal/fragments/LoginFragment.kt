@@ -8,9 +8,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.fragment_login.*
 import ru.ok.technopolis.training.personal.R
 
+@ContainerOptions(cache = CacheImplementation.NO_CACHE)
 class LoginFragment : BaseFragment() {
 
     private var imageView: ImageView? = null
