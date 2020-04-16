@@ -22,17 +22,16 @@ class ActiveExerciseFragment : BaseFragment() {
     private var doneButton: Button? = null
     private var nextExerciseView: TextView? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = super.onCreateView(inflater, container, savedInstanceState)
-        goBackView = rootView?.findViewById(R.id.go_back) as ImageView
-        setStarView = rootView.findViewById(R.id.star_border) as ImageView
-        setBookmarkView = rootView.findViewById(R.id.bookmark_border) as ImageView
-        parameterGoal1EditText = rootView.findViewById(R.id.parameter1_goal) as EditText
-        parameterGoal2EditText = rootView.findViewById(R.id.parameter2_goal) as EditText
-        parameterGoal3EditText = rootView.findViewById(R.id.parameter3_goal) as EditText
-        doneButton = rootView.findViewById(R.id.done_button) as Button
-        nextExerciseView = rootView.findViewById(R.id.next_exercise_name) as TextView
-        return rootView
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+       goBackView = view.findViewById(R.id.go_back) as ImageView
+        setStarView = view.findViewById(R.id.star_border) as ImageView
+        setBookmarkView = view.findViewById(R.id.bookmark_border) as ImageView
+        parameterGoal1EditText = view.findViewById(R.id.parameter1_goal) as EditText
+        parameterGoal2EditText = view.findViewById(R.id.parameter2_goal) as EditText
+        parameterGoal3EditText = view.findViewById(R.id.parameter3_goal) as EditText
+        doneButton = view.findViewById(R.id.done_button) as Button
+        nextExerciseView = view.findViewById(R.id.next_exercise_name) as TextView
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.frgment_active_exercise;
