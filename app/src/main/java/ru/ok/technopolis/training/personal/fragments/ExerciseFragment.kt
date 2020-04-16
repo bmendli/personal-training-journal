@@ -11,19 +11,21 @@ import ru.ok.technopolis.training.personal.utils.recycler.elements.ExerciseEleme
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.ExerciseElementAdapter
 import ru.ok.technopolis.training.personal.utils.ExerciseListener
 
-class ExerciseFragment : BaseFragment(), View.OnClickListener {
+class ExerciseFragment : BaseFragment() {
 
     private var recyclerView: RecyclerView? = null
     private var saveButton: Button? = null
     private var cancelButton: Button? = null
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        recyclerView = fragment_workout__elements_list
-        saveButton = fragment_workout__save
-        cancelButton = fragment_workout__cancel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        saveButton?.setOnClickListener(this)
-        cancelButton?.setOnClickListener(this)
+        recyclerView = fragment_exercise__elements_list
+        saveButton = fragment_exercise__save
+        cancelButton = fragment_exercise__cancel
+
+        saveButton?.setOnClickListener { (activity as ExerciseListener).onExerciseSaved(0) }
+        cancelButton?.setOnClickListener { (activity as ExerciseListener).onExerciseCanceled(0) }
 
         val exerciseElementAdapter = ExerciseElementAdapter(ArrayList(
                 listOf(
@@ -35,20 +37,8 @@ class ExerciseFragment : BaseFragment(), View.OnClickListener {
 
         recyclerView?.adapter = exerciseElementAdapter
         recyclerView?.layoutManager = LinearLayoutManager(activity)
-
-        super.onActivityCreated(savedInstanceState)
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_exercise
-
-    override fun onClick(v: View?) {
-        if (v != null) {
-            if (v === saveButton) {
-                (activity as ExerciseListener).onExerciseSaved(0)
-            } else if (v === cancelButton) {
-                (activity as ExerciseListener).onExerciseCanceled(0)
-            }
-        }
-    }
 
 }

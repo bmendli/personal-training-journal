@@ -8,14 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.utils.recycler.elements.WorkoutElement
 
-class WorkoutElementAdapter(list: List<WorkoutElement>, private val listener: View.OnClickListener)
+class WorkoutElementAdapter(private var elements: List<WorkoutElement>, private val onClick: ((v: View?) -> Unit)?)
     : RecyclerView.Adapter<WorkoutElementAdapter.WorkoutElementHolder>() {
-
-    private var elements: List<WorkoutElement> = list
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutElementHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_workout_element, parent, false)
-        return WorkoutElementHolder(view, listener)
+        view.setOnClickListener(onClick)
+        return WorkoutElementHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -26,11 +25,7 @@ class WorkoutElementAdapter(list: List<WorkoutElement>, private val listener: Vi
         holder.bind(elements[position])
     }
 
-    class WorkoutElementHolder(itemView: View, listener: View.OnClickListener) : RecyclerView.ViewHolder(itemView) {
-
-        init {
-            itemView.setOnClickListener(listener)
-        }
+    class WorkoutElementHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var icon: ImageView = itemView.findViewById(R.id.item_workout_element__icon)
         private var title: TextView = itemView.findViewById(R.id.item_workout_element__title)

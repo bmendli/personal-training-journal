@@ -29,10 +29,10 @@ class ExerciseElementAdapter(list: List<ExerciseElement>)
 
     class ExerciseElementHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var title: EditText = itemView.findViewById(R.id.item_workout_element__icon)
+        private var title: EditText = itemView.findViewById(R.id.item_exercise_element__title)
         private var value: EditText = itemView.findViewById(R.id.item_exercise_element__value)
-        private var units: Spinner = itemView.findViewById(R.id.item_workout_element__title)
-        private var inputType: Spinner = itemView.findViewById(R.id.item_workout_element__description)
+        private var units: Spinner = itemView.findViewById(R.id.item_exercise_element__units)
+        private var inputType: Spinner = itemView.findViewById(R.id.item_exercise_element__input_type)
 
         fun bind(element: ExerciseElement) {
             title.setText(element.title)

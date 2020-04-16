@@ -2,27 +2,27 @@ package ru.ok.technopolis.training.personal.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_exercise.*
+import kotlinx.android.synthetic.main.fragment_workout.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.utils.*
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.WorkoutElementAdapter
 import ru.ok.technopolis.training.personal.utils.recycler.elements.WorkoutElement
 
-class WorkoutFragment : BaseFragment(), View.OnClickListener {
+class WorkoutFragment : BaseFragment() {
 
     private var recyclerView: RecyclerView? = null
     private var addExerciseButton: ImageButton? = null
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         recyclerView = fragment_workout__elements_list
         addExerciseButton = fragment_workout__add_exercise_button
 
-        addExerciseButton?.setOnClickListener(this)
+        addExerciseButton?.setOnClickListener { (activity as ExerciseListener).onExerciseAdding() }
 
         val workoutElementAdapter = WorkoutElementAdapter(ArrayList(
                 listOf(
@@ -35,27 +35,18 @@ class WorkoutFragment : BaseFragment(), View.OnClickListener {
                         WorkoutElement(R.drawable.ic_account_circle_black_24dp, "Title 7", "Sample description 7"),
                         WorkoutElement(R.drawable.ic_account_circle_black_24dp, "Title 8", "Sample description 8")
                 )
-        ), this)
+        )
+        ) {
+            val exerciseId = it?.let { v -> recyclerView?.getChildLayoutPosition(v) }
+            if (exerciseId != null && exerciseId != -1) {
+                (activity as ExerciseListener).onExerciseClicked(exerciseId)
+            }
+        }
 
         recyclerView?.adapter = workoutElementAdapter
         recyclerView?.layoutManager = LinearLayoutManager(activity)
-
-        super.onActivityCreated(savedInstanceState)
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_workout
-
-    override fun onClick(v: View?) {
-        if (v != null) {
-            if (v === addExerciseButton) {
-                (activity as ExerciseListener).onExerciseAdding()
-            } else {
-                val exerciseId = recyclerView?.getChildLayoutPosition(v)
-                if (exerciseId != null && exerciseId != -1) {
-                    (activity as ExerciseListener).onExerciseClicked(exerciseId)
-                }
-            }
-        }
-    }
 
 }
