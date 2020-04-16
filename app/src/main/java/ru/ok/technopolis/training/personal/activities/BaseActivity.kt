@@ -26,7 +26,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected var mainContainer: FrameLayout? = null
     protected var coordinator: CoordinatorLayout? = null
-    var toolbar: Toolbar? = null
+    protected var toolbar: Toolbar? = null
     protected var appbarLayout: AppBarLayout? = null
     protected var navMenu: Drawer.Result? = null
 
