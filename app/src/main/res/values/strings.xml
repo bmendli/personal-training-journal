@@ -12,4 +12,8 @@
     <string name="parameter_text_dummy">parameter1</string>
     <string name="button_text_dummy">подход 1/1</string>
     <string name="next_exercise_dummy">next exercise</string>
+    <string name="drawer_item_settings">Settings</string>
+    <string name="drawer_item_bookmarks">Bookmarks</string>
+    <string name="drawer_item_favourites">Favourites</string>
+    <string name="drawer_item_found">Found training</string>
 </resources>
