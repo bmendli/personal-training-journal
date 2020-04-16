@@ -45,4 +45,8 @@
     <string name="workout">Тренировка</string>
     <string name="enter_workout_name">Введите название тренировки</string>
     <string name="workout_exercises">Список упражнений</string>
+    <string name="drawer_item_settings">Настройки</string>
+    <string name="drawer_item_bookmarks">Закладки</string>
+    <string name="drawer_item_favourites">Избранное</string>
+    <string name="drawer_item_found">Найти тренеровку</string>
 </resources>
