@@ -7,4 +7,5 @@
     <string name="forgot_password"><u>Забыли свой пароль?</u></string>
     <string name="login">Войти</string>
     <string name="not_exist_acc"><u>Нет учётной записи?</u></string>
+    <string name="add_workout">Добавить тренировку</string>
 </resources>
