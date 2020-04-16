@@ -24,11 +24,11 @@ class ExerciseFragment : BaseFragment() {
         saveButton = fragment_exercise__save
         cancelButton = fragment_exercise__cancel
 
-        saveButton?.setOnClickListener { (activity as ExerciseListener).onExerciseSaved(0) }
-        cancelButton?.setOnClickListener { (activity as ExerciseListener).onExerciseCanceled(0) }
+        saveButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseSaved(0) }
+        cancelButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseCanceled(0) }
 
         val exerciseElementAdapter = ExerciseElementAdapter(ArrayList(
-                listOf(
+                mutableListOf(
                         ExerciseElement("Title1", 5, 0, 0),
                         ExerciseElement("Title2", 5, 1, 1),
                         ExerciseElement("Title3", 5, 2, 2)

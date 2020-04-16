@@ -22,10 +22,10 @@ class WorkoutFragment : BaseFragment() {
         recyclerView = fragment_workout__elements_list
         addExerciseButton = fragment_workout__add_exercise_button
 
-        addExerciseButton?.setOnClickListener { (activity as ExerciseListener).onExerciseAdding() }
+        addExerciseButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseAdding() }
 
         val workoutElementAdapter = WorkoutElementAdapter(ArrayList(
-                listOf(
+                mutableListOf(
                         WorkoutElement(R.drawable.ic_account_circle_black_24dp, "Title 1", "Sample description 1"),
                         WorkoutElement(R.drawable.ic_account_circle_black_24dp, "Title 2", "Sample description 2"),
                         WorkoutElement(R.drawable.ic_account_circle_black_24dp, "Title 3", "Sample description 3"),
@@ -39,7 +39,7 @@ class WorkoutFragment : BaseFragment() {
         ) {
             val exerciseId = it?.let { v -> recyclerView?.getChildLayoutPosition(v) }
             if (exerciseId != null && exerciseId != -1) {
-                (activity as ExerciseListener).onExerciseClicked(exerciseId)
+                (activity as? ExerciseListener)?.onExerciseClicked(exerciseId)
             }
         }
 

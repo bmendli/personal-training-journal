@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_workout_element.view.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.utils.recycler.elements.WorkoutElement
 
@@ -27,9 +28,9 @@ class WorkoutElementAdapter(private var elements: List<WorkoutElement>, private 
 
     class WorkoutElementHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var icon: ImageView = itemView.findViewById(R.id.item_workout_element__icon)
-        private var title: TextView = itemView.findViewById(R.id.item_workout_element__title)
-        private var description: TextView = itemView.findViewById(R.id.item_workout_element__description)
+        private var icon: ImageView = itemView.item_workout_element__icon
+        private var title: TextView = itemView.item_workout_element__title
+        private var description: TextView = itemView.item_workout_element__description
 
         fun bind(element: WorkoutElement) {
             icon.setImageResource(element.iconId)
