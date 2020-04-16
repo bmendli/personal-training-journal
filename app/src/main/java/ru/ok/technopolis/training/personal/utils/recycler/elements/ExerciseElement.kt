@@ -1,3 +1,3 @@
 package ru.ok.technopolis.training.personal.utils.recycler.elements
 
-class ExerciseElement(var title: String, var value: Int,  var unitIndex: Int, var inputTypeIndex: Int)
+data class ExerciseElement(val title: String, val value: Int, val unitIndex: Int, val inputTypeIndex: Int)

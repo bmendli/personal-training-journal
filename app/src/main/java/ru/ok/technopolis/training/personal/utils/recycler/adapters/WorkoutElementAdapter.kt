@@ -28,9 +28,9 @@ class WorkoutElementAdapter(private var elements: List<WorkoutElement>, private 
 
     class WorkoutElementHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var icon: ImageView = itemView.item_workout_element__icon
-        private var title: TextView = itemView.item_workout_element__title
-        private var description: TextView = itemView.item_workout_element__description
+        private var icon: ImageView = itemView.icon
+        private var title: TextView = itemView.title
+        private var description: TextView = itemView.description
 
         fun bind(element: WorkoutElement) {
             icon.setImageResource(element.iconId)

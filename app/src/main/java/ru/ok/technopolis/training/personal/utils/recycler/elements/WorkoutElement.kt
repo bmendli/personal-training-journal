@@ -1,3 +1,3 @@
 package ru.ok.technopolis.training.personal.utils.recycler.elements
 
-class WorkoutElement(var iconId: Int, var title: String, var description: String)
+data class WorkoutElement(val iconId: Int, val title: String, val description: String)

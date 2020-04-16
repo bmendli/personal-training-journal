@@ -20,9 +20,9 @@ class ExerciseFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = fragment_exercise__elements_list
-        saveButton = fragment_exercise__save
-        cancelButton = fragment_exercise__cancel
+        recyclerView = elements_list
+        saveButton = save
+        cancelButton = cancel
 
         saveButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseSaved(0) }
         cancelButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseCanceled(0) }

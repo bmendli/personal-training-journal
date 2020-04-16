@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
-        android:id="@+id/item_workout_element__icon"
+        android:id="@+id/icon"
         style="@style/Input"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -15,18 +15,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1"
-        app:layout_constraintEnd_toStartOf="@id/item_workout_element__title"
+        app:layout_constraintEnd_toStartOf="@id/title"
         app:layout_constraintHorizontal_weight="10"
         android:src="@drawable/ic_account_circle_black_24dp"
         />
 
     <TextView
-        android:id="@+id/item_workout_element__title"
+        android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/item_workout_element__icon"
-        app:layout_constraintEnd_toStartOf="@id/item_workout_element__description"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintEnd_toStartOf="@id/description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="30"
         android:gravity="center"
@@ -34,11 +34,11 @@
         />
 
     <TextView
-        android:id="@+id/item_workout_element__description"
+        android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/item_workout_element__title"
+        app:layout_constraintStart_toEndOf="@id/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="60"

@@ -28,10 +28,10 @@ class ExerciseElementAdapter(private val elements: List<ExerciseElement>)
 
     class ExerciseElementHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var title: EditText = itemView.item_exercise_element__title
-        private var value: EditText = itemView.item_exercise_element__value
-        private var units: Spinner = itemView.item_exercise_element__units
-        private var inputType: Spinner = itemView.item_exercise_element__input_type
+        private var title: EditText = itemView.title
+        private var value: EditText = itemView.value
+        private var units: Spinner = itemView.units
+        private var inputType: Spinner = itemView.input_type
 
         fun bind(element: ExerciseElement) {
             title.setText(element.title)

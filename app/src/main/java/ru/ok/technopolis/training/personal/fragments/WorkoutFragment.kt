@@ -19,8 +19,8 @@ class WorkoutFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = fragment_workout__elements_list
-        addExerciseButton = fragment_workout__add_exercise_button
+        recyclerView = elements_list
+        addExerciseButton = add_exercise_button
 
         addExerciseButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseAdding() }
 
