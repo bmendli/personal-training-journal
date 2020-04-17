@@ -10,7 +10,30 @@ import kotlin.reflect.full.createInstance
 
 class Router(private val activity: Activity) {
 
-    fun showPage(page: Page) {
+    fun showLoginPage() {
+        showPage(Page.Activity.Login)
+    }
+
+    fun showCalendarPage() {
+        showPage(Page.Fragment.Calendar)
+    }
+
+    fun showWorkoutPage() {
+        showPage(Page.Fragment.Workout)
+    }
+
+    fun showActiveExercisePage() {
+        showPage(Page.Fragment.ActiveExercise)
+    }
+
+    fun showExercisePage() {
+        showPage(Page.Fragment.Exercise)
+    }
+
+
+
+
+    private fun showPage(page: Page) {
         Logger.d(this, "showPage $page")
         when (page) {
             is Page.Activity -> showActivity(page)

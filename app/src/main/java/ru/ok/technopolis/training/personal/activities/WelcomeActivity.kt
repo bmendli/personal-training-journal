@@ -20,9 +20,9 @@ class WelcomeActivity : AppCompatActivity() {
         val authorised = getSharedPreferences("Training", Context.MODE_PRIVATE).getBoolean("isAuthorised", false)
 
         if (authorised) {
-            router.showPage(Page.Fragment.Workout)
+            router.showWorkoutPage()
         } else {
-            router.showPage(Page.Activity.Login)
+            router.showLoginPage()
         }
         finish()
     }
