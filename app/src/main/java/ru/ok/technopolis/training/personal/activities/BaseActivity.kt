@@ -26,6 +26,7 @@ import ru.ok.technopolis.training.personal.utils.logger.Logger
 abstract class BaseActivity : AppCompatActivity() {
 
     var router: Router? = null
+        private set
 
     protected var mainContainer: FrameLayout? = null
     protected var coordinator: CoordinatorLayout? = null
