@@ -1,5 +1,6 @@
 package ru.ok.technopolis.training.personal.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.TextView
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.activities.WorkoutActivity
 
 class LoginFragment : BaseFragment() {
 
@@ -29,6 +31,10 @@ class LoginFragment : BaseFragment() {
         forgotPasswordTextView = view.findViewById(R.id.forgot_password_tv) as TextView
         notExistAccTextView = view.findViewById(R.id.not_exist_acc_tv) as TextView
         loginButton = view.findViewById(R.id.login_button)
+        loginButton?.setOnClickListener{
+            startActivity(Intent(context, WorkoutActivity::class.java))
+            activity?.finish()
+        }
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_login

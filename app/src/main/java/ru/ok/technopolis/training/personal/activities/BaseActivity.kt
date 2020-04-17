@@ -1,6 +1,7 @@
 package ru.ok.technopolis.training.personal.activities
 
 import android.app.Activity
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -38,7 +39,7 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(getActivityLayoutId())
         setupActivity()
         setupToolbar()
-        setFragments()
+        setSupportingFragment()
         initHomeButton()
 
         Log.d(this::class.java.canonicalName, "Base activity end onCreate")
@@ -63,7 +64,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupActivity() {
+    protected open fun setupActivity() {
         mainContainer = main_container
         coordinator = coordinator_layout
         toolbar = base_toolbar
@@ -81,7 +82,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun setFragments() {
+    private fun setSupportingFragment() {
         Log.d(this::class.java.canonicalName, "start add fragment")
         supportFragmentManager.beginTransaction().add(R.id.main_container, getSupportingFragment()).commit()
         supportFragmentManager.executePendingTransactions()
@@ -102,6 +103,8 @@ abstract class BaseActivity : AppCompatActivity() {
             it.displayOptions = ActionBar.DISPLAY_HOME_AS_UP
             it.setHomeButtonEnabled(true)
             it.setDisplayShowHomeEnabled(true)
+            it.setDisplayShowTitleEnabled(true)
+            it.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.blue)))
             if (hasNavigationMenu()) {
                 navMenu = Drawer()
                         .withActivity(this)
