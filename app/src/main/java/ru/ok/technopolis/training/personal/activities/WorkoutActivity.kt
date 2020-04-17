@@ -5,6 +5,7 @@ import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.fragments.ExerciseFragment
 import ru.ok.technopolis.training.personal.fragments.WorkoutFragment
 import ru.ok.technopolis.training.personal.utils.ExerciseListener
+import ru.ok.technopolis.training.personal.utils.recycler.elements.WorkoutElement
 
 class WorkoutActivity : BaseActivity(), ExerciseListener {
 
@@ -14,15 +15,15 @@ class WorkoutActivity : BaseActivity(), ExerciseListener {
         setFragment(ExerciseFragment())
     }
 
-    override fun onExerciseClicked(exerciseIndex: Int) {
+    override fun onExerciseClicked(element: WorkoutElement) {
         setFragment(ExerciseFragment())
     }
 
-    override fun onExerciseSaved(exerciseIndex: Int) {
+    override fun onExerciseSaved(element: WorkoutElement) {
         setFragment(WorkoutFragment())
     }
 
-    override fun onExerciseCanceled(exerciseIndex: Int) {
+    override fun onExerciseCanceled(element: WorkoutElement) {
         setFragment(WorkoutFragment())
     }
 
