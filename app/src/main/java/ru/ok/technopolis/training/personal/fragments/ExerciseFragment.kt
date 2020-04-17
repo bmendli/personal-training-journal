@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.fragment_exercise.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.utils.recycler.elements.ExerciseElement
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.ExerciseElementAdapter
-import ru.ok.technopolis.training.personal.utils.ExerciseListener
 
 class ExerciseFragment : BaseFragment() {
 
@@ -23,9 +22,6 @@ class ExerciseFragment : BaseFragment() {
         recyclerView = elements_list
         saveButton = save
         cancelButton = cancel
-
-        saveButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseSaved(0) }
-        cancelButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseCanceled(0) }
 
         val exerciseElementAdapter = ExerciseElementAdapter(ArrayList(
                 mutableListOf(

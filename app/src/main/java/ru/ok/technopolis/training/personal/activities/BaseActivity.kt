@@ -3,7 +3,6 @@ package ru.ok.technopolis.training.personal.activities
 import android.app.Activity
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -13,7 +12,6 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
 import com.mikepenz.iconics.typeface.FontAwesome
 import com.mikepenz.materialdrawer.Drawer
@@ -22,8 +20,12 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import kotlinx.android.synthetic.main.activity_base.*
 import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.lifecycle.Router
+import ru.ok.technopolis.training.personal.utils.logger.Logger
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    var router: Router? = null
 
     protected var mainContainer: FrameLayout? = null
     protected var coordinator: CoordinatorLayout? = null
@@ -33,16 +35,15 @@ abstract class BaseActivity : AppCompatActivity() {
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(this::class.java.canonicalName, "Base activity start onCreate")
         super.onCreate(savedInstanceState)
+        Logger.d(this, "onCreate")
+
+        router = Router(this)
 
         setContentView(getActivityLayoutId())
         setupActivity()
         setupToolbar()
-        setSupportingFragment()
         initHomeButton()
-
-        Log.d(this::class.java.canonicalName, "Base activity end onCreate")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -56,7 +57,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         if (navMenu?.isDrawerOpen == true) {
             navMenu?.closeDrawer();
         } else {
@@ -80,22 +80,6 @@ abstract class BaseActivity : AppCompatActivity() {
                 appbarLayout?.visibility = View.GONE
             }
         }
-    }
-
-    private fun setSupportingFragment() {
-        Log.d(this::class.java.canonicalName, "start add fragment")
-        supportFragmentManager.beginTransaction().add(R.id.main_container, getSupportingFragment()).commit()
-        supportFragmentManager.executePendingTransactions()
-        Log.d(this::class.java.canonicalName, "end add fragment")
-    }
-
-    protected fun setFragment(fragment: Fragment) {
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.main_container, fragment)
-        ft.addToBackStack(null)
-        ft.setCustomAnimations(
-                android.R.animator.fade_in, android.R.animator.fade_out)
-        ft.commit()
     }
   
     private fun initHomeButton() {
@@ -142,6 +126,4 @@ abstract class BaseActivity : AppCompatActivity() {
     protected open fun isToolbarEnabled(): Boolean = true
 
     protected open fun getActivityLayoutId(): Int = R.layout.activity_base
-
-    abstract fun getSupportingFragment(): Fragment
 }
