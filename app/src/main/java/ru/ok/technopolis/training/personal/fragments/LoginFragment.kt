@@ -31,7 +31,10 @@ class LoginFragment : BaseFragment() {
         forgotPasswordTextView = view.findViewById(R.id.forgot_password_tv) as TextView
         notExistAccTextView = view.findViewById(R.id.not_exist_acc_tv) as TextView
         loginButton = view.findViewById(R.id.login_button)
-        loginButton?.setOnClickListener{startActivity(Intent(context, WorkoutActivity::class.java))}
+        loginButton?.setOnClickListener{
+            startActivity(Intent(context, WorkoutActivity::class.java))
+            activity?.finish()
+        }
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_login

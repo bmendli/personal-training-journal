@@ -12,5 +12,6 @@
     <color name="gray_2">#666666</color>
     <color name="gray_3">#999999</color>
 
+    <color name="shadow_start_light">#19000000</color>
     <color name="text_shadow">#7F000000</color>
 </resources>
