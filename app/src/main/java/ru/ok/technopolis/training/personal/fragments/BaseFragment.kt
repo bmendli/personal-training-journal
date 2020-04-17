@@ -10,7 +10,7 @@ import ru.ok.technopolis.training.personal.lifecycle.Router
 
 abstract class BaseFragment : Fragment() {
 
-    var router: Router? = null
+    protected var router: Router? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         router = (activity as BaseActivity).router
