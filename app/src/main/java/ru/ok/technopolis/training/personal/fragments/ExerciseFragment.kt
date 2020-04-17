@@ -24,16 +24,24 @@ class ExerciseFragment : BaseFragment() {
         saveButton = save
         cancelButton = cancel
 
-        saveButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseSaved(0) }
-        cancelButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseCanceled(0) }
+//        Smth like
+//        exerciseUtils.createExercise(exerciseItem)
+//        or
+//        exerciseUtils.updateExercise(exerciseItem)
+//        where exerciseItem: ExerciseItem(name: String, elements: List<ExerciseElement)
 
-        val exerciseElementAdapter = ExerciseElementAdapter(ArrayList(
-                mutableListOf(
-                        ExerciseElement("Title1", 5, 0, 0),
-                        ExerciseElement("Title2", 5, 1, 1),
-                        ExerciseElement("Title3", 5, 2, 2)
-                )
-        ))
+//        saveButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseSaved(0) }
+
+//        Smth like
+//        fragmentManager.goBack()
+//        cancelButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseCanceled(0) }
+
+        val exerciseElementAdapter = ExerciseElementAdapter(listOf(
+                    ExerciseElement("Title1", 5, 0, 0),
+                    ExerciseElement("Title2", 5, 1, 1),
+                    ExerciseElement("Title3", 5, 2, 2)
+            )
+        )
 
         recyclerView?.adapter = exerciseElementAdapter
         recyclerView?.layoutManager = LinearLayoutManager(activity)
