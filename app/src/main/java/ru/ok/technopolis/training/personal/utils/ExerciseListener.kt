@@ -1,7 +1,9 @@
 package ru.ok.technopolis.training.personal.utils
 
+import ru.ok.technopolis.training.personal.utils.recycler.elements.WorkoutElement
+
 interface ExerciseListener {
     fun onExerciseAdding()
-    fun onExerciseClicked(id: String)
-    fun onExerciseSaved(id: String)
+    fun onExerciseClicked(element: WorkoutElement)
+    fun onExerciseSaved(element: WorkoutElement)
 }

@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.item_workout_element.view.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.utils.recycler.elements.WorkoutElement
 
-class WorkoutElementAdapter(private val elements: List<WorkoutElement>, private val onClick: ((String) -> Unit))
+class WorkoutElementAdapter(private val elements: List<WorkoutElement>, private val onClick: ((WorkoutElement) -> Unit))
     : RecyclerView.Adapter<WorkoutElementAdapter.WorkoutElementHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutElementHolder {
@@ -27,7 +27,7 @@ class WorkoutElementAdapter(private val elements: List<WorkoutElement>, private 
         holder.bind(elements[position])
     }
 
-    class WorkoutElementHolder(itemView: View, private val onClick: (String) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    class WorkoutElementHolder(itemView: View, private val onClick: (WorkoutElement) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
         private var icon: ImageView = itemView.icon
         private var title: TextView = itemView.title
@@ -37,7 +37,7 @@ class WorkoutElementAdapter(private val elements: List<WorkoutElement>, private 
             icon.setImageResource(element.iconId)
             title.text = element.title
             description.text = element.description
-            itemView.setOnClickListener { onClick.invoke(element.id) }
+            itemView.setOnClickListener { onClick.invoke(element) }
         }
     }
 }

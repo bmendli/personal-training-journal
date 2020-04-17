@@ -33,8 +33,8 @@ class WorkoutFragment : BaseFragment() {
                 WorkoutElement("id6", R.drawable.ic_account_circle_black_24dp, "Title 6", "Sample description 6"),
                 WorkoutElement("id7", R.drawable.ic_account_circle_black_24dp, "Title 7", "Sample description 7"),
                 WorkoutElement("id8", R.drawable.ic_account_circle_black_24dp, "Title 8", "Sample description 8")
-        )) { exerciseId ->
-            (activity as? ExerciseListener)?.onExerciseClicked(exerciseId)
+        )) { element ->
+            (activity as? ExerciseListener)?.onExerciseClicked(element)
         }
 
         recyclerView?.adapter = workoutElementAdapter
