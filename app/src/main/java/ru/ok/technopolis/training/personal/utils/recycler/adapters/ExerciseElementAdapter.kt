@@ -1,4 +1,4 @@
-package ru.ok.technopolis.training.personal.recycler.adapters
+package ru.ok.technopolis.training.personal.utils.recycler.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import android.widget.Spinner
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_exercise_element.view.*
 import ru.ok.technopolis.training.personal.R
-import ru.ok.technopolis.training.personal.recycler.elements.ExerciseElement
+import ru.ok.technopolis.training.personal.utils.recycler.elements.ExerciseElement
 
 class ExerciseElementAdapter(private val elements: List<ExerciseElement>)
     : RecyclerView.Adapter<ExerciseElementAdapter.ExerciseElementHolder>() {
