@@ -19,11 +19,11 @@ class BaseListAdapter<Item>(
 
     private var data = listOf<Item>()
 
-    private var observable: Disposable? = null
+    private var dataSourceSubscription: Disposable? = null
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
-        observable = dataSource.subscribe {
+        dataSourceSubscription = dataSource.subscribe {
             data = it
             notifyDataSetChanged()
         }
@@ -31,7 +31,7 @@ class BaseListAdapter<Item>(
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
-        observable?.dispose()
+        dataSourceSubscription?.dispose()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Item> {
