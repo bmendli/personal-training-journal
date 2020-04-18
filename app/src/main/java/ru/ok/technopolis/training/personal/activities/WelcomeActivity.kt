@@ -4,12 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import ru.ok.technopolis.training.personal.R
 
-class WelcomeActivity : BaseNoAppbarActivity() {
+class WelcomeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        setContentView(R.layout.activity_welcome)
 
         // TODO: this is the mock for authorisation, implement this later
         val authorised = getSharedPreferences("Training", Context.MODE_PRIVATE).getBoolean("isAuthorised", false)
@@ -22,4 +20,5 @@ class WelcomeActivity : BaseNoAppbarActivity() {
         finish()
     }
 
+    override fun getActivityLayoutId() = R.layout.activity_welcome
 }

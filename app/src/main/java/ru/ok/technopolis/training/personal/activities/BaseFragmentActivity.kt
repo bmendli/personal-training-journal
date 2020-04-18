@@ -1,7 +1,9 @@
 package ru.ok.technopolis.training.personal.activities
 
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.view_appbar.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.fragments.BaseFragment
 import ru.ok.technopolis.training.personal.lifecycle.Page
@@ -10,7 +12,7 @@ import ru.ok.technopolis.training.personal.utils.logger.Logger
 import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
 
-class BaseFragmentActivity : BaseActivity() {
+class BaseFragmentActivity : DrawerActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,4 +37,8 @@ class BaseFragmentActivity : BaseActivity() {
                 android.R.animator.fade_in, android.R.animator.fade_out)
         ft.commit()
     }
+
+    override fun getActivityLayoutId() = R.layout.activity_base_fragment
+
+    override fun getToolbarView(): Toolbar = base_toolbar
 }
