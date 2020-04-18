@@ -25,8 +25,13 @@
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:theme="@style/TrainingJournalTheme"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.settings.SettingsActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.settings.AccountSettingsActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.BaseFragmentActivity"
             android:windowSoftInputMode="adjustPan" />

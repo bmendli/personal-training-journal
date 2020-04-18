@@ -1,6 +1,7 @@
 package ru.ok.technopolis.training.personal.lifecycle
 
 import ru.ok.technopolis.training.personal.activities.LoginActivity
+import ru.ok.technopolis.training.personal.activities.settings.SettingsActivity
 import ru.ok.technopolis.training.personal.fragments.ActiveExerciseFragment
 import ru.ok.technopolis.training.personal.fragments.BaseFragment
 import ru.ok.technopolis.training.personal.fragments.CalendarFragment
@@ -17,6 +18,10 @@ sealed class Page : Serializable {
 
         object Login : Activity() {
             override val clazz = LoginActivity::class
+        }
+
+        object Settings : Activity() {
+            override val clazz = SettingsActivity::class
         }
     }
 

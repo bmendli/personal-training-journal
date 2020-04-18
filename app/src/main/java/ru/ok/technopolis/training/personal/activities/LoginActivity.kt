@@ -26,8 +26,10 @@ class LoginActivity : BaseActivity() {
         forgotPasswordTextView = forgot_password_tv
         notExistAccTextView = not_exist_acc_tv
         loginButton = login_button
-
-        loginButton?.setOnClickListener { router?.showWorkoutPage() }
+        loginButton?.setOnClickListener{
+            router?.showWorkoutPage()
+            finish()
+        }
     }
 
     override fun getActivityLayoutId() = R.layout.activity_login
