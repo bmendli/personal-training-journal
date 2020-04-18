@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.fragment_exercise.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.utils.recycler.elements.ExerciseElement
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.ExerciseElementAdapter
-import ru.ok.technopolis.training.personal.utils.ExerciseListener
 
 class ExerciseFragment : BaseFragment() {
 
