@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_workout.*
 import ru.ok.technopolis.training.personal.R
-import ru.ok.technopolis.training.personal.utils.*
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.WorkoutElementAdapter
 import ru.ok.technopolis.training.personal.utils.recycler.elements.WorkoutElement
 
@@ -23,8 +22,6 @@ class WorkoutFragment : BaseFragment() {
 
         recyclerView = elements_list
         addExerciseButton = add_exercise_button
-
-        addExerciseButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseAdding() }
 
         val workoutElementAdapter = WorkoutElementAdapter(ArrayList(
                 mutableListOf(
@@ -66,7 +63,7 @@ class WorkoutFragment : BaseFragment() {
         ) {
             val exerciseId = it?.let { v -> recyclerView?.getChildLayoutPosition(v) }
             if (exerciseId != null && exerciseId != -1) {
-                (activity as? ExerciseListener)?.onExerciseClicked(exerciseId)
+
             }
         }
 
