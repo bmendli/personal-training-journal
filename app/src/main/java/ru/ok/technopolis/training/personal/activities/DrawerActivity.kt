@@ -21,11 +21,22 @@ abstract class DrawerActivity : AppbarActivity() {
     }
 
     private val menuItemsArray = arrayOf(
-            PrimaryDrawerItem().withName(R.string.drawer_item_search).withIcon(R.drawable.ic_search).withIdentifier(SEARCH_ITEM_ID),
-            PrimaryDrawerItem().withName(R.string.drawer_item_bookmarks).withIcon(R.drawable.ic_bookmarks).withIdentifier(BOOKMARKS_ITEM_ID),
-            PrimaryDrawerItem().withName(R.string.drawer_item_favourites).withIcon(FontAwesome.Icon.faw_star_half_empty).withIdentifier(FAVOURITE_ITEM_ID),
+            PrimaryDrawerItem()
+                    .withName(R.string.drawer_item_search)
+                    .withIcon(R.drawable.ic_search)
+                    .withIdentifier(SEARCH_ITEM_ID),
+            PrimaryDrawerItem().withName(R.string.drawer_item_bookmarks)
+                    .withIcon(R.drawable.ic_bookmarks)
+                    .withIdentifier(BOOKMARKS_ITEM_ID),
+            PrimaryDrawerItem()
+                    .withName(R.string.drawer_item_favourites)
+                    .withIcon(FontAwesome.Icon.faw_star_half_empty)
+                    .withIdentifier(FAVOURITE_ITEM_ID),
             DividerDrawerItem(),
-            SecondaryDrawerItem().withName(R.string.drawer_item_settings).withIcon(R.drawable.ic_settings).withIdentifier(SETTINGS_ITEM_ID)
+            SecondaryDrawerItem()
+                    .withName(R.string.drawer_item_settings)
+                    .withIcon(R.drawable.ic_settings)
+                    .withIdentifier(SETTINGS_ITEM_ID)
     )
 
     private var navMenu: Drawer.Result? = null
