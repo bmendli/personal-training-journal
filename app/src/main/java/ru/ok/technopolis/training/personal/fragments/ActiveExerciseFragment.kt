@@ -32,5 +32,5 @@ class ActiveExerciseFragment : BaseFragment() {
         nextExerciseView = view.next_exercise_name
     }
 
-    override fun getFragmentLayoutId(): Int = R.layout.frgment_active_exercise;
+    override fun getFragmentLayoutId(): Int = R.layout.frgment_active_exercise
 }

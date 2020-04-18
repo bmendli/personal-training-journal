@@ -4,7 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import ru.ok.technopolis.training.personal.R
 
-//todo потом добавилю побольше разных тостов
+// todo потом добавилю побольше разных тостов
 object ToastUtils {
 
     @JvmStatic

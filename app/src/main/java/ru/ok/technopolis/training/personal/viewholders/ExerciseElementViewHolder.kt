@@ -7,7 +7,7 @@ import kotlinx.android.synthetic.main.item_exercise_element.view.*
 import ru.ok.technopolis.training.personal.items.ExerciseItem
 
 class ExerciseElementViewHolder(
-        itemView: View
+    itemView: View
 ) : BaseViewHolder<ExerciseItem>(itemView) {
 
     private var title: EditText = itemView.title

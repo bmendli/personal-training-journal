@@ -37,7 +37,7 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), Preference.OnPrefere
         } else true
     }
 
-    //todo later set value from user repository
+    // todo later set value from user repository
     private fun initPreferences() {
         val lastNamePrefs = findPreference(context?.getString(R.string.last_name_settings_key)
                 ?: BaseSettingsActivity.EMPTY_KEY) as EditTextPreference?

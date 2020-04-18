@@ -56,13 +56,13 @@ abstract class DrawerActivity : AppbarActivity() {
                     }
 
                     override fun onDrawerClosed(drawerView: View?) {
-                        //do nothing
+                        // do nothing
                     }
                 })
                 .addDrawerItems(*menuItemsArray)
                 .build()
         navMenu?.setOnDrawerItemClickListener { _, _, _, _, drawerItem ->
-            when(drawerItem.identifier) {
+            when (drawerItem.identifier) {
                 SEARCH_ITEM_ID -> {}
                 BOOKMARKS_ITEM_ID -> {}
                 FAVOURITE_ITEM_ID -> {}
@@ -73,9 +73,9 @@ abstract class DrawerActivity : AppbarActivity() {
 
     override fun onBackPressed() {
         if (navMenu?.isDrawerOpen == true) {
-            navMenu?.closeDrawer();
+            navMenu?.closeDrawer()
         } else {
-            super.onBackPressed();
+            super.onBackPressed()
         }
     }
 
