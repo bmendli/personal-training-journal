@@ -3,9 +3,9 @@ package ru.ok.technopolis.training.personal.activities.settings
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
 import ru.ok.technopolis.training.personal.R
-import ru.ok.technopolis.training.personal.activities.BaseActivity
+import ru.ok.technopolis.training.personal.activities.AppbarActivity
 
-abstract class BaseSettingsActivity : BaseActivity() {
+abstract class BaseSettingsActivity : AppbarActivity() {
 
     companion object {
         const val EMPTY_KEY = "KEY"
