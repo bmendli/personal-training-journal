@@ -14,7 +14,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         router = (activity as BaseActivity).router
-        return               inflater.inflate(getFragmentLayoutId(), container, false) as ViewGroup
+        return inflater.inflate(getFragmentLayoutId(), container, false) as ViewGroup
     }
 
     abstract fun getFragmentLayoutId(): Int
