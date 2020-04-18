@@ -2,13 +2,9 @@ package ru.ok.technopolis.training.personal.fragments.settings
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.View
-import android.widget.LinearLayout
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.activities.settings.BaseSettingsActivity
 import ru.ok.technopolis.training.personal.utils.toast.ToastUtils
