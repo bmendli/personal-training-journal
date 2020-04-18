@@ -30,7 +30,9 @@ class Router(private val activity: Activity) {
         showPage(Page.Fragment.Exercise)
     }
 
-
+    fun showSettingsPage() {
+        showPage(Page.Activity.Settings)
+    }
 
 
     private fun showPage(page: Page) {

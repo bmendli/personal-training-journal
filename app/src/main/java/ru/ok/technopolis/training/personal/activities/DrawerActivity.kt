@@ -13,6 +13,32 @@ import ru.ok.technopolis.training.personal.R
 
 abstract class DrawerActivity : AppbarActivity() {
 
+    companion object {
+        const val SEARCH_ITEM_ID = 1
+        const val BOOKMARKS_ITEM_ID = 2
+        const val FAVOURITE_ITEM_ID = 3
+        const val SETTINGS_ITEM_ID = 4
+    }
+
+    private val menuItemsArray = arrayOf(
+            PrimaryDrawerItem()
+                    .withName(R.string.drawer_item_search)
+                    .withIcon(R.drawable.ic_search)
+                    .withIdentifier(SEARCH_ITEM_ID),
+            PrimaryDrawerItem().withName(R.string.drawer_item_bookmarks)
+                    .withIcon(R.drawable.ic_bookmarks)
+                    .withIdentifier(BOOKMARKS_ITEM_ID),
+            PrimaryDrawerItem()
+                    .withName(R.string.drawer_item_favourites)
+                    .withIcon(FontAwesome.Icon.faw_star_half_empty)
+                    .withIdentifier(FAVOURITE_ITEM_ID),
+            DividerDrawerItem(),
+            SecondaryDrawerItem()
+                    .withName(R.string.drawer_item_settings)
+                    .withIcon(R.drawable.ic_settings)
+                    .withIdentifier(SETTINGS_ITEM_ID)
+    )
+
     private var navMenu: Drawer.Result? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,14 +59,16 @@ abstract class DrawerActivity : AppbarActivity() {
                         //do nothing
                     }
                 })
-                .addDrawerItems(
-                        PrimaryDrawerItem().withName(R.string.drawer_item_found).withIcon(FontAwesome.Icon.faw_search).withIdentifier(1),
-                        PrimaryDrawerItem().withName(R.string.drawer_item_bookmarks).withIcon(FontAwesome.Icon.faw_bookmark).withIdentifier(2),
-                        PrimaryDrawerItem().withName(R.string.drawer_item_favourites).withIcon(FontAwesome.Icon.faw_star).withIdentifier(3),
-                        DividerDrawerItem(),
-                        SecondaryDrawerItem().withName(R.string.drawer_item_settings).withIcon(FontAwesome.Icon.faw_cog).withIdentifier(4)
-                )
+                .addDrawerItems(*menuItemsArray)
                 .build()
+        navMenu?.setOnDrawerItemClickListener { _, _, _, _, drawerItem ->
+            when(drawerItem.identifier) {
+                SEARCH_ITEM_ID -> {}
+                BOOKMARKS_ITEM_ID -> {}
+                FAVOURITE_ITEM_ID -> {}
+                SETTINGS_ITEM_ID -> router?.showSettingsPage()
+            }
+        }
     }
 
     override fun onBackPressed() {

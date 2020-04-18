@@ -45,10 +45,32 @@
     <string name="parameter_name">Имя параметра</string>
     <string name="value">Значение</string>
     <string name="workout">Тренировка</string>
+    <string name="settings">Настройки</string>
     <string name="enter_workout_name">Введите название тренировки</string>
     <string name="workout_exercises">Список упражнений</string>
     <string name="drawer_item_settings">Настройки</string>
+    <string name="account_settings">Настройки аакаунта</string>
     <string name="drawer_item_bookmarks">Закладки</string>
     <string name="drawer_item_favourites">Избранное</string>
-    <string name="drawer_item_found">Найти тренеровку</string>
+    <string name="drawer_item_search">Найти тренеровку</string>
+
+    <string name="enabled">Включены</string>
+    <string name="disabled">Выключены</string>
+    <string name="error">Ошибка</string>
+
+    <string name="preference_account_settings">Аккаунт</string>
+    <string name="preference_account_settings_summary">Настройки аккаунта</string>
+    <string name="preference_notification">Уведомления</string>
+    <string name="preference_delete_account">Удалить аккаунт</string>
+    <string name="preference_delete_account_summary">Этот аккаунт будет удалён безвозвратно</string>
+    <string name="preference_exit">Выйти</string>
+    <string name="preference_exit_summary">Выйти из этого аккаунта</string>
+    <string name="preference_say_error">Сообщить об ошибке</string>
+    <string name="preference_say_error_summary">Пожалуйста, сообщите нам об ошибке</string>
+    <string name="preference_edit_first_name">Имя</string>
+    <string name="preference_edit_last_name">Фамилия</string>
+    <string name="preference_edit_farther_name">Отчество</string>
+    <string name="preference_change_avatar">Фото</string>
+    <string name="preference_change_avatar_summary">Сменить фотографию</string>
+    <string name="preference_personal_data_category">Личные данные</string>
 </resources>
