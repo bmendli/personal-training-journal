@@ -62,5 +62,4 @@ class WorkoutFragment : BaseFragment() {
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_workout
-
 }

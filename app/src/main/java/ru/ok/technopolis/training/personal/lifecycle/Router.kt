@@ -7,7 +7,6 @@ import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.PAGE_KEY
 import ru.ok.technopolis.training.personal.utils.logger.Logger
 import kotlin.reflect.full.createInstance
 
-
 class Router(private val activity: Activity) {
 
     fun showLoginPage() {
@@ -33,7 +32,6 @@ class Router(private val activity: Activity) {
     fun showSettingsPage() {
         showPage(Page.Activity.Settings)
     }
-
 
     private fun showPage(page: Page) {
         Logger.d(this, "showPage $page")

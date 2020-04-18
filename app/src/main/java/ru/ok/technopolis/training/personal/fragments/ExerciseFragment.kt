@@ -38,9 +38,9 @@ class ExerciseFragment : BaseFragment() {
 //        cancelButton?.setOnClickListener { (activity as? ExerciseListener)?.onExerciseCanceled(0) }
 
         val elements = Observable.just(listOf(
-                ExerciseItem("id1","Title1", 5, 0, 0),
-                ExerciseItem("id2","Title2", 5, 1, 1),
-                ExerciseItem("id3","Title3", 5, 2, 2)
+                ExerciseItem("id1", "Title1", 5, 0, 0),
+                ExerciseItem("id2", "Title2", 5, 1, 1),
+                ExerciseItem("id3", "Title3", 5, 2, 2)
         ))
 
         val exerciseElementAdapter = BaseListAdapter(
@@ -53,5 +53,4 @@ class ExerciseFragment : BaseFragment() {
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_exercise
-
 }

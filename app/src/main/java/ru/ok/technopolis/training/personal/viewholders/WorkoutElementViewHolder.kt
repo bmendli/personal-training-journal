@@ -7,7 +7,7 @@ import kotlinx.android.synthetic.main.item_workout_element.view.*
 import ru.ok.technopolis.training.personal.items.WorkoutItem
 
 class WorkoutElementViewHolder(
-        itemView: View
+    itemView: View
 ) : BaseViewHolder<WorkoutItem>(itemView) {
 
     private var icon: ImageView = itemView.icon
