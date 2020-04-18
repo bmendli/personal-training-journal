@@ -21,6 +21,5 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(getActivityLayoutId())
     }
 
-
     protected abstract fun getActivityLayoutId(): Int
 }
