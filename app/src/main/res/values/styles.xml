@@ -102,5 +102,4 @@
         <item name="android:layout_gravity">end</item>
         <item name="android:layout_marginTop">@dimen/dimens_8dp</item>
     </style>
-
 </resources>
