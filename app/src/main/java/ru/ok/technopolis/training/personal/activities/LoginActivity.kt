@@ -7,10 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_login.*
 import ru.ok.technopolis.training.personal.R
-import ru.ok.technopolis.training.personal.lifecycle.Page
-import ru.ok.technopolis.training.personal.lifecycle.Router
 
-class LoginActivity : BaseNoAppbarActivity() {
+class LoginActivity : BaseActivity() {
 
     private var imageView: ImageView? = null
     private var emailEditText: EditText? = null
@@ -21,7 +19,6 @@ class LoginActivity : BaseNoAppbarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
 
         imageView = person_iv
         emailEditText = email_et
@@ -30,4 +27,6 @@ class LoginActivity : BaseNoAppbarActivity() {
         notExistAccTextView = not_exist_acc_tv
         loginButton = login_button
     }
+
+    override fun getActivityLayoutId() = R.layout.activity_login
 }
