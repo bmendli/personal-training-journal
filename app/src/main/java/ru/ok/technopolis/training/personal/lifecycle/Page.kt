@@ -1,8 +1,7 @@
 package ru.ok.technopolis.training.personal.lifecycle
 
-import ru.ok.technopolis.training.personal.activities.AccountSettingsActivity
 import ru.ok.technopolis.training.personal.activities.LoginActivity
-import ru.ok.technopolis.training.personal.activities.SettingsActivity
+import ru.ok.technopolis.training.personal.activities.settings.SettingsActivity
 import ru.ok.technopolis.training.personal.fragments.ActiveExerciseFragment
 import ru.ok.technopolis.training.personal.fragments.BaseFragment
 import ru.ok.technopolis.training.personal.fragments.CalendarFragment

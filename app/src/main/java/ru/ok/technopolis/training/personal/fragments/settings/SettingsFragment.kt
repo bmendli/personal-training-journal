@@ -1,4 +1,4 @@
-package ru.ok.technopolis.training.personal.fragments
+package ru.ok.technopolis.training.personal.fragments.settings
 
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat

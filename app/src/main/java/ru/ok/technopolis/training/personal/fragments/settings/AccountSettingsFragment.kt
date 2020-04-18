@@ -1,0 +1,62 @@
+package ru.ok.technopolis.training.personal.fragments.settings
+
+import android.content.SharedPreferences
+import android.os.Bundle
+import android.view.View
+import android.widget.LinearLayout
+import androidx.preference.EditTextPreference
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
+import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.activities.settings.BaseSettingsActivity
+import ru.ok.technopolis.training.personal.utils.toast.ToastUtils
+import ru.ok.technopolis.training.personal.utils.validator.UserValidator
+
+class AccountSettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
+
+    private var sharedPrefs: SharedPreferences? = null
+
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        addPreferencesFromResource(R.xml.fragment_account_settings)
+        sharedPrefs = preferenceScreen.sharedPreferences
+        initPreferences()
+    }
+
+    override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
+        return if (preference is EditTextPreference) {
+            when (preference.key) {
+                context?.getString(R.string.last_name_settings_key),
+                context?.getString(R.string.first_name_settings_key),
+                context?.getString(R.string.father_name_settings_key) -> {
+                    return if (UserValidator.validName(newValue as? String)) true
+                    else {
+                        context?.let { ToastUtils.showErrorToast(it) }
+                        false
+                    }
+                }
+                else -> false
+            }
+        } else true
+    }
+
+    //todo later set value from user repository
+    private fun initPreferences() {
+        val lastNamePrefs = findPreference(context?.getString(R.string.last_name_settings_key)
+                ?: BaseSettingsActivity.EMPTY_KEY) as EditTextPreference?
+        setSummary(lastNamePrefs)
+
+        val firstNamePrefs = findPreference(context?.getString(R.string.first_name_settings_key)
+                ?: BaseSettingsActivity.EMPTY_KEY) as EditTextPreference?
+        setSummary(firstNamePrefs)
+
+        val fatherNamePrefs = findPreference(context?.getString(R.string.father_name_settings_key)
+                ?: BaseSettingsActivity.EMPTY_KEY) as EditTextPreference?
+        setSummary(fatherNamePrefs)
+    }
+
+    private fun setSummary(pref: Preference?) {
+        pref?.summary = sharedPrefs?.getString(pref?.key, null)
+    }
+}

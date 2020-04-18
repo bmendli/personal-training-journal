@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/TrainingJournalTheme">
-        <activity android:name=".activities.BaseSettingsActivity"></activity>
+        <activity android:name=".activities.settings.BaseSettingsActivity"></activity>
         <activity android:name=".activities.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,10 +28,10 @@
             android:theme="@style/TrainingJournalTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name=".activities.settings.SettingsActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.AccountSettingsActivity"
+            android:name=".activities.settings.AccountSettingsActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.BaseFragmentActivity"

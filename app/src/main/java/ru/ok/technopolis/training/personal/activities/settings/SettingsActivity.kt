@@ -1,8 +1,9 @@
-package ru.ok.technopolis.training.personal.activities
+package ru.ok.technopolis.training.personal.activities.settings
 
 import androidx.preference.PreferenceFragmentCompat
 import ru.ok.technopolis.training.personal.R
-import ru.ok.technopolis.training.personal.fragments.SettingsFragment
+import ru.ok.technopolis.training.personal.activities.settings.BaseSettingsActivity
+import ru.ok.technopolis.training.personal.fragments.settings.SettingsFragment
 
 class SettingsActivity : BaseSettingsActivity() {
 

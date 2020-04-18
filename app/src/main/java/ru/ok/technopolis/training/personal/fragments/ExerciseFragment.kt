@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_exercise.*
 import ru.ok.technopolis.training.personal.R
-import ru.ok.technopolis.training.personal.utils.recycler.elements.ExerciseElement
-import ru.ok.technopolis.training.personal.utils.recycler.adapters.ExerciseElementAdapter
+import ru.ok.technopolis.training.personal.recycler.elements.ExerciseElement
+import ru.ok.technopolis.training.personal.recycler.adapters.ExerciseElementAdapter
 
 class ExerciseFragment : BaseFragment() {
 

@@ -60,6 +60,7 @@
 
     <string name="enabled">Enabled</string>
     <string name="disabled">Disabled</string>
+    <string name="error">Error</string>
 
     <string name="preference_account_settings_summary">Account settings</string>
     <string name="preference_account_settings">Account</string>
@@ -75,6 +76,7 @@
     <string name="preference_edit_farther_name">Father name</string>
     <string name="preference_change_avatar">Photo</string>
     <string name="preference_change_avatar_summary">Change photo</string>
+    <string name="preference_personal_data_category">Personal data</string>
 
     <string name="account_settings_key" translatable="false">account_settings_key</string>
     <string name="notifications_settings_key" translatable="false">notifications_settings_key</string>

@@ -56,6 +56,7 @@
 
     <string name="enabled">Включены</string>
     <string name="disabled">Выключены</string>
+    <string name="error">Ошибка</string>
 
     <string name="preference_account_settings">Аккаунт</string>
     <string name="preference_account_settings_summary">Настройки аккаунта</string>
@@ -71,4 +72,5 @@
     <string name="preference_edit_farther_name">Отчество</string>
     <string name="preference_change_avatar">Фото</string>
     <string name="preference_change_avatar_summary">Сменить фотографию</string>
+    <string name="preference_personal_data_category">Личные данные</string>
 </resources>
