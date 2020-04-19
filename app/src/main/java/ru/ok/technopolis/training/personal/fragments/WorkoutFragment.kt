@@ -50,6 +50,7 @@ class WorkoutFragment : BaseFragment() {
 
         val workoutElementAdapter = BaseListAdapter(
                 holderType = WorkoutElementViewHolder::class,
+                layoutId = R.layout.item_workout_element,
                 dataSource = elements,
                 onClick = {
                     TODO("Write logic here")

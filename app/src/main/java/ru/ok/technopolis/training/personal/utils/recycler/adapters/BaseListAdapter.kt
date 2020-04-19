@@ -3,16 +3,17 @@ package ru.ok.technopolis.training.personal.utils.recycler.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
-import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.viewholders.BaseViewHolder
 import kotlin.reflect.KClass
 import kotlin.reflect.full.primaryConstructor
 
 class BaseListAdapter<Item>(
     private val holderType: KClass<out BaseViewHolder<Item>>,
+    @LayoutRes private val layoutId: Int,
     private val dataSource: Observable<List<Item>>,
     private val onClick: (Item) -> Unit = {}
 ) : RecyclerView.Adapter<BaseViewHolder<Item>>() {
@@ -37,7 +38,7 @@ class BaseListAdapter<Item>(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Item> {
         val view: View = LayoutInflater.from(parent.context)
                 .inflate(
-                        R.layout.item_workout_element,
+                        layoutId,
                         parent,
                         false
                 )

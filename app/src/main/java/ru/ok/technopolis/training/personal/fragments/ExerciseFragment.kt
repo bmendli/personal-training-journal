@@ -45,6 +45,7 @@ class ExerciseFragment : BaseFragment() {
 
         val exerciseElementAdapter = BaseListAdapter(
                 holderType = ExerciseElementViewHolder::class,
+                layoutId = R.layout.item_exercise_element,
                 dataSource = elements
         )
 
