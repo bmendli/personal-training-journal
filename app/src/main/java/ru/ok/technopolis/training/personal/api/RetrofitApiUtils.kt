@@ -16,7 +16,6 @@ object RetrofitApiUtils {
     // todo server url
     private const val TRAINING_JOURNAL_URL = "https://<>.com/"
 
-
     @JvmStatic
     fun createApi(): Api {
         val okHttpClient = OkHttpClient.Builder()
