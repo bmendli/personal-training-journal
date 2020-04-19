@@ -9,5 +9,4 @@ interface ApiInterface {
      * @GET("path/path...")
      * fun getUserTrainings(userId: String): Single<TrainingDto>
      */
-
 }

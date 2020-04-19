@@ -9,7 +9,6 @@ class Api {
 
     val api = RetrofitApiUtils.createApi()
 
-
     /**
      *
      * Example:
