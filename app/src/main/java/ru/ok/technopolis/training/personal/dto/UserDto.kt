@@ -3,7 +3,7 @@ package ru.ok.technopolis.training.personal.dto
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import ru.ok.technopolis.training.personal.model.UserInfo
-import java.util.*
+import java.util.Date
 
 data class UserDto(
     @SerializedName("uid")

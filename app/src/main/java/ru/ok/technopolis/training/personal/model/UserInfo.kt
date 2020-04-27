@@ -2,7 +2,7 @@ package ru.ok.technopolis.training.personal.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.util.*
+import java.util.Date
 
 class UserInfo(
     val uid: Long,
