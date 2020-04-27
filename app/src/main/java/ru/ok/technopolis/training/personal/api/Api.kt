@@ -25,7 +25,7 @@ class Api {
      * subscribeOn() and observeOn()
      *
      *  fun getUserTrainings(user: User) =
-     *      api.getUserTrainings(user.id)
+     *      api.getUserTrainings(user.uid)
      *          .subscribeOn(Schedulers.io())
      *          .observeOn(AndroidSchedulers.mainThread())
      *          .map {
