@@ -4,8 +4,15 @@ import ru.ok.technopolis.training.personal.model.UserInfo
 
 object CurrentUserRepository {
 
-    private val currentUser: UserInfo = UserInfo(0, "lastName", "firstName",
-            "fatherName", UserInfo.GenderType.MALE, "email", null, null)
+    private val currentUser: UserInfo = UserInfo(
+            uid = 0,
+            lastName = "lastName",
+            firstName = "firstName",
+            fatherName = "fatherName",
+            genderType = UserInfo.GenderType.MALE,
+            email = "email",
+            birthday = null,
+            pictureUrlStr = null)
 
     @JvmStatic
     fun getCurrentUserInfo(): UserInfo = currentUser

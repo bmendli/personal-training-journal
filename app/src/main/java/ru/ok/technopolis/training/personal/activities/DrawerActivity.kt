@@ -11,6 +11,8 @@ import com.mikepenz.materialdrawer.util.addItems
 import com.mikepenz.materialdrawer.widget.AccountHeaderView
 import kotlinx.android.synthetic.main.activity_base_fragment.*
 import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.controllers.DrawerController
+import ru.ok.technopolis.training.personal.controllers.NavigationMenuController
 import ru.ok.technopolis.training.personal.model.UserInfo
 import ru.ok.technopolis.training.personal.navmenu.NavigationMenuListener
 import ru.ok.technopolis.training.personal.repository.CurrentUserRepository
@@ -18,14 +20,15 @@ import ru.ok.technopolis.training.personal.repository.CurrentUserRepository
 abstract class DrawerActivity : BaseActivity() {
 
     companion object {
-        const val SEARCH_ITEM_ID = 1.toLong()
-        const val BOOKMARKS_ITEM_ID = 2.toLong()
-        const val FAVOURITE_ITEM_ID = 3.toLong()
-        const val SETTINGS_ITEM_ID = 4.toLong()
+        const val SEARCH_ITEM_ID = 1L
+        const val BOOKMARKS_ITEM_ID = 2L
+        const val FAVOURITE_ITEM_ID = 3L
+        const val SETTINGS_ITEM_ID = 4L
     }
 
-    private val listeners: MutableList<NavigationMenuListener> = ArrayList()
     private val profile: IProfile = ProfileDrawerItem()
+
+    private var drawerController: NavigationMenuController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,37 +48,46 @@ abstract class DrawerActivity : BaseActivity() {
                 true
             }
         }
-        slider.selectExtension
         attachCurrentUserToSlider()
+        drawerController = DrawerController(root_drawer, slider)
     }
 
     private fun setupItems() {
-        val searchItem = PrimaryDrawerItem()
-        searchItem.name = StringHolder(R.string.drawer_item_search)
-        searchItem.icon = ImageHolder(R.drawable.ic_search)
-        searchItem.identifier = SEARCH_ITEM_ID
-        searchItem.isSelectable = false
+        val searchItem = PrimaryDrawerItem().apply {
+            name = StringHolder(R.string.drawer_item_search)
+            icon = ImageHolder(R.drawable.ic_search)
+            identifier = SEARCH_ITEM_ID
+            isSelectable = false
+        }
 
-        val bookmarksItem = PrimaryDrawerItem()
-        bookmarksItem.name = StringHolder(R.string.drawer_item_bookmarks)
-        bookmarksItem.icon = ImageHolder(R.drawable.ic_bookmarks)
-        bookmarksItem.identifier = BOOKMARKS_ITEM_ID
-        bookmarksItem.isSelectable = false
+        val bookmarksItem = PrimaryDrawerItem().apply {
+            name = StringHolder(R.string.drawer_item_bookmarks)
+            icon = ImageHolder(R.drawable.ic_bookmarks)
+            identifier = BOOKMARKS_ITEM_ID
+            isSelectable = false
+        }
 
-        val favouritesItem = PrimaryDrawerItem()
-        favouritesItem.name = StringHolder(R.string.drawer_item_favourites)
-        // todo set icon later
-//        favouritesItem.icon = ImageHolder()
-        favouritesItem.identifier = FAVOURITE_ITEM_ID
-        favouritesItem.isSelectable = false
+        val favouritesItem = PrimaryDrawerItem().apply {
+            name = StringHolder(R.string.drawer_item_favourites)
+            // todo set icon later
+//        icon = ImageHolder()
+            identifier = FAVOURITE_ITEM_ID
+            isSelectable = false
+        }
 
-        val settingsItem = PrimaryDrawerItem()
-        settingsItem.name = StringHolder(R.string.drawer_item_settings)
-        settingsItem.icon = ImageHolder(R.drawable.ic_settings)
-        settingsItem.identifier = SETTINGS_ITEM_ID
-        settingsItem.isSelectable = false
-
-        slider.addItems(searchItem, bookmarksItem, favouritesItem, DividerDrawerItem(), settingsItem)
+        val settingsItem = PrimaryDrawerItem().apply {
+            name = StringHolder(R.string.drawer_item_settings)
+            icon = ImageHolder(R.drawable.ic_settings)
+            identifier = SETTINGS_ITEM_ID
+            isSelectable = false
+        }
+        slider.addItems(
+                searchItem,
+                bookmarksItem,
+                favouritesItem,
+                DividerDrawerItem(),
+                settingsItem
+        )
     }
 
     override fun onBackPressed() {
@@ -87,25 +99,19 @@ abstract class DrawerActivity : BaseActivity() {
     }
 
     fun openNavMenu() {
-        root_drawer.openDrawer(slider)
-        for (listener in listeners) {
-            listener.onOpen()
-        }
+        drawerController?.openMenu()
     }
 
     fun closeNavMenu() {
-        root_drawer.closeDrawer(slider)
-        for (listener in listeners) {
-            listener.onClose()
-        }
+        drawerController?.closeMenu()
     }
 
     fun addListener(listener: NavigationMenuListener) {
-        listeners.add(listener)
+        drawerController?.addMenuListener(listener)
     }
 
     fun removeListener(listener: NavigationMenuListener) {
-        listeners.remove(listener)
+        drawerController?.removeMenuListener(listener)
     }
 
     private fun attachCurrentUserToSlider() {

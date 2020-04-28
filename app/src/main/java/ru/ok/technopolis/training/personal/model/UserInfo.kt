@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.util.Date
 
-class UserInfo(
+data class UserInfo(
     val uid: Long,
     val lastName: String,
     val firstName: String,
@@ -25,29 +25,42 @@ class UserInfo(
         override fun newArray(size: Int): Array<UserInfo?> {
             return arrayOfNulls(size)
         }
+
+        fun fromParcel(parcel: Parcel): UserInfo = UserInfo(
+                parcel.readLong(),
+                parcel.readString() ?: NAME_UNKNOWN,
+                parcel.readString() ?: NAME_UNKNOWN,
+                parcel.readString(),
+                parcel.readSerializable() as GenderType,
+                parcel.readString(),
+                parcel.readSerializable() as Date,
+                parcel.readString()
+        )
     }
 
-    constructor(parcel: Parcel) : this(
-            parcel.readLong(),
-            parcel.readString() ?: NAME_UNKNOWN,
-            parcel.readString() ?: NAME_UNKNOWN,
-            parcel.readString(),
-            parcel.readSerializable() as GenderType,
-            parcel.readString(),
-            parcel.readSerializable() as Date,
-            parcel.readString()
+    constructor(parcel: Parcel) : this(CREATOR.fromParcel(parcel))
+
+    constructor(userInfo: UserInfo): this(
+            userInfo.uid,
+            userInfo.lastName,
+            userInfo.firstName,
+            userInfo.fatherName,
+            userInfo.genderType,
+            userInfo.email,
+            userInfo.birthday,
+            userInfo.pictureUrlStr
     )
 
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-        dest?.let {
-            it.writeLong(uid)
-            it.writeString(lastName)
-            it.writeString(firstName)
-            it.writeString(fatherName)
-            it.writeSerializable(genderType)
-            it.writeString(email)
-            it.writeSerializable(birthday)
-            it.writeString(pictureUrlStr)
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        dest.apply {
+            writeLong(uid)
+            writeString(lastName)
+            writeString(firstName)
+            writeString(fatherName)
+            writeSerializable(genderType)
+            writeString(email)
+            writeSerializable(birthday)
+            writeString(pictureUrlStr)
         }
     }
 
@@ -58,35 +71,24 @@ class UserInfo(
         FEMALE,
         UNKNOWN;
 
-        fun toInteger(): Int {
-            return when (this) {
-                MALE -> 0
-                FEMALE -> 1
-                else -> 2
-            }
-        }
-
         fun toApiStr(): String {
             return when (this) {
-                MALE -> "male"
-                FEMALE -> "female"
-                else -> "unknown"
+                MALE -> MALE_API_NAME
+                FEMALE -> FEMALE_API_NAME
+                else -> UNKNOWN_API_NAME
             }
         }
 
         companion object {
-            fun fromInteger(gender: Int): GenderType {
-                return when (gender) {
-                    0 -> MALE
-                    1 -> FEMALE
-                    else -> UNKNOWN
-                }
-            }
+
+            const val MALE_API_NAME = "male"
+            const val FEMALE_API_NAME = "female"
+            const val UNKNOWN_API_NAME = "unknown"
 
             fun fromApiStr(gender: String): GenderType {
                 return when (gender) {
-                    "male" -> MALE
-                    "female" -> FEMALE
+                    MALE_API_NAME -> MALE
+                    FEMALE_API_NAME -> FEMALE
                     else -> UNKNOWN
                 }
             }
