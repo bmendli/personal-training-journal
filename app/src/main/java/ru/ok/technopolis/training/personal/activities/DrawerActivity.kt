@@ -32,6 +32,7 @@ abstract class DrawerActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        drawerController = DrawerController(root_drawer, slider)
         setupItems()
         slider.apply {
             onDrawerItemClickListener = { _, item, _ ->
@@ -44,12 +45,11 @@ abstract class DrawerActivity : BaseActivity() {
                     }
                     SETTINGS_ITEM_ID -> router?.showSettingsPage()
                 }
-                root_drawer.closeDrawer(this)
+                closeNavMenu()
                 true
             }
         }
         attachCurrentUserToSlider()
-        drawerController = DrawerController(root_drawer, slider)
     }
 
     private fun setupItems() {

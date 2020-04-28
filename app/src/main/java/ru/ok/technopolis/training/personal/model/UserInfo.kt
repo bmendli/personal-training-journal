@@ -25,30 +25,17 @@ data class UserInfo(
         override fun newArray(size: Int): Array<UserInfo?> {
             return arrayOfNulls(size)
         }
-
-        fun fromParcel(parcel: Parcel): UserInfo = UserInfo(
-                parcel.readLong(),
-                parcel.readString() ?: NAME_UNKNOWN,
-                parcel.readString() ?: NAME_UNKNOWN,
-                parcel.readString(),
-                parcel.readSerializable() as GenderType,
-                parcel.readString(),
-                parcel.readSerializable() as Date,
-                parcel.readString()
-        )
     }
 
-    constructor(parcel: Parcel) : this(CREATOR.fromParcel(parcel))
-
-    constructor(userInfo: UserInfo): this(
-            userInfo.uid,
-            userInfo.lastName,
-            userInfo.firstName,
-            userInfo.fatherName,
-            userInfo.genderType,
-            userInfo.email,
-            userInfo.birthday,
-            userInfo.pictureUrlStr
+    constructor(parcel: Parcel) : this(
+        parcel.readLong(),
+        parcel.readString() ?: NAME_UNKNOWN,
+        parcel.readString() ?: NAME_UNKNOWN,
+        parcel.readString(),
+        parcel.readSerializable() as GenderType,
+        parcel.readString(),
+        parcel.readSerializable() as Date,
+        parcel.readString()
     )
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
