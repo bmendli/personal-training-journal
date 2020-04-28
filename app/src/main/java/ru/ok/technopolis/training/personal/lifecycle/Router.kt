@@ -33,6 +33,10 @@ class Router(private val activity: Activity) {
         showPage(Page.Activity.Settings)
     }
 
+    fun showAccountSettingsPage() {
+        showPage(Page.Activity.AccountSettings)
+    }
+
     private fun showPage(page: Page) {
         Logger.d(this, "showPage $page")
         when (page) {
