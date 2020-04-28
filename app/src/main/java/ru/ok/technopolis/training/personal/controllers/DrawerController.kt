@@ -4,9 +4,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.mikepenz.materialdrawer.widget.MaterialDrawerSliderView
 import ru.ok.technopolis.training.personal.navmenu.NavigationMenuListener
 
-class DrawerController(private val drawerLayout: DrawerLayout,
-                       private val sliderView: MaterialDrawerSliderView)
-    : NavigationMenuController {
+class DrawerController(
+    private val drawerLayout: DrawerLayout,
+    private val sliderView: MaterialDrawerSliderView
+) : NavigationMenuController {
 
     private val listeners: MutableList<NavigationMenuListener> = mutableListOf()
 
@@ -31,5 +32,4 @@ class DrawerController(private val drawerLayout: DrawerLayout,
     override fun removeMenuListener(listener: NavigationMenuListener) {
         listeners.remove(listener)
     }
-
 }
