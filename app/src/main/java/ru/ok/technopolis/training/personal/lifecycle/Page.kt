@@ -1,5 +1,6 @@
 package ru.ok.technopolis.training.personal.lifecycle
 
+import ru.ok.technopolis.training.personal.activities.ActiveExerciseActivity
 import ru.ok.technopolis.training.personal.activities.LoginActivity
 import ru.ok.technopolis.training.personal.activities.settings.SettingsActivity
 import ru.ok.technopolis.training.personal.fragments.ActiveExerciseFragment
@@ -23,15 +24,15 @@ sealed class Page : Serializable {
         object Settings : Activity() {
             override val clazz = SettingsActivity::class
         }
+
+        object ActiveExercise : Activity() {
+            override val clazz = ActiveExerciseActivity::class
+        }
     }
 
     sealed class Fragment : Page() {
 
         abstract val clazz: KClass<out BaseFragment>
-
-        object ActiveExercise : Fragment() {
-            override val clazz = ActiveExerciseFragment::class
-        }
 
         object Calendar : Fragment() {
             override val clazz = CalendarFragment::class
@@ -44,6 +45,7 @@ sealed class Page : Serializable {
         object Workout : Fragment() {
             override val clazz = WorkoutFragment::class
         }
+
     }
 
     companion object {

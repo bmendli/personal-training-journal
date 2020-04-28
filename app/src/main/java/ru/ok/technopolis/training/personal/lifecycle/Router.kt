@@ -22,7 +22,7 @@ class Router(private val activity: Activity) {
     }
 
     fun showActiveExercisePage() {
-        showPage(Page.Fragment.ActiveExercise)
+        showPage(Page.Activity.ActiveExercise)
     }
 
     fun showExercisePage() {

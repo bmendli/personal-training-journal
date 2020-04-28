@@ -27,7 +27,7 @@ class LoginActivity : BaseActivity() {
         notExistAccTextView = not_exist_acc_tv
         loginButton = login_button
         loginButton?.setOnClickListener {
-            router?.showWorkoutPage()
+            router?.showActiveExercisePage()
             finish()
         }
     }
