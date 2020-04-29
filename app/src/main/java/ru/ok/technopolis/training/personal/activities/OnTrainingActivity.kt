@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.frgment_active_exercise.*
 import kotlinx.android.synthetic.main.view_appbar.*
 import ru.ok.technopolis.training.personal.R
 
-class OnTrainingActivity : AppbarActivity() {
+class OnTrainingActivity : BaseFragmentActivity() {
     override fun getToolbarView(): Toolbar = base_toolbar
 
     private var goBackView: ImageView? = null

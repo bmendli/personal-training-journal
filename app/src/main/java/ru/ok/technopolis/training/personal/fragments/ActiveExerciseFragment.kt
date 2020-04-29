@@ -30,6 +30,12 @@ class ActiveExerciseFragment : BaseFragment() {
         parameterGoal3EditText = view.parameter3_goal
         doneButton = view.done_button
         nextExerciseView = view.next_exercise_name
+        doneButton?.setOnClickListener {
+            router?.showWorkoutPage()
+        }
+        nextExerciseView?.setOnClickListener {
+
+        }
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.frgment_active_exercise
