@@ -5,11 +5,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.item_exercise_element.view.title
 import kotlinx.android.synthetic.main.item_workout_element.view.*
-import ru.ok.technopolis.training.personal.items.ExerciseListItem
 import ru.ok.technopolis.training.personal.items.WorkoutItem
 
 class ExerciseListViewHolder(
-    itemView: View
+        itemView: View
 ) : BaseViewHolder<WorkoutItem>(itemView) {
 
     private var icon: ImageView = itemView.icon
