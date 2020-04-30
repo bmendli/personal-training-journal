@@ -1,8 +1,14 @@
 package ru.ok.technopolis.training.personal.lifecycle
 
 import ru.ok.technopolis.training.personal.activities.LoginActivity
+import ru.ok.technopolis.training.personal.activities.settings.AccountSettingsActivity
 import ru.ok.technopolis.training.personal.activities.settings.SettingsActivity
-import ru.ok.technopolis.training.personal.fragments.*
+import ru.ok.technopolis.training.personal.fragments.ActiveExerciseFragment
+import ru.ok.technopolis.training.personal.fragments.BaseFragment
+import ru.ok.technopolis.training.personal.fragments.CalendarFragment
+import ru.ok.technopolis.training.personal.fragments.ExerciseFragment
+import ru.ok.technopolis.training.personal.fragments.WorkoutFragment
+import ru.ok.technopolis.training.personal.fragments.TrainingViewFragment
 import java.io.Serializable
 import kotlin.reflect.KClass
 
@@ -18,6 +24,10 @@ sealed class Page : Serializable {
 
         object Settings : Activity() {
             override val clazz = SettingsActivity::class
+        }
+
+        object AccountSettings : Activity() {
+            override val clazz = AccountSettingsActivity::class
         }
     }
 
@@ -39,6 +49,9 @@ sealed class Page : Serializable {
 
         object Workout : Fragment() {
             override val clazz = WorkoutFragment::class
+        }
+        object TrainingView : Fragment() {
+            override val clazz = TrainingViewFragment::class
         }
     }
 

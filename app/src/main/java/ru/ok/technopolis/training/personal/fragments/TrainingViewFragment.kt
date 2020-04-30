@@ -16,7 +16,7 @@ import ru.ok.technopolis.training.personal.items.WorkoutItem
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.BaseListAdapter
 import ru.ok.technopolis.training.personal.viewholders.WorkoutElementViewHolder
 
-class ViewTrainingFragment : BaseFragment() {
+class TrainingViewFragment : BaseFragment() {
 
     private var startTrainingButton: Button? = null
     private var trainingCategoryView: ImageView? = null
