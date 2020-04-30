@@ -40,10 +40,6 @@ sealed class Page : Serializable {
         object Workout : Fragment() {
             override val clazz = WorkoutFragment::class
         }
-
-        object TrainingView : Fragment() {
-            override val clazz = ViewTrainingFragment::class
-        }
     }
 
     companion object {
