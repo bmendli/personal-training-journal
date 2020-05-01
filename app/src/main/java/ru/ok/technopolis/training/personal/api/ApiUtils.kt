@@ -1,9 +1,10 @@
 package ru.ok.technopolis.training.personal.api
 
-import android.util.Base64
+import okhttp3.Credentials
+
 
 object ApiUtils {
 
     fun encodeEmailAndPasswordToAuthorizationHeader(email: String, password: String): String =
-            "Basic${Base64.encodeToString(("$email:$password").toByteArray(), Base64.DEFAULT)}"
+            Credentials.basic(email, password)
 }

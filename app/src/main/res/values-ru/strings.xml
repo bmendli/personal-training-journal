@@ -94,8 +94,8 @@
     </string-array>
 
     <string-array name="sign_up_user_gender">
-        <item>Выбрать пол</item>
-        <item>Мужской</item>
-        <item>Женский</item>
+        <item>Choose gender</item>
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
 </resources>

@@ -20,10 +20,10 @@ interface ApiInterface {
      * fun getUserTrainings(userId: String): Single<TrainingDto>
      */
 
+    @Headers("Content-Type: application/json")
     @POST("/users/create")
     fun createUserRequest(@Body userSignUpDto: UserSignUpDto): Call<SuccessResponse>
 
-    @Headers("Content-Type: application/json")
-    @GET("/users/create")
+    @GET("/users/login")
     fun loginRequest(@Header("Authorization") token: String): Call<Response<String>>
 }

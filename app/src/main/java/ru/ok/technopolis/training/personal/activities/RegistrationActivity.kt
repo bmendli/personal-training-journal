@@ -14,6 +14,7 @@ import ru.ok.technopolis.training.personal.utils.auth.AuthorizationHelper
 import ru.ok.technopolis.training.personal.utils.auth.SignUpDataCorrectType
 import ru.ok.technopolis.training.personal.utils.logger.Logger
 import ru.ok.technopolis.training.personal.utils.toast.ToastUtils
+import java.net.HttpURLConnection
 
 class RegistrationActivity : BaseActivity(), Callback<SuccessResponse> {
 
@@ -72,7 +73,7 @@ class RegistrationActivity : BaseActivity(), Callback<SuccessResponse> {
     }
 
     override fun onResponse(call: Call<SuccessResponse>, response: Response<SuccessResponse>) {
-        if (response.body()?.success == true) {
+        if (response.code() == HttpURLConnection.HTTP_CREATED) {
             ToastUtils.showShortToast(this, R.string.successfully)
             finish()
         } else {
