@@ -6,11 +6,11 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.ok.technopolis.training.personal.BuildConfig
+import ru.ok.technopolis.training.personal.config.Config
 
 object RetrofitApiUtils {
 
-    // todo server url
-    private const val TRAINING_JOURNAL_URL = "https://<>.com/"
+    private val TRAINING_JOURNAL_URL = Config.getBackendAddress() + "/"
 
     @JvmStatic
     fun createApi(): ApiInterface {
