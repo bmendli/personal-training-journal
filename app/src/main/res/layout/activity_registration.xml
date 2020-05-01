@@ -180,6 +180,15 @@
         app:layout_constraintTop_toBottomOf="@id/input_layout_last_name" />
 
     <TextView
+        android:id="@+id/user_gender_required"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/star_required"
+        app:layout_constraintBottom_toBottomOf="@id/user_gender"
+        app:layout_constraintRight_toLeftOf="@id/user_gender"
+        app:layout_constraintTop_toTopOf="@id/user_gender" />
+
+    <TextView
         android:id="@+id/required_filed_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

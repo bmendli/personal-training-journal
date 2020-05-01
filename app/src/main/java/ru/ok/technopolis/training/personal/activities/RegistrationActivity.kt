@@ -63,6 +63,7 @@ class RegistrationActivity : BaseActivity(), Callback<SuccessResponse> {
         confirm_password_required.setTextColor(Color.BLACK)
         last_name_required.setTextColor(Color.BLACK)
         first_name_required.setTextColor(Color.BLACK)
+        user_gender_required.setTextColor(Color.BLACK)
     }
 
     override fun getActivityLayoutId(): Int = R.layout.activity_registration
