@@ -1,7 +1,7 @@
 package ru.ok.technopolis.training.personal.lifecycle
 
-import android.app.Activity
 import ru.ok.technopolis.training.personal.activities.LoginActivity
+import ru.ok.technopolis.training.personal.activities.RegistrationActivity
 import ru.ok.technopolis.training.personal.activities.settings.AccountSettingsActivity
 import ru.ok.technopolis.training.personal.activities.settings.SettingsActivity
 import ru.ok.technopolis.training.personal.fragments.ActiveExerciseFragment
@@ -28,6 +28,10 @@ sealed class Page : Serializable {
 
         object AccountSettings : Activity() {
             override val clazz = AccountSettingsActivity::class
+        }
+
+        object Registration : Activity() {
+            override val clazz = RegistrationActivity::class
         }
     }
 

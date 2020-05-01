@@ -23,11 +23,11 @@ data class UserDto(
     val gender: String,
     @SerializedName("email")
     @Expose
-    val email: String?,
+    val email: String,
     @SerializedName("birthday")
     @Expose
     val birthday: Date?,
-    @SerializedName("picture_url")
+    @SerializedName("avatarurl")
     @Expose
     val pictureUrlStr: String?
 ) {

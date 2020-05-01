@@ -21,10 +21,9 @@
         </activity>
         <activity
             android:name=".activities.LoginActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:launchMode="singleTop"
-            android:theme="@style/TrainingJournalTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.RegistrationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.settings.SettingsActivity"

@@ -10,7 +10,7 @@ data class UserInfo(
     val firstName: String,
     val fatherName: String?,
     val genderType: GenderType,
-    val email: String?,
+    val email: String,
     val birthday: Date?,
     val pictureUrlStr: String?
 ) : Parcelable {
@@ -33,7 +33,7 @@ data class UserInfo(
         parcel.readString() ?: NAME_UNKNOWN,
         parcel.readString(),
         parcel.readSerializable() as GenderType,
-        parcel.readString(),
+        parcel.readString() ?: NAME_UNKNOWN,
         parcel.readSerializable() as Date,
         parcel.readString()
     )
