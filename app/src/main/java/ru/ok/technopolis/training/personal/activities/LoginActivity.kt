@@ -10,6 +10,7 @@ import retrofit2.Response
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.api.Api
 import ru.ok.technopolis.training.personal.api.ApiUtils
+import ru.ok.technopolis.training.personal.utils.logger.Logger
 import ru.ok.technopolis.training.personal.utils.toast.ToastUtils
 import java.net.HttpURLConnection
 
@@ -41,6 +42,7 @@ class LoginActivity : BaseActivity(), Callback<Response<String>> {
                 it.cancel()
             }
         }
+        Logger.e(this, t.message ?: t)
     }
 
     override fun onResponse(call: Call<Response<String>>, response: Response<Response<String>>) {
