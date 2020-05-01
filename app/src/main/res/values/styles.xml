@@ -7,6 +7,7 @@
         <item name="android:actionBarStyle">@style/ActionBarStyle</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="md_color_button_text">@color/black</item>
     </style>
 
     <style name="ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">

@@ -1,8 +1,5 @@
 package ru.ok.technopolis.training.personal.api
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.Callback
 import retrofit2.Response
 import ru.ok.technopolis.training.personal.api.responses.SuccessResponse
@@ -42,13 +39,7 @@ object Api {
      *          .some_other_logic
      */
 
-    fun createUser(userSignUpDto: UserSignUpDto): Single<SuccessResponse> {
-        return api.createUserRequest(userSignUpDto)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-    }
+    fun createUser(userSignUpDto: UserSignUpDto, callback: Callback<SuccessResponse>) = api.createUserRequest(userSignUpDto).enqueue(callback)
 
-    fun login(token: String, callback: Callback<Response<String>>) {
-        return api.loginRequest(token).enqueue(callback)
-    }
+    fun login(token: String, callback: Callback<Response<String>>) = api.loginRequest(token).enqueue(callback)
 }

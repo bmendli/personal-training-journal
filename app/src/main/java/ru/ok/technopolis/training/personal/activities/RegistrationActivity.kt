@@ -3,15 +3,19 @@ package ru.ok.technopolis.training.personal.activities
 import android.graphics.Color
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_registration.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.api.Api
+import ru.ok.technopolis.training.personal.api.responses.SuccessResponse
 import ru.ok.technopolis.training.personal.model.UserSignUpInfo
 import ru.ok.technopolis.training.personal.utils.auth.AuthorizationHelper
 import ru.ok.technopolis.training.personal.utils.auth.SignUpDataCorrectType
 import ru.ok.technopolis.training.personal.utils.logger.Logger
 import ru.ok.technopolis.training.personal.utils.toast.ToastUtils
 
-class RegistrationActivity : BaseActivity() {
+class RegistrationActivity : BaseActivity(), Callback<SuccessResponse> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,20 +51,7 @@ class RegistrationActivity : BaseActivity() {
                     first_name_required.setTextColor(Color.RED)
                     ToastUtils.showShortToast(this, R.string.incorrect_first_name)
                 }
-                SignUpDataCorrectType.CORRECT -> {
-                    Api.createUser(userSignUpInfo.toUserSignUpDto())
-                            .doOnSuccess {
-                                if (it.success) {
-                                    ToastUtils.showShortToast(this, R.string.successfully)
-                                    finish()
-                                } else {
-                                    ToastUtils.showShortToast(this, R.string.failed_registr)
-                                }
-                            }.doOnError {
-                                ToastUtils.showErrorToast(this)
-                                Logger.e(this, it.message ?: it)
-                            }.subscribe()
-                }
+                SignUpDataCorrectType.CORRECT -> Api.createUser(userSignUpInfo.toUserSignUpDto(), this)
             }
         }
     }
@@ -74,4 +65,18 @@ class RegistrationActivity : BaseActivity() {
     }
 
     override fun getActivityLayoutId(): Int = R.layout.activity_registration
+
+    override fun onFailure(call: Call<SuccessResponse>, t: Throwable) {
+        ToastUtils.showErrorToast(this)
+        Logger.e(this, t.message ?: t)
+    }
+
+    override fun onResponse(call: Call<SuccessResponse>, response: Response<SuccessResponse>) {
+        if (response.body()?.success == true) {
+            ToastUtils.showShortToast(this, R.string.successfully)
+            finish()
+        } else {
+            ToastUtils.showShortToast(this, R.string.failed_registr)
+        }
+    }
 }
