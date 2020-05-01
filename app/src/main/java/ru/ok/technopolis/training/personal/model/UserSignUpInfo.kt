@@ -5,12 +5,12 @@ import android.os.Parcelable
 import ru.ok.technopolis.training.personal.dto.UserSignUpDto
 
 data class UserSignUpInfo(
-        val email: String,
-        val password: String,
-        val confirmPassword: String,
-        val lastName: String,
-        val firstName: String,
-        val genderType: String?
+    val email: String,
+    val password: String,
+    val confirmPassword: String,
+    val lastName: String,
+    val firstName: String,
+    val genderType: String?
 ) : Parcelable {
 
     companion object CREATOR : Parcelable.Creator<UserSignUpInfo> {
