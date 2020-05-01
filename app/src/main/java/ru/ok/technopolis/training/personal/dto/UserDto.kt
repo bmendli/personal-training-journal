@@ -27,7 +27,7 @@ data class UserDto(
     @SerializedName("birthday")
     @Expose
     val birthday: Date?,
-    @SerializedName("avatarurl")
+    @SerializedName("picture_url")
     @Expose
     val pictureUrlStr: String?
 ) {
