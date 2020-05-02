@@ -1,6 +1,7 @@
 package ru.ok.technopolis.training.personal.activities
 
 import android.os.Bundle
+import com.afollestad.materialdialogs.MaterialDialog
 import com.mikepenz.materialdrawer.holder.ImageHolder
 import com.mikepenz.materialdrawer.holder.StringHolder
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
@@ -15,6 +16,7 @@ import ru.ok.technopolis.training.personal.controllers.DrawerController
 import ru.ok.technopolis.training.personal.controllers.NavigationMenuController
 import ru.ok.technopolis.training.personal.model.UserInfo
 import ru.ok.technopolis.training.personal.navmenu.NavigationMenuListener
+import ru.ok.technopolis.training.personal.repository.AuthRepository
 import ru.ok.technopolis.training.personal.repository.CurrentUserRepository
 
 abstract class DrawerActivity : BaseActivity() {
@@ -24,6 +26,7 @@ abstract class DrawerActivity : BaseActivity() {
         const val BOOKMARKS_ITEM_ID = 2L
         const val FAVOURITE_ITEM_ID = 3L
         const val SETTINGS_ITEM_ID = 4L
+        const val EXIT_ITEM_ID = 5L
     }
 
     private val profile: IProfile = ProfileDrawerItem()
@@ -43,6 +46,7 @@ abstract class DrawerActivity : BaseActivity() {
                     }
                     FAVOURITE_ITEM_ID -> {
                     }
+                    EXIT_ITEM_ID -> { buildExitDialog() }
                     SETTINGS_ITEM_ID -> router?.showSettingsPage()
                 }
                 closeNavMenu()
@@ -50,6 +54,19 @@ abstract class DrawerActivity : BaseActivity() {
             }
         }
         attachCurrentUserToSlider()
+    }
+
+    private fun buildExitDialog() {
+        MaterialDialog(this).show {
+            title(R.string.quit)
+            message(R.string.quit_confirm_msg)
+            positiveButton(R.string.preference_exit) {
+                AuthRepository.doOnLogout(this@DrawerActivity)
+            }
+            negativeButton(R.string.close) {
+                it.cancel()
+            }
+        }
     }
 
     private fun setupItems() {
@@ -81,12 +98,20 @@ abstract class DrawerActivity : BaseActivity() {
             identifier = SETTINGS_ITEM_ID
             isSelectable = false
         }
+
+        val exitItem = PrimaryDrawerItem().apply {
+            name = StringHolder(R.string.preference_exit)
+            identifier = EXIT_ITEM_ID
+            isSelectable = false
+        }
+
         slider.addItems(
                 searchItem,
                 bookmarksItem,
                 favouritesItem,
                 DividerDrawerItem(),
-                settingsItem
+                settingsItem,
+                exitItem
         )
     }
 
