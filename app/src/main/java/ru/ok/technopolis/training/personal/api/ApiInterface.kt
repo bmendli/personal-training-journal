@@ -1,13 +1,13 @@
 package ru.ok.technopolis.training.personal.api
 
-import retrofit2.Call
+import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
-import ru.ok.technopolis.training.personal.api.responses.SuccessResponse
+import ru.ok.technopolis.training.personal.api.responses.MessageResponse
 import ru.ok.technopolis.training.personal.dto.UserSignUpDto
 
 /**
@@ -22,8 +22,8 @@ interface ApiInterface {
 
     @Headers("Content-Type: application/json")
     @POST("/users/create")
-    fun createUserRequest(@Body userSignUpDto: UserSignUpDto): Call<SuccessResponse>
+    fun createUserRequest(@Body userSignUpDto: UserSignUpDto): Single<Response<MessageResponse>>
 
     @GET("/users/login")
-    fun loginRequest(@Header("Authorization") token: String): Call<Response<String>>
+    fun loginRequest(@Header("Authorization") token: String): Single<Response<MessageResponse>>
 }

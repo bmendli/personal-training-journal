@@ -47,6 +47,7 @@
     <string name="error">Error</string>
     <string name="close">Close</string>
     <string name="successfully">Successfully</string>
+    <string name="user_exist">User already exist</string>
     <string name="failed_registr">Failed to register, please try again later.</string>
     <string name="failed_login">Failed to log in, please try again later.</string>
     <string name="incorrect_email">Incorrect email</string>
@@ -56,6 +57,7 @@
     <string name="incorrect_first_name">Incorrect first name</string>
     <string name="incorrect_email_or_password">Incorrect email or password.</string>
     <string name="cannot_login">Failed to log in.</string>
+    <string name="cannot_sign_up">Failed to sign up.</string>
     <string name="server_not_available">Server is not available.</string>
 
     <string name="preference_account_settings_summary">Account settings</string>

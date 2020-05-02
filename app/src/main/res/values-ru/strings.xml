@@ -41,6 +41,7 @@
     <string name="error">Ошибка</string>
     <string name="close">Закрыть</string>
     <string name="successfully">Успешно</string>
+    <string name="user_exist">Пользователь уже существует</string>
     <string name="failed_registr">Не удалось зарегистрироваться, попробуйте ещё раз позже.</string>
     <string name="failed_login">Не удалось войти, попробуйте ещё раз позже.</string>
     <string name="incorrect_email">Некорректный адрес эл.почты</string>
@@ -50,6 +51,7 @@
     <string name="incorrect_first_name">Некорректное имя</string>
     <string name="incorrect_email_or_password">Неправильная эл. почта или пароль.</string>
     <string name="cannot_login">Не удалось войти.</string>
+    <string name="cannot_sign_up">Не удалось зарегистрироваться.</string>
     <string name="server_not_available">Сервер недоступен.</string>
 
     <string name="preference_account_settings">Аккаунт</string>
