@@ -1,13 +1,18 @@
 package ru.ok.technopolis.training.personal.api
 
+import retrofit2.Callback
+import retrofit2.Response
+import ru.ok.technopolis.training.personal.api.responses.SuccessResponse
+import ru.ok.technopolis.training.personal.dto.UserSignUpDto
+
 /**
  *
  * High-level access to api
  *
  */
-class Api {
+object Api {
 
-    val api = RetrofitApiUtils.createApi()
+    private val api = RetrofitApiUtils.createApi()
 
     /**
      *
@@ -33,4 +38,8 @@ class Api {
      *          }
      *          .some_other_logic
      */
+
+    fun createUser(userSignUpDto: UserSignUpDto, callback: Callback<SuccessResponse>) = api.createUserRequest(userSignUpDto).enqueue(callback)
+
+    fun login(token: String, callback: Callback<Response<String>>) = api.loginRequest(token).enqueue(callback)
 }

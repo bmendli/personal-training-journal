@@ -37,6 +37,10 @@ class Router(private val activity: Activity) {
         showPage(Page.Activity.AccountSettings)
     }
 
+    fun showRegistrationPage() {
+        showPage(Page.Activity.Registration)
+    }
+
     private fun showPage(page: Page) {
         Logger.d(this, "showPage $page")
         when (page) {

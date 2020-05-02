@@ -84,6 +84,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.2.2'
     implementation 'androidx.navigation:navigation-ui:2.2.2'
 
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
+    implementation 'com.afollestad.material-dialogs:datetime:3.3.0'
+
     implementation "com.mikepenz:materialdrawer-nav:${materialDrawerRelease}"
     implementation "com.mikepenz:materialdrawer:${materialDrawerRelease}"
     implementation "com.mikepenz:materialdrawer-iconics:${materialDrawerRelease}"
