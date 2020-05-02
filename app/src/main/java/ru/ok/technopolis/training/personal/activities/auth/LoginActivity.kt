@@ -72,7 +72,7 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private fun LoginActivity.onFail(throwable: Throwable) {
+    private fun onFail(throwable: Throwable) {
         MaterialDialog(this).show {
             title(R.string.cannot_login)
             message(R.string.failed_login)
