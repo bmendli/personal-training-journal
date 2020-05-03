@@ -17,7 +17,7 @@ class WelcomeActivity : BaseActivity() {
                 .getString(AuthRepository.USER_TOKEN, null)
 
         if (token != null) {
-            compositeDisposable.add(
+            taskContainer.add(
                     Api.login(token).subscribe(
                             {
                                 if (it.code() == HttpURLConnection.HTTP_OK) {
@@ -25,13 +25,13 @@ class WelcomeActivity : BaseActivity() {
                                     Logger.d(this, "successfully login with code ${it.code()}")
                                 } else {
                                     router?.showLoginPage()
-                                    Logger.d(this, it.code())
+                                    Logger.d(this, "Incorrect password or email : ${it.code()}")
                                     finish()
                                 }
                             },
                             {
                                 router?.showLoginPage()
-                                Logger.e(this, it.message ?: it)
+                                Logger.e(this, "Login failed : ${it.message}")
                                 finish()
                             }
                     )

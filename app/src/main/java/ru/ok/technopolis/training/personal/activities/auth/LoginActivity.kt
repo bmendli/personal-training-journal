@@ -24,7 +24,7 @@ class LoginActivity : BaseActivity() {
 
         confirm_button.setOnClickListener {
             val token = ApiUtils.encodeEmailAndPasswordToAuthorizationHeader(email_et.text.toString(), password_et.text.toString())
-            compositeDisposable.add(
+            taskContainer.add(
                     Api.login(token).subscribe(
                             { onResponse(it, token) },
                             { onFail(it) }
@@ -80,7 +80,7 @@ class LoginActivity : BaseActivity() {
                 it.cancel()
             }
         }
-        Logger.e(this, throwable.message ?: throwable)
+        Logger.e(this, "Login failed : ${throwable.message}")
     }
 
     override fun getActivityLayoutId() = R.layout.activity_login

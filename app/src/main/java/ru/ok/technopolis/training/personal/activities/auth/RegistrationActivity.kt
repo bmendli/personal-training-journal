@@ -52,7 +52,7 @@ class RegistrationActivity : BaseActivity() {
                     first_name_required.setTextColor(Color.RED)
                     ToastUtils.showShortToast(this, R.string.incorrect_first_name)
                 }
-                SignUpDataCorrectType.CORRECT -> compositeDisposable.add(
+                SignUpDataCorrectType.CORRECT -> taskContainer.add(
                         Api.createUser(userSignUpInfo.toUserSignUpDto()).subscribe(
                                 { onResponse(it) },
                                 { onFail(it) }
@@ -78,7 +78,7 @@ class RegistrationActivity : BaseActivity() {
                         it.cancel()
                     }
                 }
-                Logger.d(this, "${response.code()} : ${response.body()?.message}")
+                Logger.d(this, "fail registration ${response.code()} : ${response.body()?.message}")
             }
             else -> {
                 ToastUtils.showShortToast(this, R.string.failed_registr)

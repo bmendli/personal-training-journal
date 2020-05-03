@@ -12,7 +12,7 @@ abstract class BaseActivity : AppCompatActivity() {
     var router: Router? = null
         private set
 
-    protected val compositeDisposable: CompositeDisposable = CompositeDisposable()
+    protected val taskContainer: CompositeDisposable = CompositeDisposable()
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        compositeDisposable.dispose()
+        taskContainer.dispose()
     }
 
     protected abstract fun getActivityLayoutId(): Int
