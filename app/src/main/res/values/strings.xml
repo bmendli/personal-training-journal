@@ -42,10 +42,13 @@
     <string name="drawer_item_favourites">Favourites</string>
     <string name="drawer_item_search">Found training</string>
 
+    <string name="remember">Remember</string>
     <string name="enabled">Enabled</string>
     <string name="disabled">Disabled</string>
     <string name="error">Error</string>
     <string name="close">Close</string>
+    <string name="quit">Quit</string>
+    <string name="quit_confirm_msg">Do you really want to log out of your account?</string>
     <string name="successfully">Successfully</string>
     <string name="user_exist">User already exist</string>
     <string name="failed_registr">Failed to register, please try again later.</string>

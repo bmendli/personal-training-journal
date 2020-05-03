@@ -36,10 +36,13 @@
     <string name="drawer_item_favourites">Избранное</string>
     <string name="drawer_item_search">Найти тренеровку</string>
 
+    <string name="remember">Запомнить</string>
     <string name="enabled">Включены</string>
     <string name="disabled">Выключены</string>
     <string name="error">Ошибка</string>
     <string name="close">Закрыть</string>
+    <string name="quit">Выход</string>
+    <string name="quit_confirm_msg">Вы действительно хотите выйти из аккаунта?</string>
     <string name="successfully">Успешно</string>
     <string name="user_exist">Пользователь уже существует</string>
     <string name="failed_registr">Не удалось зарегистрироваться, попробуйте ещё раз позже.</string>

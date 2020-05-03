@@ -23,10 +23,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".activities.auth.LoginActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.RegistrationActivity"
+            android:name=".activities.auth.RegistrationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.settings.SettingsActivity"
