@@ -41,7 +41,6 @@ class ActiveExerciseFragment : BaseFragment() {
             router?.showActiveExercisePage()
         }
 
-
         val parameters = Observable.just(listOf(
 
                 ActiveExerciseItem("id1", "Title1", 5, 0, 0),
@@ -55,7 +54,7 @@ class ActiveExerciseFragment : BaseFragment() {
             layoutId = R.layout.item_active_exercise_element,
             dataSource = parameters,
             onClick = {
-            TODO("Write logic here")
+                TODO("Write logic here")
             }
         )
 
