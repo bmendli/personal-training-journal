@@ -15,7 +15,6 @@ import ru.ok.technopolis.training.personal.items.ActiveExerciseItem
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.BaseListAdapter
 import ru.ok.technopolis.training.personal.viewholders.ActiveExerciseViewHolder
 
-
 class ActiveExerciseFragment : BaseFragment() {
 
     private var goBackView: ImageView? = null
