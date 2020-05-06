@@ -24,11 +24,11 @@ class ActiveExerciseFragment : BaseFragment() {
 
     private var doneButton: Button? = null
     private var nextExerciseView: TextView? = null
-    private var recyclerView: RecyclerView? = null
+    private var parametersList: RecyclerView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = parameters_list
+        parametersList = view.parameters_view
         goBackView = view.go_back
         setStarView = view.star_border
         setBookmarkView = view.bookmark_border
@@ -42,7 +42,6 @@ class ActiveExerciseFragment : BaseFragment() {
         }
 
         val parameters = Observable.just(listOf(
-
                 ActiveExerciseItem("id1", "Title1", 5, 0, 0),
                 ActiveExerciseItem("id2", "Title2", 5, 1, 1),
                 ActiveExerciseItem("id3", "Title3", 5, 2, 2)
@@ -52,14 +51,11 @@ class ActiveExerciseFragment : BaseFragment() {
         val exerciseElementAdapter = BaseListAdapter(
             holderType = ActiveExerciseViewHolder::class,
             layoutId = R.layout.item_active_exercise_element,
-            dataSource = parameters,
-            onClick = {
-                TODO("Write logic here")
-            }
+            dataSource = parameters
         )
 
-        recyclerView?.adapter = exerciseElementAdapter
-        recyclerView?.layoutManager = LinearLayoutManager(activity)
+        parametersList?.adapter = exerciseElementAdapter
+        parametersList?.layoutManager = LinearLayoutManager(activity)
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.frgment_active_exercise

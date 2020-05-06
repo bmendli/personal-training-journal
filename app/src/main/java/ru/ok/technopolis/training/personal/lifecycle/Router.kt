@@ -13,13 +13,8 @@ class Router(private val activity: Activity) {
         showPage(Page.Activity.Login)
     }
 
-
     fun showCalendarPage() {
         showPage(Page.Fragment.Calendar)
-    }
-
-    fun showOnTrainingPage() {
-        showPage(Page.Activity.OnTraining)
     }
 
     fun showWorkoutPage() {

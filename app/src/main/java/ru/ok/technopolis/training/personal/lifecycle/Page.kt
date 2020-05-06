@@ -29,7 +29,6 @@ sealed class Page : Serializable {
         object AccountSettings : Activity() {
             override val clazz = AccountSettingsActivity::class
         }
-
     }
 
     sealed class Fragment : Page() {
