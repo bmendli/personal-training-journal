@@ -23,7 +23,7 @@ class ActiveExerciseFragment : BaseFragment() {
     private var setBookmarkView: ImageView? = null
 
     private var doneButton: Button? = null
-    private var nextExerciseView: TextView? = null
+    private var nextExerciseButton: TextView? = null
     private var parametersList: RecyclerView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,11 +33,11 @@ class ActiveExerciseFragment : BaseFragment() {
         setStarView = view.star_border
         setBookmarkView = view.bookmark_border
         doneButton = view.done_button
-        nextExerciseView = view.next_exercise_name
+        nextExerciseButton = view.next_exercise_name
         doneButton?.setOnClickListener {
             router?.showWorkoutPage()
         }
-        nextExerciseView?.setOnClickListener {
+        nextExerciseButton?.setOnClickListener {
             router?.showActiveExercisePage()
         }
 
