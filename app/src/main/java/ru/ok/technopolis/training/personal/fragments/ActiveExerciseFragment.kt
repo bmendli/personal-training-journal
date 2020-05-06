@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.frgment_active_exercise.*
 import kotlinx.android.synthetic.main.frgment_active_exercise.view.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.items.ActiveExerciseItem
