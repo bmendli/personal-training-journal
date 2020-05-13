@@ -1,6 +1,8 @@
 package ru.ok.technopolis.training.personal.fragments
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +11,7 @@ import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_exercise.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.items.ExerciseItem
+import ru.ok.technopolis.training.personal.utils.logger.Logger
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.BaseListAdapter
 import ru.ok.technopolis.training.personal.viewholders.ExerciseElementViewHolder
 
@@ -22,8 +25,6 @@ class ExerciseFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = elements_list
-        saveButton = save
-        cancelButton = cancel
 
 //        Smth like
 //        exerciseUtils.createExercise(exerciseItem)
@@ -51,6 +52,13 @@ class ExerciseFragment : BaseFragment() {
 
         recyclerView?.adapter = exerciseElementAdapter
         recyclerView?.layoutManager = LinearLayoutManager(activity)
+
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        Logger.d(this, "onCreateOptionsMenu")
+        inflater.inflate(R.menu.new_workout, menu)
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_exercise

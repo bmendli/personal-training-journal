@@ -1,8 +1,10 @@
 package ru.ok.technopolis.training.personal.fragments
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,13 +13,14 @@ import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_workout.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.items.WorkoutItem
+import ru.ok.technopolis.training.personal.utils.logger.Logger
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.BaseListAdapter
 import ru.ok.technopolis.training.personal.viewholders.WorkoutElementViewHolder
 
 class WorkoutFragment : BaseFragment() {
 
     private var recyclerView: RecyclerView? = null
-    private var addExerciseButton: Button? = null
+    private var addExerciseButton: ImageView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,13 +56,20 @@ class WorkoutFragment : BaseFragment() {
                 layoutId = R.layout.item_workout_element,
                 dataSource = elements,
                 onClick = {
-                    TODO("Write logic here")
+                    router?.showExercisePage()
                 }
         )
 
         recyclerView?.adapter = workoutElementAdapter
         recyclerView?.layoutManager = LinearLayoutManager(activity)
         recyclerView?.addItemDecoration(DividerItemDecoration(activity, LinearLayout.VERTICAL))
+
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        Logger.d(this, "onCreateOptionsMenu")
+        inflater.inflate(R.menu.new_workout, menu)
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_workout
