@@ -27,6 +27,9 @@ class WorkoutFragment : BaseFragment() {
 
         recyclerView = elements_list
         addExerciseButton = add_exercise_button
+        addExerciseButton?.setOnClickListener {
+            router?.showExercisePage()
+        }
 
         val elements = Observable.just(listOf(
                 WorkoutItem("id1", R.drawable.ic_account_circle_black_24dp, "Title 1", "Sample description 1"),

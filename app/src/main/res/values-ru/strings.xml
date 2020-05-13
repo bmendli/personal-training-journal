@@ -74,6 +74,7 @@
     <string name="preference_personal_data_category">Личные данные</string>
 
     <string name="star_required_text">* - Обязательные поля</string>
+    <string name="scheduled_workouts">Запланированные тренировки</string>
 
     <string-array name="exercise_types">
         <item>Силовое</item>

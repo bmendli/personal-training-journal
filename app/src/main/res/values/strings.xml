@@ -93,6 +93,7 @@
 
     <string name="star_required" translatable="false">*</string>
     <string name="star_required_text">* - required fields</string>
+    <string name="scheduled_workouts">Scheduled workouts</string>
 
     <string-array name="exercise_types">
         <item>Strength</item>

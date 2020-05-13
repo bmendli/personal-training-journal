@@ -13,7 +13,7 @@ object AuthRepository {
             if (needRemember) {
                 getSharedPreferences(TRAINING_PREFERENCE, Context.MODE_PRIVATE).edit().putString(USER_TOKEN, token).apply()
             }
-            router?.showWorkoutPage()
+            router?.showCalendarPage()
             finish()
         }
     }

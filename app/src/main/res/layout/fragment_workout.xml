@@ -23,21 +23,20 @@
         android:gravity="center"
         android:text="@string/workout_exercises"
         android:textSize="@dimen/text_size_20"
-        app:layout_constraintBottom_toBottomOf="@id/add_exercise_button"
-        app:layout_constraintEnd_toStartOf="@id/add_exercise_button"
+        android:layout_marginTop="@dimen/dimens_16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/add_exercise_button" />
+        app:layout_constraintEnd_toStartOf="@id/add_exercise_button"
+        app:layout_constraintBottom_toTopOf="@id/elements_list"
+        app:layout_constraintTop_toBottomOf="@id/workout_name" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/add_exercise_button"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/ic_add_black_24dp"
-        style="@style/RoundedCornerButton"
-        android:layout_marginTop="@dimen/dimens_16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_add_circle_black_24dp"
         app:layout_constraintStart_toEndOf="@id/add_exercise_text"
-        app:layout_constraintTop_toBottomOf="@id/workout_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/add_exercise_text"
         app:layout_constraintBottom_toBottomOf="@id/add_exercise_text"
         app:layout_constraintDimensionRatio="1" />
 

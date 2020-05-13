@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Observable
@@ -18,8 +17,6 @@ import ru.ok.technopolis.training.personal.viewholders.ExerciseElementViewHolder
 class ExerciseFragment : BaseFragment() {
 
     private var recyclerView: RecyclerView? = null
-    private var saveButton: Button? = null
-    private var cancelButton: Button? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
