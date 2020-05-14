@@ -12,7 +12,7 @@ import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.items.Workout
-import ru.ok.technopolis.training.personal.utils.recycler.adapters.BaseListAdapter
+import ru.ok.technopolis.training.personal.utils.recycler.adapters.CalendarWorkoutListAdapter
 import ru.ok.technopolis.training.personal.viewholders.WorkoutViewHolder
 
 class CalendarFragment : BaseFragment() {
@@ -38,12 +38,18 @@ class CalendarFragment : BaseFragment() {
                 Workout("id3", "20:00", "Training 3")
         ))
 
-        val workoutAdapter = BaseListAdapter(
+        val workoutAdapter = CalendarWorkoutListAdapter(
                 holderType = WorkoutViewHolder::class,
                 layoutId = R.layout.item_workout,
                 dataSource = elements,
                 onClick = {
                     router?.showWorkoutPage()
+                },
+                onStartWorkoutClick = {
+                    router?.showActiveExercisePage()
+                },
+                onDeleteWorkoutClick = {
+                    println("OnDelete workout click!")
                 }
         )
 

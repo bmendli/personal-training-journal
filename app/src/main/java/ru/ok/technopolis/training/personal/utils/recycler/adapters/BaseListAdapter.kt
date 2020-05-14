@@ -11,14 +11,14 @@ import ru.ok.technopolis.training.personal.viewholders.BaseViewHolder
 import kotlin.reflect.KClass
 import kotlin.reflect.full.primaryConstructor
 
-class BaseListAdapter<Item>(
+open class BaseListAdapter<Item>(
     private val holderType: KClass<out BaseViewHolder<Item>>,
     @LayoutRes private val layoutId: Int,
     private val dataSource: Observable<List<Item>>,
     private val onClick: (Item) -> Unit = {}
 ) : RecyclerView.Adapter<BaseViewHolder<Item>>() {
 
-    private var data = listOf<Item>()
+    internal var data = listOf<Item>()
 
     private var dataSourceSubscription: Disposable? = null
 
