@@ -55,7 +55,7 @@
         android:gravity="center"
         android:textSize="@dimen/text_size_20"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/add_exercise_button"
+        app:layout_constraintEnd_toStartOf="@id/add_parameter_button"
         app:layout_constraintTop_toBottomOf="@id/type_text_view"
         app:layout_constraintBottom_toTopOf="@id/elements_list"
 
@@ -63,7 +63,7 @@
         />
 
     <ImageView
-        android:id="@+id/add_exercise_button"
+        android:id="@+id/add_parameter_button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/ic_add_circle_black_24dp"

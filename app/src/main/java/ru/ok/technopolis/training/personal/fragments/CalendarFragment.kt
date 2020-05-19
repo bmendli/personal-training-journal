@@ -8,9 +8,9 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
 import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.items.Workout
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.CalendarWorkoutListAdapter
 import ru.ok.technopolis.training.personal.viewholders.WorkoutViewHolder
@@ -32,7 +32,7 @@ class CalendarFragment : BaseFragment() {
 
         recyclerView = view.workout_list
 
-        val elements = Observable.just(listOf(
+        val elements = ItemsList(mutableListOf(
                 Workout("id1", "8:00", "Training 1"),
                 Workout("id2", "14:00", "Training 2"),
                 Workout("id3", "20:00", "Training 3")
@@ -49,7 +49,7 @@ class CalendarFragment : BaseFragment() {
                     router?.showActiveExercisePage()
                 },
                 onDeleteWorkoutClick = {
-                    println("OnDelete workout click!")
+                    elements.remove(it)
                 }
         )
 

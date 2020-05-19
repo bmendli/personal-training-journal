@@ -9,12 +9,13 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_workout.*
 import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.items.WorkoutItem
 import ru.ok.technopolis.training.personal.utils.logger.Logger
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.BaseListAdapter
+import ru.ok.technopolis.training.personal.utils.recycler.adapters.ExerciseListAdapter
 import ru.ok.technopolis.training.personal.viewholders.WorkoutElementViewHolder
 
 class WorkoutFragment : BaseFragment() {
@@ -31,7 +32,7 @@ class WorkoutFragment : BaseFragment() {
             router?.showExercisePage()
         }
 
-        val elements = Observable.just(listOf(
+        val elements = ItemsList(mutableListOf(
                 WorkoutItem("id1", R.drawable.ic_account_circle_black_24dp, "Title 1", "Sample description 1"),
                 WorkoutItem("id2", R.drawable.ic_account_circle_black_24dp, "Title 2", "Sample description 2"),
                 WorkoutItem("id3", R.drawable.ic_account_circle_black_24dp, "Title 3", "Sample description 3"),
@@ -54,12 +55,15 @@ class WorkoutFragment : BaseFragment() {
                 WorkoutItem("id20", R.drawable.ic_account_circle_black_24dp, "Title 4", "Sample description 4")
         ))
 
-        val workoutElementAdapter = BaseListAdapter(
+        val workoutElementAdapter = ExerciseListAdapter(
                 holderType = WorkoutElementViewHolder::class,
                 layoutId = R.layout.item_workout_element,
                 dataSource = elements,
                 onClick = {
                     router?.showExercisePage()
+                },
+                onDeleteExerciseClick = {
+                    elements.remove(it)
                 }
         )
 

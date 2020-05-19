@@ -5,34 +5,44 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
+import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.viewholders.BaseViewHolder
 import kotlin.reflect.KClass
 import kotlin.reflect.full.primaryConstructor
 
 open class BaseListAdapter<Item>(
-    private val holderType: KClass<out BaseViewHolder<Item>>,
-    @LayoutRes private val layoutId: Int,
-    private val dataSource: Observable<List<Item>>,
-    private val onClick: (Item) -> Unit = {}
+        private val holderType: KClass<out BaseViewHolder<Item>>,
+        @LayoutRes private val layoutId: Int,
+        private val dataSource: ItemsList<Item>,
+        private val onClick: (Item) -> Unit = {}
 ) : RecyclerView.Adapter<BaseViewHolder<Item>>() {
 
     internal var data = listOf<Item>()
 
-    private var dataSourceSubscription: Disposable? = null
+    private var onAddDataSourceSubscription: Disposable? = null
+    private var onRemoveDataSourceSubscription: Disposable? = null
+    private var onUpdateDataSourceSubscription: Disposable? = null
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
-        dataSourceSubscription = dataSource.subscribe {
-            data = it
-            notifyDataSetChanged()
+        data = dataSource.items
+        onAddDataSourceSubscription = dataSource.addingSubject().subscribe {
+            notifyItemInserted(0)
+        }
+        onRemoveDataSourceSubscription = dataSource.removingSubject().subscribe {
+            notifyItemRemoved(it)
+        }
+        onUpdateDataSourceSubscription = dataSource.updatingSubject().subscribe {
+            notifyItemRemoved(it)
         }
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
-        dataSourceSubscription?.dispose()
+        onAddDataSourceSubscription?.dispose()
+        onRemoveDataSourceSubscription?.dispose()
+        onUpdateDataSourceSubscription?.dispose()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Item> {
