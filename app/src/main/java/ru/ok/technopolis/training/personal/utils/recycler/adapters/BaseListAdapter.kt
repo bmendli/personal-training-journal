@@ -12,10 +12,10 @@ import kotlin.reflect.KClass
 import kotlin.reflect.full.primaryConstructor
 
 open class BaseListAdapter<Item>(
-        private val holderType: KClass<out BaseViewHolder<Item>>,
-        @LayoutRes private val layoutId: Int,
-        private val dataSource: ItemsList<Item>,
-        private val onClick: (Item) -> Unit = {}
+    private val holderType: KClass<out BaseViewHolder<Item>>,
+    @LayoutRes private val layoutId: Int,
+    private val dataSource: ItemsList<Item>,
+    private val onClick: (Item) -> Unit = {}
 ) : RecyclerView.Adapter<BaseViewHolder<Item>>() {
 
     internal var data = listOf<Item>()
@@ -47,13 +47,13 @@ open class BaseListAdapter<Item>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Item> {
         val view: View = LayoutInflater.from(parent.context)
-                .inflate(
-                        layoutId,
-                        parent,
-                        false
-                )
+            .inflate(
+                layoutId,
+                parent,
+                false
+            )
         return holderType.primaryConstructor?.call(view)
-                ?: throw NoSuchMethodException("No constructor with parameter of type View")
+            ?: throw NoSuchMethodException("No constructor with parameter of type View")
     }
 
     override fun getItemCount() = data.size

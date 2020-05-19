@@ -14,7 +14,6 @@ import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.items.WorkoutItem
 import ru.ok.technopolis.training.personal.utils.logger.Logger
-import ru.ok.technopolis.training.personal.utils.recycler.adapters.BaseListAdapter
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.ExerciseListAdapter
 import ru.ok.technopolis.training.personal.viewholders.WorkoutElementViewHolder
 

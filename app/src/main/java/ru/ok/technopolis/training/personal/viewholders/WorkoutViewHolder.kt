@@ -3,13 +3,12 @@ package ru.ok.technopolis.training.personal.viewholders
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.mikepenz.fastadapter.ClickListener
 import kotlinx.android.synthetic.main.item_workout.view.*
 import kotlinx.android.synthetic.main.item_workout_element.view.title
 import ru.ok.technopolis.training.personal.items.Workout
 
 class WorkoutViewHolder(
-        itemView: View
+    itemView: View
 ) : BaseViewHolder<Workout>(itemView) {
 
     private var startButton: ImageView = itemView.start

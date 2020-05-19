@@ -42,5 +42,4 @@ class ItemsList<Item>(val items: MutableList<Item>) {
     fun size(): Int {
         return items.size
     }
-
 }

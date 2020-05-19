@@ -8,11 +8,11 @@ import ru.ok.technopolis.training.personal.viewholders.WorkoutElementViewHolder
 import kotlin.reflect.KClass
 
 class ExerciseListAdapter(
-        holderType: KClass<out WorkoutElementViewHolder>,
-        @LayoutRes layoutId: Int,
-        dataSource: ItemsList<WorkoutItem>,
-        onClick: (WorkoutItem) -> Unit = {},
-        private val onDeleteExerciseClick: (WorkoutItem) -> Unit = {}
+    holderType: KClass<out WorkoutElementViewHolder>,
+    @LayoutRes layoutId: Int,
+    dataSource: ItemsList<WorkoutItem>,
+    onClick: (WorkoutItem) -> Unit = {},
+    private val onDeleteExerciseClick: (WorkoutItem) -> Unit = {}
 ) : BaseListAdapter<WorkoutItem>(holderType, layoutId, dataSource, onClick) {
 
     override fun onBindViewHolder(holder: BaseViewHolder<WorkoutItem>, position: Int) {
