@@ -20,8 +20,8 @@ class ExerciseElementViewHolder(
     override fun bind(item: Parameter) {
         title.setText(item.title)
         value.setText(item.value.toString())
-        units.setSelection(item.unitIndex)
-        inputType.setSelection(item.inputTypeIndex)
+        units.setSelection(item.unitId)
+        inputType.setSelection(item.inputTypeId)
     }
 
     fun setClickListener(onDeleteClick: (View) -> Unit) {
