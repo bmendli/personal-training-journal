@@ -8,14 +8,13 @@
 
     <ImageView
         android:id="@+id/icon"
-
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:src="@drawable/ic_exercise_category_bg"
         app:layout_constraintBottom_toBottomOf="@id/title"
+        app:layout_constraintEnd_toStartOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/title"
-        app:layout_constraintEnd_toStartOf="@+id/title"/>
+        app:layout_constraintTop_toTopOf="@id/title" />
 
     <TextView
         android:id="@+id/title"

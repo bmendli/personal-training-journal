@@ -25,10 +25,6 @@ class TrainingViewFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        startTrainingButton = start_training_button
-        trainingCategoryView = training_category
-        trainingNameText = training_name
-        exerciseList = exercises_list
 
         val elements = Observable.just(listOf(
                 WorkoutItem("id1", R.drawable.ic_exercise_category_bg, "Title 1", "Sample description 1"),

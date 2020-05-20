@@ -16,6 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/training_name"
         app:layout_constraintBottom_toBottomOf="@id/training_name"
+
         />
 
     <TextView
@@ -26,7 +27,6 @@
         android:textSize="@dimen/text_size_36"
         android:layout_margin="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/training_category"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
