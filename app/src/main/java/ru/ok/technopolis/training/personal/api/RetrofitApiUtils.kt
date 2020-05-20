@@ -10,7 +10,7 @@ import ru.ok.technopolis.training.personal.BuildConfig
 object RetrofitApiUtils {
 
     // todo server url
-    private const val TRAINING_JOURNAL_URL = "https://<>.com/"
+    private const val TRAINING_JOURNAL_URL = "http://178.79.189.130:8080"
 
     @JvmStatic
     fun createApi(): ApiInterface {

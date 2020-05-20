@@ -12,7 +12,7 @@ import ru.ok.technopolis.training.personal.utils.logger.Logger
 import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
 
-class BaseFragmentActivity : DrawerActivity() {
+class BaseFragmentActivity : AppbarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

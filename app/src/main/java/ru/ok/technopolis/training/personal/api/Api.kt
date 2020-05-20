@@ -1,13 +1,20 @@
 package ru.ok.technopolis.training.personal.api
 
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import retrofit2.Response
+import ru.ok.technopolis.training.personal.api.responses.MessageResponse
+import ru.ok.technopolis.training.personal.dto.UserSignUpDto
+
 /**
  *
  * High-level access to api
  *
  */
-class Api {
+object Api {
 
-    val api = RetrofitApiUtils.createApi()
+    private val api = RetrofitApiUtils.createApi()
 
     /**
      *
@@ -25,7 +32,7 @@ class Api {
      * subscribeOn() and observeOn()
      *
      *  fun getUserTrainings(user: User) =
-     *      api.getUserTrainings(user.id)
+     *      api.getUserTrainings(user.uid)
      *          .subscribeOn(Schedulers.io())
      *          .observeOn(AndroidSchedulers.mainThread())
      *          .map {
@@ -33,4 +40,14 @@ class Api {
      *          }
      *          .some_other_logic
      */
+
+    fun createUser(userSignUpDto: UserSignUpDto): Single<Response<MessageResponse>> =
+            api.createUserRequest(userSignUpDto)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+
+    fun login(token: String): Single<Response<MessageResponse>> =
+            api.loginRequest(token)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
 }
