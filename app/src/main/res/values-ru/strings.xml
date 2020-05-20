@@ -72,8 +72,13 @@
     <string name="preference_change_avatar">Фото</string>
     <string name="preference_change_avatar_summary">Сменить фотографию</string>
     <string name="preference_personal_data_category">Личные данные</string>
-
+    <string name="active_exercise_name">Упражнение</string>
+    <string name="parameter_goal_dummy">34</string>
+    <string name="parameter_text_dummy">параметр1</string>
+    <string name="button_text_dummy">подход 1/1</string>
+    <string name="next_exercise_dummy">следующее упражнение</string>
     <string name="star_required_text">* - Обязательные поля</string>
+    <string name="start_training_button_text">Начать тренировку</string>
 
     <string-array name="exercise_types">
         <item>Силовое</item>

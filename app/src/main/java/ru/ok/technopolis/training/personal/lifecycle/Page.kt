@@ -8,6 +8,7 @@ import ru.ok.technopolis.training.personal.fragments.ActiveExerciseFragment
 import ru.ok.technopolis.training.personal.fragments.BaseFragment
 import ru.ok.technopolis.training.personal.fragments.CalendarFragment
 import ru.ok.technopolis.training.personal.fragments.ExerciseFragment
+import ru.ok.technopolis.training.personal.fragments.TrainingViewFragment
 import ru.ok.technopolis.training.personal.fragments.WorkoutFragment
 import java.io.Serializable
 import kotlin.reflect.KClass
@@ -53,6 +54,10 @@ sealed class Page : Serializable {
 
         object Workout : Fragment() {
             override val clazz = WorkoutFragment::class
+        }
+
+        object TrainingView : Fragment() {
+            override val clazz = TrainingViewFragment::class
         }
     }
 
