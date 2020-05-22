@@ -9,11 +9,20 @@ interface MeasureUnitDao {
     fun getAll(): List<MeasureUnitEntity>
 
     @Query("SELECT * FROM MeasureUnitEntity WHERE id = :id")
-    fun getById(id: Int): MeasureUnitEntity
+    fun getById(id: Long): MeasureUnitEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(measureUnitEntity: MeasureUnitEntity): Long
 
+    @Insert
+    fun insert(measureUnitEntityList: List<MeasureUnitEntity>): List<Long>
+
+    @Update
+    fun update(measureUnitEntity: MeasureUnitEntity): Int
+
+    @Update
+    fun update(measureUnitEntityList: List<MeasureUnitEntity>): Int
+
     @Delete
-    fun delete(measureUnitEntity: MeasureUnitEntity): Long
+    fun delete(measureUnitEntity: MeasureUnitEntity): Int
 }

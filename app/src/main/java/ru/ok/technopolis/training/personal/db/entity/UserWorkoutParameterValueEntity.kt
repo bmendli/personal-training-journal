@@ -3,7 +3,7 @@ package ru.ok.technopolis.training.personal.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import ru.ok.technopolis.training.personal.db.entity.interfaces.WithId
+import androidx.room.PrimaryKey
 
 @Entity(
     foreignKeys = [
@@ -20,7 +20,10 @@ import ru.ok.technopolis.training.personal.db.entity.interfaces.WithId
     ]
 )
 data class UserWorkoutParameterValueEntity(
-    @ColumnInfo var userWorkoutId: Int,
-    @ColumnInfo var parameterId: Int,
-    @ColumnInfo var value: Float
-) : WithId()
+    @ColumnInfo var userWorkoutId: Long,
+    @ColumnInfo var parameterId: Long,
+    @ColumnInfo var value: Float,
+    @ColumnInfo var serverId: Long = -1,
+    @PrimaryKey(autoGenerate = true) var id: Long = 0
+)
+

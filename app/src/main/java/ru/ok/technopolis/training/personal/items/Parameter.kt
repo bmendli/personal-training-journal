@@ -6,6 +6,6 @@ data class Parameter(
     override val id: String,
     val title: String,
     val value: Int,
-    val unitId: Int, // TODO: WHF are indexes???
-    val inputTypeId: Int
+    val unitId: Long, // TODO: WHF are indexes???
+    val inputTypeId: Long
 ) : WithId

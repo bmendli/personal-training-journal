@@ -34,7 +34,7 @@ open class BaseListAdapter<Item>(
             notifyItemRemoved(it)
         }
         onUpdateDataSourceSubscription = dataSource.updatingSubject().subscribe {
-            notifyItemRemoved(it)
+            notifyItemChanged(it)
         }
     }
 

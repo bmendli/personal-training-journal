@@ -26,7 +26,7 @@
         style="@style/TextViewExercise"
         app:layout_constraintTop_toBottomOf="@id/exercise_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/add_exercise_back_button"
+        app:layout_constraintEnd_toStartOf="@id/exercise_type_spinner"
         app:layout_constraintBottom_toTopOf="@id/add_exercise_text"
         android:gravity="center"
         android:paddingEnd="@dimen/dimens_16dp"
@@ -34,7 +34,7 @@
         app:layout_constraintHorizontal_weight="50"
         />
     <Spinner
-        android:id="@+id/add_exercise_back_button"
+        android:id="@+id/exercise_type_spinner"
         android:layout_height="0dp"
         android:layout_width="0dp"
         android:entries="@array/exercise_types"

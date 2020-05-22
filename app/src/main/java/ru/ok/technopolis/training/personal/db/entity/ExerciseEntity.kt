@@ -3,7 +3,7 @@ package ru.ok.technopolis.training.personal.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import ru.ok.technopolis.training.personal.db.entity.interfaces.WithId
+import androidx.room.PrimaryKey
 
 @Entity(
     foreignKeys = [
@@ -17,5 +17,7 @@ import ru.ok.technopolis.training.personal.db.entity.interfaces.WithId
 data class ExerciseEntity(
     @ColumnInfo var name: String,
     @ColumnInfo var description: String?,
-    @ColumnInfo var typeId: Int
-) : WithId()
+    @ColumnInfo var typeId: Long,
+    @ColumnInfo var serverId: Long = -1,
+    @PrimaryKey(autoGenerate = true) var id: Long = 0
+)

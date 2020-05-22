@@ -2,9 +2,16 @@ package ru.ok.technopolis.training.personal.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import ru.ok.technopolis.training.personal.db.entity.interfaces.WithId
+import androidx.room.PrimaryKey
 
 @Entity
 data class ParameterTypeEntity(
-    @ColumnInfo var name: String
-) : WithId()
+    @ColumnInfo var name: String,
+    @ColumnInfo var serverId: Long = -1,
+    @PrimaryKey(autoGenerate = true) var id: Long = 0
+) {
+    override fun toString(): String {
+        return name
+    }
+}
+

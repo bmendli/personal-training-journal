@@ -57,6 +57,8 @@ sealed class Page : Serializable {
     }
 
     companion object {
-        val PAGE_KEY = "PAGE"
+        const val PAGE_KEY = "PAGE"
+        const val WORKOUT_ID_KEY = "WORKOUT_ID"
+        const val EXERCISE_ID_KEY = "EXERCISE_ID"
     }
 }

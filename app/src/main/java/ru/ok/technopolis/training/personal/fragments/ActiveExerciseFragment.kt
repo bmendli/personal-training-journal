@@ -33,7 +33,7 @@ class ActiveExerciseFragment : BaseFragment() {
         doneButton = view.done_button
         nextExerciseButton = view.next_exercise_name
         doneButton?.setOnClickListener {
-            router?.showWorkoutPage()
+//            router?.showWorkoutPage()
         }
         nextExerciseButton?.setOnClickListener {
             router?.showActiveExercisePage()

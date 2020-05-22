@@ -9,9 +9,13 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.db.entity.WorkoutEntity
 import ru.ok.technopolis.training.personal.items.ItemsList
-import ru.ok.technopolis.training.personal.items.Workout
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.CalendarWorkoutListAdapter
 import ru.ok.technopolis.training.personal.viewholders.WorkoutViewHolder
 
@@ -26,36 +30,52 @@ class CalendarFragment : BaseFragment() {
         calendar = view.calendar
 
         addWorkoutButton = view.add_workout_button
-        addWorkoutButton?.setOnClickListener {
-            router?.showWorkoutPage()
-        }
-
         recyclerView = view.workout_list
 
-        val elements = ItemsList(mutableListOf(
-                Workout("id1", "8:00", "Training 1"),
-                Workout("id2", "14:00", "Training 2"),
-                Workout("id3", "20:00", "Training 3")
-        ))
+        GlobalScope.launch(Dispatchers.IO) {
+            val workoutList = database?.workoutDao()?.getAll()!!
 
-        val workoutAdapter = CalendarWorkoutListAdapter(
-                holderType = WorkoutViewHolder::class,
-                layoutId = R.layout.item_workout,
-                dataSource = elements,
-                onClick = {
-                    router?.showWorkoutPage()
-                },
-                onStartWorkoutClick = {
-                    router?.showActiveExercisePage()
-                },
-                onDeleteWorkoutClick = {
-                    elements.remove(it)
+            withContext(Dispatchers.Main) {
+                val elements = ItemsList(workoutList)
+
+                val workoutAdapter = CalendarWorkoutListAdapter(
+                    holderType = WorkoutViewHolder::class,
+                    layoutId = R.layout.item_workout,
+                    dataSource = elements,
+                    onClick = {
+                        router?.showWorkoutPage(it.id)
+                    },
+                    onStartWorkoutClick = {
+                        router?.showActiveExercisePage()
+                    },
+                    onDeleteWorkoutClick = {
+                        GlobalScope.launch(Dispatchers.IO) {
+                            database?.workoutDao()?.delete(it)
+                            withContext(Dispatchers.Main) {
+                                elements.remove(it)
+                            }
+                        }
+                    }
+                )
+
+                recyclerView?.adapter = workoutAdapter
+                recyclerView?.layoutManager = LinearLayoutManager(activity)
+                recyclerView?.addItemDecoration(DividerItemDecoration(activity, LinearLayout.VERTICAL))
+
+                addWorkoutButton?.setOnClickListener {
+                    GlobalScope.launch(Dispatchers.IO) {
+                        val workoutEntity = WorkoutEntity("", "")
+                        workoutEntity.id = database?.workoutDao()?.insert(workoutEntity)!!
+                        withContext(Dispatchers.Main) {
+                            elements.add(
+                                workoutEntity
+                            )
+                            router?.showWorkoutPage(workoutEntity.id)
+                        }
+                    }
                 }
-        )
-
-        recyclerView?.adapter = workoutAdapter
-        recyclerView?.layoutManager = LinearLayoutManager(activity)
-        recyclerView?.addItemDecoration(DividerItemDecoration(activity, LinearLayout.VERTICAL))
+            }
+        }
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_calendar

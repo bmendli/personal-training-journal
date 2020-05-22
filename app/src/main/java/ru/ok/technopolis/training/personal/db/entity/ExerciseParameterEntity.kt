@@ -3,23 +3,29 @@ package ru.ok.technopolis.training.personal.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import ru.ok.technopolis.training.personal.db.entity.interfaces.WithId
+import androidx.room.ForeignKey.CASCADE
+import androidx.room.PrimaryKey
 
 @Entity(
+    primaryKeys = ["exerciseId", "parameterId"],
     foreignKeys = [
         ForeignKey(
             entity = ExerciseEntity::class,
             parentColumns = ["id"],
-            childColumns = ["exerciseId"]
+            childColumns = ["exerciseId"],
+            onDelete = CASCADE
         ),
         ForeignKey(
             entity = ParameterEntity::class,
             parentColumns = ["id"],
-            childColumns = ["parameterId"]
+            childColumns = ["parameterId"],
+            onDelete = CASCADE
         )
     ]
 )
 data class ExerciseParameterEntity(
-    @ColumnInfo var exerciseId: Int,
-    @ColumnInfo var parameterId: Int
-) : WithId()
+    @ColumnInfo var exerciseId: Long,
+    @ColumnInfo var parameterId: Long,
+    @ColumnInfo var serverId: Long = -1
+)
+

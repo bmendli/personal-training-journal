@@ -9,11 +9,20 @@ interface ExerciseDao {
     fun getAll(): List<ExerciseEntity>
 
     @Query("SELECT * FROM ExerciseEntity WHERE id = :id")
-    fun getById(id: Int): ExerciseEntity
+    fun getById(id: Long): ExerciseEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(exerciseEntity: ExerciseEntity): Long
 
+    @Insert
+    fun insert(exerciseEntity: List<ExerciseEntity>): List<Long>
+
+    @Update
+    fun update(exerciseEntity: ExerciseEntity): Int
+
+    @Update
+    fun update(exerciseEntityList: List<ExerciseEntity>): Int
+
     @Delete
-    fun delete(exerciseEntity: ExerciseEntity): Long
+    fun delete(exerciseEntity: ExerciseEntity): Int
 }
