@@ -7,16 +7,17 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.ok.technopolis.training.personal.activities.BaseActivity
 import ru.ok.technopolis.training.personal.db.entity.UserEntity
+import ru.ok.technopolis.training.personal.model.UserInfo
 
 object AuthRepository {
 
     const val TRAINING_PREFERENCE = "Training"
     const val USER_TOKEN = "user_token_key"
 
-    fun doOnLogin(activity: BaseActivity, token: String, needRemember: Boolean) {
+    fun doOnLogin(activity: BaseActivity, token: String, needRemember: Boolean, userInfo: UserInfo) {
         activity.apply {
+            CurrentUserRepository.currentUser.value = userInfo
             GlobalScope.launch(Dispatchers.IO) {
-                val userInfo = CurrentUserRepository.getCurrentUserInfo()
                 var user = database?.userDao()?.getByEmail(userInfo.email)
                 if (user == null) {
                     user = UserEntity(
@@ -42,6 +43,7 @@ object AuthRepository {
 
     fun doOnLogout(activity: BaseActivity) {
         activity.apply {
+            CurrentUserRepository.currentUser.value = null
             getSharedPreferences("Training", Context.MODE_PRIVATE).edit().remove(USER_TOKEN).apply()
             router?.showLoginPage()
             finish()

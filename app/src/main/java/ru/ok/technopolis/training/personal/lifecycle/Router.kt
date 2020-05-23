@@ -26,6 +26,10 @@ class Router(private val activity: Activity) {
         showPage(Page.Fragment.Workout, workoutIdBundle)
     }
 
+    fun showTrainingViewPage() {
+        showPage(Page.Fragment.TrainingView)
+    }
+
     fun showActiveExercisePage() {
         showPage(Page.Fragment.ActiveExercise)
     }
@@ -42,6 +46,10 @@ class Router(private val activity: Activity) {
 
     fun showAccountSettingsPage() {
         showPage(Page.Activity.AccountSettings)
+    }
+
+    fun showAccountSettingsSubPage() {
+        showPage(Page.Fragment.AccountSettings)
     }
 
     fun showRegistrationPage() {
