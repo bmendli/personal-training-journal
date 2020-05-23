@@ -38,6 +38,15 @@ class BaseFragmentActivity : AppbarActivity() {
         ft.commit()
     }
 
+    fun setPrevFragment() {
+        val fm = supportFragmentManager
+        if (fm.backStackEntryCount > 0) {
+            fm.popBackStack()
+        } else {
+            Logger.e(this, "Fragment stack is empty!")
+        }
+    }
+
     override fun getActivityLayoutId() = R.layout.activity_base_fragment
 
     override fun getToolbarView(): Toolbar = base_toolbar

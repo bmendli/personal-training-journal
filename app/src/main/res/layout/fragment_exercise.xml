@@ -35,8 +35,8 @@
         />
     <Spinner
         android:id="@+id/exercise_type_spinner"
-        android:layout_height="0dp"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:entries="@array/exercise_types"
         app:layout_constraintTop_toTopOf="@id/type_text_view"
         app:layout_constraintBottom_toBottomOf="@id/type_text_view"

@@ -79,4 +79,8 @@ class Router(private val activity: Activity) {
         bundle?.let { activity.intent.putExtras(it) }
         (activity as? BaseFragmentActivity)?.setFragment(page.clazz.createInstance())
     }
+
+    fun goToPrevFragment() {
+        (activity as? BaseFragmentActivity)?.setPrevFragment()
+    }
 }

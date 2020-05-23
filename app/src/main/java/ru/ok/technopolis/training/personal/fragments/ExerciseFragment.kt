@@ -70,10 +70,7 @@ class ExerciseFragment : BaseFragment() {
                 exerciseTypeSpinner?.adapter = ArrayAdapter<ExerciseTypeEntity>(
                     requireContext(), R.layout.spinner_item, exerciseTypeChoices
                 )
-                if (exercise != null) {
-                    println(exercise!!.typeId)
-                    exerciseTypeSpinner?.setSelection(exercise!!.typeId.toInt())
-                }
+                exerciseTypeSpinner?.setSelection(exercise!!.typeId.toInt() - 1)
 
                 exerciseNameEditText?.setText(exercise?.name)
 
@@ -129,7 +126,7 @@ class ExerciseFragment : BaseFragment() {
             } else {
                 GlobalScope.launch(Dispatchers.IO) {
                     exercise?.name = exerciseName
-                    exercise?.typeId = typeId
+                    exercise?.typeId = typeId + 1
                     database?.exerciseDao()?.update(exercise!!)
 
                     listAdapter!!.data.forEach {
@@ -138,7 +135,7 @@ class ExerciseFragment : BaseFragment() {
                     }
 
                     withContext(Dispatchers.Main) {
-                        router?.showWorkoutPage(workoutId!!)
+                        router?.goToPrevFragment()
                     }
                 }
             }
@@ -152,7 +149,7 @@ class ExerciseFragment : BaseFragment() {
                     database?.exerciseDao()?.delete(exercise!!)
                 }
                 withContext(Dispatchers.Main) {
-                    router?.showWorkoutPage(workoutId!!)
+                    router?.goToPrevFragment()
                 }
             }
 

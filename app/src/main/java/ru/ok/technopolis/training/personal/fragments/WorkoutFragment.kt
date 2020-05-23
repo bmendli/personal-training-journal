@@ -106,7 +106,7 @@ class WorkoutFragment : BaseFragment() {
                     workout?.name = workoutName
                     database?.workoutDao()?.update(workout!!)
                     withContext(Dispatchers.Main) {
-                        router?.showCalendarPage()
+                        router?.goToPrevFragment()
                     }
                 }
             }
@@ -120,7 +120,7 @@ class WorkoutFragment : BaseFragment() {
                         database?.workoutDao()?.delete(workout!!)
                 }
                 withContext(Dispatchers.Main) {
-                    router?.showCalendarPage()
+                    router?.goToPrevFragment()
                 }
             }
 
