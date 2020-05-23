@@ -36,7 +36,7 @@ class CalendarFragment : BaseFragment() {
         recyclerView = view.workout_list
 
         GlobalScope.launch(Dispatchers.IO) {
-            val email = CurrentUserRepository.getCurrentUserInfo().email
+            val email = CurrentUserRepository.currentUser.value!!.email
             println(email)
             val user = database!!.userDao().getByEmail(email)
             userId = user.id
