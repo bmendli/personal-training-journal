@@ -33,7 +33,6 @@
     <string name="workout">Тренировка</string>
     <string name="settings">Настройки</string>
     <string name="enter_workout_name">Введите название тренировки</string>
-    <string name="workout_exercises">Список упражнений</string>
     <string name="drawer_item_settings">Настройки</string>
     <string name="account_settings">Настройки аакаунта</string>
     <string name="drawer_item_bookmarks">Закладки</string>
@@ -86,6 +85,16 @@
     <string name="button_text_dummy">подход 1/1</string>
     <string name="next_exercise_dummy">следующее упражнение</string>
     <string name="star_required_text">* - Обязательные поля</string>
+    <string name="scheduled_workouts">Запланированные тренировки</string>
+    <string name="choose_time">Выберите время</string>
+    <string name="exercises_list">Список упражнений</string>
+    <string name="day1">Пн</string>
+    <string name="day2">Вт</string>
+    <string name="day3">Ср</string>
+    <string name="day4">Чт</string>
+    <string name="day5">Пт</string>
+    <string name="day6">Сб</string>
+    <string name="day7">Вс</string>
     <string name="start_training_button_text">Начать тренировку</string>
 
     <string-array name="exercise_types">
