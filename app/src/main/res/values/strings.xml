@@ -100,7 +100,7 @@
     <string name="package_path" translatable="false">ru.ok.technopolis.training.personal</string>
     <string name="start_training_button_text">Start training</string>
     <string name="star_required" translatable="false">*</string>
-    <string name="star_required_text">* - required fields</string>
+    <string name="star_required_text"> - required fields</string>
 
     <string-array name="exercise_types">
         <item>Strength</item>
