@@ -6,9 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
+import android.widget.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +31,8 @@ class WorkoutFragment : BaseFragment() {
     private var recyclerView: RecyclerView? = null
     private var addExerciseButton: ImageView? = null
     private var workout: WorkoutEntity? = null
+    private var chooseTimeButton: Button? = null
+    private var weekdayCheckboxes: Array<CheckBox>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,6 +40,8 @@ class WorkoutFragment : BaseFragment() {
         workoutNameEditText = workout_name
         recyclerView = elements_list
         addExerciseButton = add_exercise_button
+        chooseTimeButton = choose_workout_time
+        weekdayCheckboxes = arrayOf(day1, day2, day3, day4, day5, day6, day7)
 
         GlobalScope.launch(Dispatchers.IO) {
             val workoutId = (activity?.intent?.extras?.get(WORKOUT_ID_KEY)) as Long

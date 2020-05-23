@@ -16,18 +16,115 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/choose_workout_time_text"
+        style="@style/TextViewExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/choose_time"
+        android:textSize="20sp"
+        
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/workout_name"
+        app:layout_constraintBottom_toTopOf="@id/day1"
+        app:layout_constraintEnd_toStartOf="@id/choose_workout_time"
+        />
+
+    <Button
+        android:id="@+id/choose_workout_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time_example"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="@id/choose_workout_time_text"
+        app:layout_constraintBottom_toBottomOf="@id/choose_workout_time_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/choose_workout_time_text"
+        />
+    <CheckBox
+        android:id="@+id/day1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/day2"
+        app:layout_constraintTop_toBottomOf="@id/choose_workout_time_text"
+        app:layout_constraintBottom_toTopOf="@id/add_exercise_text"
+        android:text="@string/day1"
+        />
+    <CheckBox
+        android:id="@+id/day2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/day2"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        app:layout_constraintBottom_toBottomOf="@id/day1"
+        app:layout_constraintStart_toEndOf="@id/day1"
+        app:layout_constraintEnd_toStartOf="@id/day3"
+        />
+    <CheckBox
+        android:id="@+id/day3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/day3"
+        app:layout_constraintStart_toEndOf="@id/day2"
+        app:layout_constraintEnd_toStartOf="@id/day4"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        app:layout_constraintBottom_toBottomOf="@id/day1"
+        />
+    <CheckBox
+        android:id="@+id/day4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/day4"
+        app:layout_constraintStart_toEndOf="@id/day3"
+        app:layout_constraintEnd_toStartOf="@id/day5"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        app:layout_constraintBottom_toBottomOf="@id/day1"
+        />
+    <CheckBox
+        android:id="@+id/day5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/day5"
+        app:layout_constraintStart_toEndOf="@id/day4"
+        app:layout_constraintEnd_toStartOf="@id/day6"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        app:layout_constraintBottom_toBottomOf="@id/day1"
+        />
+    <CheckBox
+        android:id="@+id/day6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/day6"
+        app:layout_constraintStart_toEndOf="@id/day5"
+        app:layout_constraintEnd_toStartOf="@id/day7"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        app:layout_constraintBottom_toBottomOf="@id/day1"
+        />
+    <CheckBox
+        android:id="@+id/day7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/day7"
+        app:layout_constraintStart_toEndOf="@id/day6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        app:layout_constraintBottom_toBottomOf="@id/day1"
+        />
+
+    <TextView
         android:id="@+id/add_exercise_text"
         style="@style/TextViewExercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/workout_exercises"
+        android:text="@string/exercises_list"
         android:textSize="@dimen/text_size_20"
         android:layout_marginTop="@dimen/dimens_16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/add_exercise_button"
         app:layout_constraintBottom_toTopOf="@id/elements_list"
-        app:layout_constraintTop_toBottomOf="@id/workout_name" />
+        app:layout_constraintTop_toBottomOf="@id/day1" />
 
     <ImageView
         android:id="@+id/add_exercise_button"
