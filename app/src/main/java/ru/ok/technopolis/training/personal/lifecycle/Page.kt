@@ -9,6 +9,7 @@ import ru.ok.technopolis.training.personal.fragments.BaseFragment
 import ru.ok.technopolis.training.personal.fragments.CalendarFragment
 import ru.ok.technopolis.training.personal.fragments.ExerciseFragment
 import ru.ok.technopolis.training.personal.fragments.WorkoutFragment
+import ru.ok.technopolis.training.personal.fragments.settings.AccountSettingsFragment
 import java.io.Serializable
 import kotlin.reflect.KClass
 
@@ -38,6 +39,10 @@ sealed class Page : Serializable {
     sealed class Fragment : Page() {
 
         abstract val clazz: KClass<out BaseFragment>
+
+        object AccountSettings : Fragment() {
+            override val clazz = AccountSettingsFragment::class
+        }
 
         object ActiveExercise : Fragment() {
             override val clazz = ActiveExerciseFragment::class

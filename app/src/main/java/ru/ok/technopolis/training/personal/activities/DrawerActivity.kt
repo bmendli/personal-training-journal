@@ -7,7 +7,6 @@ import com.mikepenz.materialdrawer.holder.StringHolder
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
-import com.mikepenz.materialdrawer.model.interfaces.IProfile
 import com.mikepenz.materialdrawer.util.addItems
 import com.mikepenz.materialdrawer.widget.AccountHeaderView
 import kotlinx.android.synthetic.main.activity_base_fragment.*
@@ -29,7 +28,7 @@ abstract class DrawerActivity : BaseActivity() {
         const val EXIT_ITEM_ID = 5L
     }
 
-    private val profile: IProfile = ProfileDrawerItem()
+    private val profile: ProfileDrawerItem = ProfileDrawerItem()
 
     private var drawerController: NavigationMenuController? = null
 
@@ -140,24 +139,27 @@ abstract class DrawerActivity : BaseActivity() {
     }
 
     private fun attachCurrentUserToSlider() {
-        val userInfo = CurrentUserRepository.getCurrentUserInfo()
-        when {
-            userInfo.pictureUrlStr != null -> profile.icon = ImageHolder(userInfo.pictureUrlStr)
-            userInfo.genderType == UserInfo.GenderType.MALE -> profile.icon = ImageHolder(getDrawable(R.drawable.male_stub))
-            userInfo.genderType == UserInfo.GenderType.FEMALE -> profile.icon = ImageHolder(getDrawable(R.drawable.female_stub))
-            else -> profile.icon = null
-        }
-        slider.accountHeader = AccountHeaderView(this).apply {
-            attachToSliderView(slider)
-            addProfiles(profile)
-            onAccountHeaderListener = { view, profile, current ->
-                false
+        val userInfo = CurrentUserRepository.currentUser
+        userInfo?.let {
+            when {
+                it.pictureUrlStr != null -> profile.icon = ImageHolder(it.pictureUrlStr)
+                it.genderType == UserInfo.GenderType.MALE -> profile.icon = ImageHolder(getDrawable(R.drawable.male_stub))
+                it.genderType == UserInfo.GenderType.FEMALE -> profile.icon = ImageHolder(getDrawable(R.drawable.female_stub))
+                else -> profile.icon = null
             }
-            selectionListEnabled = false
-            headerBackground = ImageHolder(R.drawable.header_nav_menu)
-            onAccountHeaderProfileImageListener = { _, _, _ ->
-                router?.showAccountSettingsPage()
-                true
+            profile.name = StringHolder(it.lastName + " " + it.firstName)
+            profile.description = StringHolder(it.email)
+            slider.accountHeader = AccountHeaderView(this).apply {
+                attachToSliderView(slider)
+                addProfiles(profile)
+                onAccountHeaderListener = { view, profile, current ->
+                    false
+                }
+                selectionListEnabled = false
+                onAccountHeaderProfileImageListener = { _, _, _ ->
+                    router?.showAccountSettingsPage()
+                    true
+                }
             }
         }
     }

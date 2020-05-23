@@ -3,6 +3,7 @@ package ru.ok.technopolis.training.personal.activities
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
+import com.facebook.drawee.backends.pipeline.Fresco
 import io.reactivex.disposables.CompositeDisposable
 import ru.ok.technopolis.training.personal.lifecycle.Router
 import ru.ok.technopolis.training.personal.utils.logger.Logger
@@ -17,6 +18,7 @@ abstract class BaseActivity : AppCompatActivity() {
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Fresco.initialize(this)
         Logger.d(this, "onCreate")
 
         router = Router(this)

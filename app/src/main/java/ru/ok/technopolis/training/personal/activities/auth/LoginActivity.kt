@@ -9,8 +9,9 @@ import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.activities.BaseActivity
 import ru.ok.technopolis.training.personal.api.Api
 import ru.ok.technopolis.training.personal.api.ApiUtils
-import ru.ok.technopolis.training.personal.api.responses.MessageResponse
+import ru.ok.technopolis.training.personal.dto.UserDto
 import ru.ok.technopolis.training.personal.repository.AuthRepository
+import ru.ok.technopolis.training.personal.repository.CurrentUserRepository
 import ru.ok.technopolis.training.personal.utils.logger.Logger
 import java.net.HttpURLConnection
 
@@ -18,6 +19,10 @@ class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        remember_tv.setOnClickListener {
+            remember_checkbox.isChecked = !remember_checkbox.isChecked
+        }
+
         not_exist_acc_tv.setOnClickListener {
             router?.showRegistrationPage()
         }
@@ -33,10 +38,11 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private fun onResponse(response: Response<MessageResponse>, token: String) {
+    private fun onResponse(response: Response<UserDto>, token: String) {
         when (response.code()) {
             HttpURLConnection.HTTP_OK -> {
-                AuthRepository.doOnLogin(this, token, remember_checkbox.isChecked)
+                AuthRepository.doOnLogin(this, token, remember_checkbox.isChecked,
+                        response.body()?.toUserInfo() ?: CurrentUserRepository.CURRENT_USER_EMPTY)
                 Logger.d(this, "successfully login with code ${response.code()}")
             }
             HttpURLConnection.HTTP_UNAUTHORIZED -> {

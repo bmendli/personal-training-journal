@@ -4,7 +4,7 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
-import ru.ok.technopolis.training.personal.api.responses.MessageResponse
+import ru.ok.technopolis.training.personal.dto.UserDto
 import ru.ok.technopolis.training.personal.dto.UserSignUpDto
 
 /**
@@ -41,13 +41,18 @@ object Api {
      *          .some_other_logic
      */
 
-    fun createUser(userSignUpDto: UserSignUpDto): Single<Response<MessageResponse>> =
+    fun createUser(userSignUpDto: UserSignUpDto): Single<Response<UserDto>> =
             api.createUserRequest(userSignUpDto)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
 
-    fun login(token: String): Single<Response<MessageResponse>> =
+    fun login(token: String): Single<Response<UserDto>> =
             api.loginRequest(token)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+
+    fun changeUserData(userDto: UserDto, token: String): Single<Response<UserDto>> =
+            api.changeUserData(userDto.id, token, userDto)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
 }
