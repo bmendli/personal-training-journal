@@ -11,7 +11,7 @@ object AuthRepository {
 
     fun doOnLogin(activity: BaseActivity, token: String, needRemember: Boolean, userInfo: UserInfo) {
         activity.apply {
-            CurrentUserRepository.currentUser = userInfo
+            CurrentUserRepository.currentUser.value = userInfo
             if (needRemember) {
                 getSharedPreferences(TRAINING_PREFERENCE, Context.MODE_PRIVATE).edit().putString(USER_TOKEN, token).apply()
             }
@@ -22,7 +22,7 @@ object AuthRepository {
 
     fun doOnLogout(activity: BaseActivity) {
         activity.apply {
-            CurrentUserRepository.currentUser = null
+            CurrentUserRepository.currentUser.value = null
             getSharedPreferences("Training", Context.MODE_PRIVATE).edit().remove(USER_TOKEN).apply()
             router?.showLoginPage()
             finish()

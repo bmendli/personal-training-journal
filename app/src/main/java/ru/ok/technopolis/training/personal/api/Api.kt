@@ -51,8 +51,8 @@ object Api {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
 
-    fun changeUserData(userDto: UserDto, token: String): Single<Response<UserDto>> =
-            api.changeUserData(userDto.id, token, userDto)
+    fun changeUserData(id: Long, nameDto: Any, token: String): Single<Response<UserDto>> =
+            api.changeUserData(id, token, nameDto)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
 }

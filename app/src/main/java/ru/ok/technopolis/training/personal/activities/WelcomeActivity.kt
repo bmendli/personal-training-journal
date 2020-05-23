@@ -1,6 +1,5 @@
 package ru.ok.technopolis.training.personal.activities
 
-import android.content.Context
 import android.os.Bundle
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.api.Api

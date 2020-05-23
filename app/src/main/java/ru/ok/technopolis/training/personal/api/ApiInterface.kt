@@ -33,6 +33,6 @@ interface ApiInterface {
     fun changeUserData(
         @Path("id") id: Long,
         @Header("Authorization") token: String,
-        @Body userDto: UserDto
+        @Body nameDto: Any
     ): Single<Response<UserDto>>
 }

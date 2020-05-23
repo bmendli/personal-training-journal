@@ -1,6 +1,7 @@
 package ru.ok.technopolis.training.personal.activities
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.afollestad.materialdialogs.MaterialDialog
 import com.mikepenz.materialdrawer.holder.ImageHolder
 import com.mikepenz.materialdrawer.holder.StringHolder
@@ -45,7 +46,9 @@ abstract class DrawerActivity : BaseActivity() {
                     }
                     FAVOURITE_ITEM_ID -> {
                     }
-                    EXIT_ITEM_ID -> { buildExitDialog() }
+                    EXIT_ITEM_ID -> {
+                        buildExitDialog()
+                    }
                     SETTINGS_ITEM_ID -> router?.showSettingsPage()
                 }
                 closeNavMenu()
@@ -53,6 +56,7 @@ abstract class DrawerActivity : BaseActivity() {
             }
         }
         attachCurrentUserToSlider()
+        CurrentUserRepository.currentUser.observe(this, Observer { attachCurrentUserToSlider() })
     }
 
     private fun buildExitDialog() {
@@ -139,7 +143,7 @@ abstract class DrawerActivity : BaseActivity() {
     }
 
     private fun attachCurrentUserToSlider() {
-        val userInfo = CurrentUserRepository.currentUser
+        val userInfo = CurrentUserRepository.currentUser.value
         userInfo?.let {
             when {
                 it.pictureUrlStr != null -> profile.icon = ImageHolder(it.pictureUrlStr)

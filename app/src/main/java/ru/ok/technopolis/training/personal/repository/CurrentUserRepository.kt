@@ -1,6 +1,7 @@
 package ru.ok.technopolis.training.personal.repository
 
 import android.content.Context
+import androidx.lifecycle.MutableLiveData
 import ru.ok.technopolis.training.personal.model.UserInfo
 
 object CurrentUserRepository {
@@ -16,7 +17,7 @@ object CurrentUserRepository {
             birthday = null,
             pictureUrlStr = null)
 
-    var currentUser: UserInfo? = null
+    var currentUser: MutableLiveData<UserInfo> = MutableLiveData()
         internal set
 
     fun getCurrentUserToken(context: Context): String? =
