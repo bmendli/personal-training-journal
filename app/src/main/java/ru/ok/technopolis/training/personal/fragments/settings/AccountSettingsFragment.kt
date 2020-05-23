@@ -58,7 +58,6 @@ class AccountSettingsFragment : BaseFragment() {
                                                 { throwable -> onFail(throwable) }
                                         ))
                                     }
-
                                 })
                     }
                     first_name_ll.setOnClickListener { _ ->
@@ -93,7 +92,6 @@ class AccountSettingsFragment : BaseFragment() {
                                         }
                                     }
                             )
-
                         }
                     }
                     father_name_ll.setOnClickListener { _ ->
@@ -128,7 +126,6 @@ class AccountSettingsFragment : BaseFragment() {
                                         }
                                     }
                             )
-
                         }
                     }
                     user_image_ll.setOnClickListener { _ ->
@@ -155,7 +152,6 @@ class AccountSettingsFragment : BaseFragment() {
                     ToastUtils.showLongToast(it, R.string.server_not_available)
                 }
                 Logger.d(this, "unsuccessfully changed user data with code ${response.code()}")
-
             }
         }
     }

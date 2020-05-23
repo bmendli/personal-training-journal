@@ -35,7 +35,6 @@ data class UserDto(
     var pictureUrlStr: String?
 ) {
 
-
     fun toUserInfo(): UserInfo = UserInfo(
             id,
             uid ?: "-1",
