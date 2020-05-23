@@ -23,6 +23,7 @@ open class BaseListAdapter<Item>(
     private var onAddDataSourceSubscription: Disposable? = null
     private var onRemoveDataSourceSubscription: Disposable? = null
     private var onUpdateDataSourceSubscription: Disposable? = null
+    private var onSetDataSourceSubscription: Disposable? = null
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -36,6 +37,11 @@ open class BaseListAdapter<Item>(
         onUpdateDataSourceSubscription = dataSource.updatingSubject().subscribe {
             notifyItemChanged(it)
         }
+        onSetDataSourceSubscription = dataSource.replacingSubject().subscribe {
+            println("data set changed: " + it.size)
+            data = it
+            notifyDataSetChanged()
+        }
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
@@ -43,6 +49,7 @@ open class BaseListAdapter<Item>(
         onAddDataSourceSubscription?.dispose()
         onRemoveDataSourceSubscription?.dispose()
         onUpdateDataSourceSubscription?.dispose()
+        onSetDataSourceSubscription?.dispose()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Item> {

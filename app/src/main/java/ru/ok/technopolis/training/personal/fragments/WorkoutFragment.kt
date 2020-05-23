@@ -2,7 +2,10 @@ package ru.ok.technopolis.training.personal.fragments
 
 import android.app.TimePickerDialog
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -90,6 +93,15 @@ class WorkoutFragment : BaseFragment() {
                         }
                     }
                 }
+                workoutNameEditText!!.addTextChangedListener(object: TextWatcher {
+                    override fun afterTextChanged(s: Editable?) {
+                        if (s != null && s.isNotEmpty()) {
+                            workoutNameEditText!!.setBackgroundColor(Color.WHITE)
+                        }
+                    }
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                })
                 chooseTimeButton?.text = workout!!.plannedTime
                 chooseTimeButton?.setOnClickListener {
                     TimePickerDialog(
@@ -105,8 +117,16 @@ class WorkoutFragment : BaseFragment() {
                 }
                 for (i in weekdayCheckboxes!!.indices) {
                     val bit = 1 shl i
+                    val checkBox = weekdayCheckboxes!![i]
                     if (bit and workout!!.weekdaysMask != 0) {
-                        weekdayCheckboxes!![i].isChecked = true
+                        checkBox.isChecked = true
+                    }
+                    checkBox.setOnCheckedChangeListener { v, checked ->
+                        if (checked) {
+                            for (ii in weekdayCheckboxes!!.indices) {
+                                weekdayCheckboxes!![ii].setBackgroundColor(Color.WHITE)
+                            }
+                        }
                     }
                 }
             }
@@ -130,16 +150,24 @@ class WorkoutFragment : BaseFragment() {
             }
 
             val workoutName = workoutNameEditText?.text.toString()
-            if (workoutName == "") {
-                workoutNameEditText?.setBackgroundColor(Color.RED)
-            } else {
-                GlobalScope.launch(Dispatchers.IO) {
-                    workout?.name = workoutName
-                    workout?.plannedTime = workoutTime
-                    workout?.weekdaysMask = weekdaysMask
-                    database?.workoutDao()?.update(workout!!)
-                    withContext(Dispatchers.Main) {
-                        router?.goToPrevFragment()
+            when {
+                workoutName == "" -> {
+                    workoutNameEditText?.setBackgroundColor(Color.RED)
+                }
+                weekdaysMask == 0 -> {
+                    weekdayCheckboxes?.forEach {
+                        it.setBackgroundColor(Color.RED)
+                    }
+                }
+                else -> {
+                    GlobalScope.launch(Dispatchers.IO) {
+                        workout?.name = workoutName
+                        workout?.plannedTime = workoutTime
+                        workout?.weekdaysMask = weekdaysMask
+                        database?.workoutDao()?.update(workout!!)
+                        withContext(Dispatchers.Main) {
+                            router?.goToPrevFragment()
+                        }
                     }
                 }
             }

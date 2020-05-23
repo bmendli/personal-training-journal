@@ -3,6 +3,7 @@ package ru.ok.technopolis.training.personal.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.ForeignKey.CASCADE
 
 @Entity(
     primaryKeys = ["userId", "workoutId"],
@@ -10,12 +11,14 @@ import androidx.room.ForeignKey
         ForeignKey(
             entity = UserEntity::class,
             parentColumns = ["id"],
-            childColumns = ["userId"]
+            childColumns = ["userId"],
+            onDelete = CASCADE
         ),
         ForeignKey(
             entity = WorkoutEntity::class,
             parentColumns = ["id"],
-            childColumns = ["workoutId"]
+            childColumns = ["workoutId"],
+            onDelete = CASCADE
         )
     ]
 )
