@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
 import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.viewholders.BaseViewHolder
 import kotlin.reflect.KClass
@@ -20,29 +20,27 @@ open class BaseListAdapter<Item>(
 
     internal var data = listOf<Item>()
 
-    private var onAddDataSourceSubscription: Disposable? = null
-    private var onRemoveDataSourceSubscription: Disposable? = null
-    private var onUpdateDataSourceSubscription: Disposable? = null
+    private var dataSourceSubscription: CompositeDisposable? = null
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         data = dataSource.items
-        onAddDataSourceSubscription = dataSource.addingSubject().subscribe {
-            notifyItemInserted(0)
-        }
-        onRemoveDataSourceSubscription = dataSource.removingSubject().subscribe {
-            notifyItemRemoved(it)
-        }
-        onUpdateDataSourceSubscription = dataSource.updatingSubject().subscribe {
-            notifyItemChanged(it)
-        }
+        dataSourceSubscription?.addAll(
+            dataSource.addingSubject().subscribe {
+                notifyItemInserted(0)
+            },
+            dataSource.removingSubject().subscribe {
+                notifyItemRemoved(it)
+            },
+            dataSource.updatingSubject().subscribe {
+                notifyItemRemoved(it)
+            }
+        )
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
-        onAddDataSourceSubscription?.dispose()
-        onRemoveDataSourceSubscription?.dispose()
-        onUpdateDataSourceSubscription?.dispose()
+        dataSourceSubscription?.dispose()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Item> {
