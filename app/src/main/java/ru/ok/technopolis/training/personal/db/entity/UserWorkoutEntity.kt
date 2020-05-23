@@ -3,11 +3,9 @@ package ru.ok.technopolis.training.personal.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
-import java.sql.Date
-import java.sql.Time
 
 @Entity(
+    primaryKeys = ["userId", "workoutId"],
     foreignKeys = [
         ForeignKey(
             entity = UserEntity::class,
@@ -22,13 +20,9 @@ import java.sql.Time
     ]
 )
 data class UserWorkoutEntity(
-    @ColumnInfo var name: String,
-    @ColumnInfo var comments: String?,
     @ColumnInfo var userId: Long,
     @ColumnInfo var workoutId: Long,
-    @ColumnInfo var plannedTime: Date,
-    @ColumnInfo var weekdaysMask: Int,
-    @ColumnInfo var serverId: Long = -1,
-    @PrimaryKey(autoGenerate = true) var id: Long = 0
+    @ColumnInfo var comments: String?,
+    @ColumnInfo var serverId: Long = -1
 )
 

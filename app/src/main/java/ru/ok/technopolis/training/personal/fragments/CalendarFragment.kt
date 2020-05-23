@@ -14,16 +14,19 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.db.entity.UserWorkoutEntity
 import ru.ok.technopolis.training.personal.db.entity.WorkoutEntity
 import ru.ok.technopolis.training.personal.items.ItemsList
+import ru.ok.technopolis.training.personal.repository.CurrentUserRepository
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.CalendarWorkoutListAdapter
 import ru.ok.technopolis.training.personal.viewholders.WorkoutViewHolder
 
 class CalendarFragment : BaseFragment() {
 
-    var calendar: CalendarView? = null
-    var addWorkoutButton: ImageView? = null
-    var recyclerView: RecyclerView? = null
+    private var calendar: CalendarView? = null
+    private var addWorkoutButton: ImageView? = null
+    private var recyclerView: RecyclerView? = null
+    private var userId: Long? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,7 +36,11 @@ class CalendarFragment : BaseFragment() {
         recyclerView = view.workout_list
 
         GlobalScope.launch(Dispatchers.IO) {
-            val workoutList = database?.workoutDao()?.getAll()!!
+            val email = CurrentUserRepository.getCurrentUserInfo().email
+            println(email)
+            val user = database!!.userDao().getByEmail(email)
+            userId = user.id
+            val workoutList = database!!.userWorkoutDao().getWorkoutsForUser(userId!!)
 
             withContext(Dispatchers.Main) {
                 val elements = ItemsList(workoutList)
@@ -64,8 +71,15 @@ class CalendarFragment : BaseFragment() {
 
                 addWorkoutButton?.setOnClickListener {
                     GlobalScope.launch(Dispatchers.IO) {
-                        val workoutEntity = WorkoutEntity("", "")
+                        val workoutEntity = WorkoutEntity("", "12:00", 0, "")
                         workoutEntity.id = database?.workoutDao()?.insert(workoutEntity)!!
+
+                        val userWorkoutEntity = UserWorkoutEntity(
+                            userId!!,
+                            workoutEntity.id,
+                            ""
+                        )
+                        database!!.userWorkoutDao().insert(userWorkoutEntity)
                         withContext(Dispatchers.Main) {
                             elements.add(
                                 workoutEntity

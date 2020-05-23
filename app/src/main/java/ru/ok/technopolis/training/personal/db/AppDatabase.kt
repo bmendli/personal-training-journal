@@ -24,7 +24,6 @@ import ru.ok.technopolis.training.personal.db.generators.InitialDataGenerator
         ParameterTypeEntity::class,
         UserEntity::class,
         UserWorkoutEntity::class,
-        UserWorkoutParameterValueEntity::class,
         WorkoutEntity::class,
         WorkoutExerciseEntity::class
     ],
@@ -77,7 +76,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun parameterTypeDao(): ParameterTypeDao
     abstract fun userDao(): UserDao
     abstract fun userWorkoutDao(): UserWorkoutDao
-    abstract fun userWorkoutParameterValueDao(): UserWorkoutParameterValueDao
     abstract fun workoutDao(): WorkoutDao
     abstract fun workoutExerciseDao(): WorkoutExerciseDao
 }

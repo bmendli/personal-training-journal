@@ -1,7 +1,12 @@
 package ru.ok.technopolis.training.personal.repository
 
 import android.content.Context
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ru.ok.technopolis.training.personal.activities.BaseActivity
+import ru.ok.technopolis.training.personal.db.entity.UserEntity
 
 object AuthRepository {
 
@@ -10,11 +15,28 @@ object AuthRepository {
 
     fun doOnLogin(activity: BaseActivity, token: String, needRemember: Boolean) {
         activity.apply {
-            if (needRemember) {
-                getSharedPreferences(TRAINING_PREFERENCE, Context.MODE_PRIVATE).edit().putString(USER_TOKEN, token).apply()
+            GlobalScope.launch(Dispatchers.IO) {
+                val userInfo = CurrentUserRepository.getCurrentUserInfo()
+                var user = database?.userDao()?.getByEmail(userInfo.email)
+                if (user == null) {
+                    user = UserEntity(
+                        userInfo.firstName,
+                        userInfo.lastName,
+                        userInfo.fatherName,
+                        userInfo.email,
+                        userInfo.genderType.toApiStr(),
+                        userInfo.pictureUrlStr
+                    )
+                    database?.userDao()?.insert(user)
+                }
+                withContext(Dispatchers.Main) {
+                    if (needRemember) {
+                        getSharedPreferences(TRAINING_PREFERENCE, Context.MODE_PRIVATE).edit().putString(USER_TOKEN, token).apply()
+                    }
+                    router?.showCalendarPage()
+                    finish()
+                }
             }
-            router?.showCalendarPage()
-            finish()
         }
     }
 

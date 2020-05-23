@@ -1,5 +1,6 @@
 package ru.ok.technopolis.training.personal.fragments
 
+import android.app.TimePickerDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
@@ -89,6 +90,25 @@ class WorkoutFragment : BaseFragment() {
                         }
                     }
                 }
+                chooseTimeButton?.text = workout!!.plannedTime
+                chooseTimeButton?.setOnClickListener {
+                    TimePickerDialog(
+                        it.context,
+                        TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                            run {
+                                val timeStr = if (minute < 10) "$hourOfDay:0$minute" else "$hourOfDay:$minute"
+                                chooseTimeButton?.text = timeStr
+                            }
+                        },
+                        12, 0, true
+                    ).show()
+                }
+                for (i in weekdayCheckboxes!!.indices) {
+                    val bit = 1 shl i
+                    if (bit and workout!!.weekdaysMask != 0) {
+                        weekdayCheckboxes!![i].isChecked = true
+                    }
+                }
             }
         }
 
@@ -100,12 +120,23 @@ class WorkoutFragment : BaseFragment() {
         inflater.inflate(R.menu.apply_reject_menu, menu)
         val saveButton: MenuItem = menu.findItem(R.id.apply_changes)
         saveButton.setOnMenuItemClickListener {
+
+            val workoutTime = chooseTimeButton?.text.toString()
+            var weekdaysMask = 0
+            for (i in weekdayCheckboxes!!.indices) {
+                if (weekdayCheckboxes!![i].isChecked) {
+                    weekdaysMask = weekdaysMask or (1 shl i)
+                }
+            }
+
             val workoutName = workoutNameEditText?.text.toString()
             if (workoutName == "") {
                 workoutNameEditText?.setBackgroundColor(Color.RED)
             } else {
                 GlobalScope.launch(Dispatchers.IO) {
                     workout?.name = workoutName
+                    workout?.plannedTime = workoutTime
+                    workout?.weekdaysMask = weekdaysMask
                     database?.workoutDao()?.update(workout!!)
                     withContext(Dispatchers.Main) {
                         router?.goToPrevFragment()

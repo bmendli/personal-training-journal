@@ -2,14 +2,17 @@ package ru.ok.technopolis.training.personal.db.dao
 
 import androidx.room.*
 import ru.ok.technopolis.training.personal.db.entity.UserWorkoutEntity
+import ru.ok.technopolis.training.personal.db.entity.WorkoutEntity
 
 @Dao
 interface UserWorkoutDao {
     @Query("SELECT * FROM UserWorkoutEntity")
     fun getAll(): List<UserWorkoutEntity>
 
-    @Query("SELECT * FROM UserWorkoutEntity WHERE id = :id")
-    fun getById(id: Long): UserWorkoutEntity
+    @Query("SELECT * FROM WorkoutEntity AS we " +
+        "INNER JOIN UserWorkoutEntity AS uwe ON we.id=uwe.workoutId " +
+        "WHERE uwe.userId = :userId")
+    fun getWorkoutsForUser(userId: Long): MutableList<WorkoutEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(userWorkoutEntity: UserWorkoutEntity): Long

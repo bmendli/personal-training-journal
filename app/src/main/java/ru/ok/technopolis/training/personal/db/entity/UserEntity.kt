@@ -8,9 +8,10 @@ import androidx.room.PrimaryKey
 data class UserEntity(
     @ColumnInfo var firstName: String,
     @ColumnInfo var lastName: String?,
+    @ColumnInfo var fatherName: String?,
     @ColumnInfo var email: String,
     @ColumnInfo var gender: String,
-    @ColumnInfo var avatarUrl: String,
+    @ColumnInfo var avatarUrl: String?,
     @ColumnInfo var serverId: Long = -1,
     @PrimaryKey(autoGenerate = true) var id: Long = 0
 )
