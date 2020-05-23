@@ -41,6 +41,10 @@ class Router(private val activity: Activity) {
         showPage(Page.Activity.AccountSettings)
     }
 
+    fun showAccountSettingsSubPage() {
+        showPage(Page.Fragment.AccountSettings)
+    }
+
     fun showRegistrationPage() {
         showPage(Page.Activity.Registration)
     }

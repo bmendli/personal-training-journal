@@ -6,7 +6,11 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="last_name">Last name</string>
+    <string name="change_last_name">Change last name</string>
+    <string name="change_first_name">Change first name</string>
+    <string name="change_father_name">Change father name</string>
     <string name="first_name">First name</string>
+    <string name="father_name">Father name</string>
     <string name="birthday"><u>Birthday</u></string>
     <string name="forgot_password"><u>Forgot your password?</u></string>
     <string name="login">Log in</string>
@@ -42,6 +46,8 @@
     <string name="drawer_item_favourites">Favourites</string>
     <string name="drawer_item_search">Found training</string>
 
+    <string name="image">Image</string>
+    <string name="change_imnage">Change your personal image</string>
     <string name="remember">Remember</string>
     <string name="enabled">Enabled</string>
     <string name="disabled">Disabled</string>
@@ -53,11 +59,13 @@
     <string name="user_exist">User already exist</string>
     <string name="failed_registr">Failed to register, please try again later.</string>
     <string name="failed_login">Failed to log in, please try again later.</string>
+    <string name="failed_change_user_data">Failed to change data, please try again later.</string>
     <string name="incorrect_email">Incorrect email</string>
     <string name="incorrect_password">Incorrect password</string>
     <string name="incorrect_confirm_passowrd">Password don\'t match</string>
     <string name="incorrect_last_name">Incorrect last name</string>
     <string name="incorrect_first_name">Incorrect first name</string>
+    <string name="incorrect_father_name">Incorrect father name</string>
     <string name="incorrect_email_or_password">Incorrect email or password.</string>
     <string name="cannot_login">Failed to log in.</string>
     <string name="cannot_sign_up">Failed to sign up.</string>

@@ -5,16 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import io.reactivex.disposables.CompositeDisposable
 import ru.ok.technopolis.training.personal.activities.BaseActivity
 import ru.ok.technopolis.training.personal.lifecycle.Router
 
 abstract class BaseFragment : Fragment() {
 
     protected var router: Router? = null
+    protected val taskContainer: CompositeDisposable = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         router = (activity as BaseActivity).router
         return inflater.inflate(getFragmentLayoutId(), container, false) as ViewGroup
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        taskContainer.dispose()
     }
 
     abstract fun getFragmentLayoutId(): Int
