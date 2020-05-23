@@ -10,8 +10,26 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.ok.technopolis.training.personal.db.converter.DateConverter
-import ru.ok.technopolis.training.personal.db.dao.*
-import ru.ok.technopolis.training.personal.db.entity.*
+import ru.ok.technopolis.training.personal.db.dao.ExerciseDao
+import ru.ok.technopolis.training.personal.db.dao.ExerciseParameterDao
+import ru.ok.technopolis.training.personal.db.dao.ExerciseTypeDao
+import ru.ok.technopolis.training.personal.db.dao.MeasureUnitDao
+import ru.ok.technopolis.training.personal.db.dao.ParameterDao
+import ru.ok.technopolis.training.personal.db.dao.ParameterTypeDao
+import ru.ok.technopolis.training.personal.db.dao.UserDao
+import ru.ok.technopolis.training.personal.db.dao.UserWorkoutDao
+import ru.ok.technopolis.training.personal.db.dao.WorkoutDao
+import ru.ok.technopolis.training.personal.db.dao.WorkoutExerciseDao
+import ru.ok.technopolis.training.personal.db.entity.ExerciseEntity
+import ru.ok.technopolis.training.personal.db.entity.ExerciseParameterEntity
+import ru.ok.technopolis.training.personal.db.entity.ExerciseTypeEntity
+import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
+import ru.ok.technopolis.training.personal.db.entity.ParameterEntity
+import ru.ok.technopolis.training.personal.db.entity.ParameterTypeEntity
+import ru.ok.technopolis.training.personal.db.entity.UserEntity
+import ru.ok.technopolis.training.personal.db.entity.UserWorkoutEntity
+import ru.ok.technopolis.training.personal.db.entity.WorkoutEntity
+import ru.ok.technopolis.training.personal.db.entity.WorkoutExerciseEntity
 import ru.ok.technopolis.training.personal.db.generators.InitialDataGenerator
 
 @Database(

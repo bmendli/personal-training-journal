@@ -15,4 +15,3 @@ data class MeasureUnitEntity(
         return acronym
     }
 }
-

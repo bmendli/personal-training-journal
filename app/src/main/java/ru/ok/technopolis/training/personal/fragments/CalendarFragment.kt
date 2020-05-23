@@ -23,7 +23,7 @@ import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.repository.CurrentUserRepository
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.CalendarWorkoutListAdapter
 import ru.ok.technopolis.training.personal.viewholders.WorkoutViewHolder
-import java.util.*
+import java.util.Calendar
 
 class CalendarFragment : BaseFragment() {
 
@@ -136,7 +136,6 @@ class CalendarFragment : BaseFragment() {
             println("" + (1 shl dayOfWeekIndex) + " | " + it.weekdaysMask)
             ((1 shl dayOfWeekIndex) and it.weekdaysMask) != 0
         }.toMutableList()
-
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_calendar

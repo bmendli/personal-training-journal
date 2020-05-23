@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
-import androidx.room.RoomDatabase
 import ru.ok.technopolis.training.personal.activities.BaseActivity
 import ru.ok.technopolis.training.personal.db.AppDatabase
 import ru.ok.technopolis.training.personal.lifecycle.Router

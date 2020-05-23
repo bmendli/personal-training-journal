@@ -2,9 +2,7 @@ package ru.ok.technopolis.training.personal.viewholders
 
 import android.view.View
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.TextView
-import kotlinx.android.synthetic.main.fragment_exercise.view.*
 import kotlinx.android.synthetic.main.item_workout_element.view.*
 import ru.ok.technopolis.training.personal.db.entity.ExerciseEntity
 

@@ -3,8 +3,11 @@ package ru.ok.technopolis.training.personal.viewholders
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.*
-import androidx.core.widget.addTextChangedListener
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Spinner
 import kotlinx.android.synthetic.main.item_exercise_element.view.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
@@ -37,7 +40,7 @@ class ExerciseElementViewHolder(
         units.setSelection(item.parameter.measureUnitId.toInt() - 1)
         inputType.setSelection(item.parameter.parameterTypeId.toInt() - 1)
 
-        title.addTextChangedListener(object: TextWatcher {
+        title.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (s != null && s.isNotEmpty()) {
                     item.parameter.name = s.toString()
@@ -47,7 +50,7 @@ class ExerciseElementViewHolder(
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        value.addTextChangedListener(object: TextWatcher {
+        value.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (s != null && s.isNotEmpty()) {
                     val newValue: Float? = s.toString().toFloatOrNull()

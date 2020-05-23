@@ -8,8 +8,6 @@ import retrofit2.Response
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.activities.BaseActivity
 import ru.ok.technopolis.training.personal.api.Api
-import ru.ok.technopolis.training.personal.api.responses.MessageResponse
-import ru.ok.technopolis.training.personal.db.entity.UserEntity
 import ru.ok.technopolis.training.personal.dto.UserDto
 import ru.ok.technopolis.training.personal.model.UserSignUpInfo
 import ru.ok.technopolis.training.personal.utils.auth.AuthorizationHelper

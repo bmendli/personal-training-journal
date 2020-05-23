@@ -2,7 +2,6 @@ package ru.ok.technopolis.training.personal.fragments
 
 import android.app.TimePickerDialog
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,7 +9,11 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -93,7 +96,7 @@ class WorkoutFragment : BaseFragment() {
                         }
                     }
                 }
-                workoutNameEditText!!.addTextChangedListener(object: TextWatcher {
+                workoutNameEditText!!.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
                         if (s != null && s.isNotEmpty()) {
                             workoutNameEditText!!.setBackgroundColor(Color.WHITE)

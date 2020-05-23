@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
-import androidx.room.PrimaryKey
 
 @Entity(
     primaryKeys = ["exerciseId", "parameterId"],
@@ -28,4 +27,3 @@ data class ExerciseParameterEntity(
     @ColumnInfo var parameterId: Long,
     @ColumnInfo var serverId: Long = -1
 )
-

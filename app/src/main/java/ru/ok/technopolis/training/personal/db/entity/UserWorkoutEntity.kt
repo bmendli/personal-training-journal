@@ -28,4 +28,3 @@ data class UserWorkoutEntity(
     @ColumnInfo var comments: String?,
     @ColumnInfo var serverId: Long = -1
 )
-

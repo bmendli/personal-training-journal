@@ -27,4 +27,3 @@ data class ParameterEntity(
     @ColumnInfo var serverId: Long = -1,
     @PrimaryKey(autoGenerate = true) var id: Long = 0
 )
-

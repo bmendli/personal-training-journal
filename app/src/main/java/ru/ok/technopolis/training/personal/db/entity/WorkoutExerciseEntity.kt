@@ -27,4 +27,3 @@ data class WorkoutExerciseEntity(
     @ColumnInfo var exerciseId: Long,
     @ColumnInfo var serverId: Long = -1
 )
-

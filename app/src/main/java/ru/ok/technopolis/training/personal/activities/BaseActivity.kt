@@ -3,7 +3,6 @@ package ru.ok.technopolis.training.personal.activities
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.RoomDatabase
 import com.facebook.drawee.backends.pipeline.Fresco
 import io.reactivex.disposables.CompositeDisposable
 import ru.ok.technopolis.training.personal.db.AppDatabase
