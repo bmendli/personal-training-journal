@@ -29,7 +29,7 @@ import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.USER_ID_KEY
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.WORKOUT_ID_KEY
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.BaseListAdapter
 import ru.ok.technopolis.training.personal.viewholders.ActiveExerciseViewHolder
-import java.util.*
+import java.util.Calendar
 
 class ActiveExerciseFragment : BaseFragment() {
 

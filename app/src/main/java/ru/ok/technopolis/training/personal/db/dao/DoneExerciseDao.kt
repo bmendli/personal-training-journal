@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import ru.ok.technopolis.training.personal.db.entity.DoneExerciseEntity
-import ru.ok.technopolis.training.personal.db.entity.ParameterEntity
 
 @Dao
 interface DoneExerciseDao {
