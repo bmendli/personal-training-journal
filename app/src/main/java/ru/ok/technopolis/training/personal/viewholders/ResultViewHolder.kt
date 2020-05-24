@@ -16,6 +16,7 @@ class ResultViewHolder(
     private var graph: GraphView = itemView.graph_layout
 
     override fun bind(item: ParameterResultModel) {
+        graph.series.clear()
         val unitId = item.parameter.measureUnitId
         val unitText = item.measureUnitChoices[unitId.toInt() - 1]
         graphTitle.text = String.format("%s (%s)", item.parameter.name, unitText)

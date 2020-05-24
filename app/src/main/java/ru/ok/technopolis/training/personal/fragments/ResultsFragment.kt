@@ -99,7 +99,9 @@ class ResultsFragment : BaseFragment() {
         GlobalScope.launch(Dispatchers.IO) {
             val exercise = database?.exerciseDao()?.getById(exerciseId)!!
             val resultsList = map[exercise]
-            val parametersList = database?.exerciseParameterDao()?.getParametersForExercise(exerciseId)!!
+            val parametersList = database?.exerciseParameterDao()?.getParametersForExercise(exerciseId)!!.filter {
+                it.parameterTypeId.toInt() == 2
+            }
             val parameterModelList = parametersList.map {
                 ParameterResultModel(
                     it,
