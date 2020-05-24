@@ -46,7 +46,7 @@ sealed class Page : Serializable {
             override val clazz = AccountSettingsFragment::class
         }
 
-        object Results: Fragment() {
+        object Results : Fragment() {
             override val clazz = ResultsFragment::class
         }
 
