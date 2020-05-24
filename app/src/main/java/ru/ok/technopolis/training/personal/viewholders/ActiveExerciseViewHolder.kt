@@ -24,6 +24,7 @@ class ActiveExerciseViewHolder(
 
         val parameterType = item.parameterTypeChoices[item.parameter.parameterTypeId.toInt() - 1]
         value.isEnabled = !parameterType.onCreateFilling
+        value.setText(item.parameter.value.toString())
 
         if (value.isEnabled) {
             value.addTextChangedListener(object : TextWatcher {
@@ -38,9 +39,6 @@ class ActiveExerciseViewHolder(
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             })
-        } else {
-            value.setText(item.parameter.value.toString())
         }
-
     }
 }
