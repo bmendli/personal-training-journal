@@ -38,6 +38,7 @@ class ActiveExerciseFragment : BaseFragment() {
     private var workoutProgressBar: ProgressBar? = null
     private var workoutProgressText: TextView? = null
     private var exerciseName: TextView? = null
+    private var progressBar: ProgressBar? = null
 
     private var workout: WorkoutEntity? = null
     private var exerciseList: List<ExerciseEntity>? = null
@@ -56,6 +57,7 @@ class ActiveExerciseFragment : BaseFragment() {
 
         recyclerView = view.parameters_view
         doneButton = view.done_button
+        progressBar = view.progress_bar
         workoutProgressBar = workout_progress_bar
         workoutProgressText = workout_progress_text
         exerciseName = name
@@ -69,6 +71,7 @@ class ActiveExerciseFragment : BaseFragment() {
         recyclerView?.adapter = activeExerciseAdapter
         recyclerView?.layoutManager = LinearLayoutManager(activity)
         recyclerView?.addItemDecoration(DividerItemDecoration(activity, LinearLayout.VERTICAL))
+        progressBar?.visibility = View.VISIBLE
 
         GlobalScope.launch(Dispatchers.IO) {
             userId = (activity?.intent?.extras?.get(USER_ID_KEY)) as Long
@@ -80,6 +83,7 @@ class ActiveExerciseFragment : BaseFragment() {
                 parameterTypeChoices = appDatabase.parameterTypeDao().getAll().toMutableList()
             }
             withContext(Dispatchers.Main) {
+                progressBar?.visibility = View.GONE
                 loadNextExercise()
                 doneButton?.setOnClickListener {
                     processResults()
@@ -118,6 +122,9 @@ class ActiveExerciseFragment : BaseFragment() {
             if (exerciseIndex < list.size) {
                 val exercise = list[exerciseIndex]
                 GlobalScope.launch(Dispatchers.IO) {
+                    activity?.runOnUiThread {
+                        progressBar?.visibility = View.VISIBLE
+                    }
                     // load parameters for exercise
                     var parameterModelList: MutableList<ParameterModel>? = null
                     database?.let { appDatabase ->
@@ -131,6 +138,9 @@ class ActiveExerciseFragment : BaseFragment() {
                         exerciseName?.text = exercise.name
                         val progressValue = (exerciseIndex * 100 / list.size)
                         workoutProgressBar?.setProgress(progressValue)
+                    }
+                    activity?.runOnUiThread {
+                        progressBar?.visibility = View.GONE
                     }
                 }
             } else {
