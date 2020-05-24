@@ -64,7 +64,7 @@ class WorkoutFragment : BaseFragment() {
                     layoutId = R.layout.item_workout_element,
                     dataSource = elements,
                     onClick = {
-                        router?.showExercisePage(it.id)
+                        showExercisePage(it.id)
                     },
                     onDeleteExerciseClick = {
                         GlobalScope.launch(Dispatchers.IO) {
@@ -92,7 +92,7 @@ class WorkoutFragment : BaseFragment() {
                             elements.add(
                                 exerciseEntity
                             )
-                            router?.showExercisePage(exerciseEntity.id)
+                            showExercisePage(exerciseEntity.id)
                         }
                     }
                 }
@@ -100,6 +100,7 @@ class WorkoutFragment : BaseFragment() {
                     override fun afterTextChanged(s: Editable?) {
                         if (s != null && s.isNotEmpty()) {
                             workoutNameEditText!!.setBackgroundColor(Color.WHITE)
+                            workout?.name = s.toString()
                         }
                     }
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -141,41 +142,13 @@ class WorkoutFragment : BaseFragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         Logger.d(this, "onCreateOptionsMenu")
         inflater.inflate(R.menu.apply_reject_menu, menu)
+
         val saveButton: MenuItem = menu.findItem(R.id.apply_changes)
         saveButton.setOnMenuItemClickListener {
-
-            val workoutTime = chooseTimeButton?.text.toString()
-            var weekdaysMask = 0
-            for (i in weekdayCheckboxes!!.indices) {
-                if (weekdayCheckboxes!![i].isChecked) {
-                    weekdaysMask = weekdaysMask or (1 shl i)
-                }
-            }
-
-            val workoutName = workoutNameEditText?.text.toString()
-            when {
-                workoutName == "" -> {
-                    workoutNameEditText?.setBackgroundColor(Color.RED)
-                }
-                weekdaysMask == 0 -> {
-                    weekdayCheckboxes?.forEach {
-                        it.setBackgroundColor(Color.RED)
-                    }
-                }
-                else -> {
-                    GlobalScope.launch(Dispatchers.IO) {
-                        workout?.name = workoutName
-                        workout?.plannedTime = workoutTime
-                        workout?.weekdaysMask = weekdaysMask
-                        database?.workoutDao()?.update(workout!!)
-                        withContext(Dispatchers.Main) {
-                            router?.goToPrevFragment()
-                        }
-                    }
-                }
-            }
+            saveWorkoutData { router?.goToPrevFragment() }
             true
         }
+
         val cancelButton: MenuItem = menu.findItem(R.id.reject_changes)
         cancelButton.setOnMenuItemClickListener {
             val workoutName = workoutNameEditText?.text.toString()
@@ -187,8 +160,44 @@ class WorkoutFragment : BaseFragment() {
                     router?.goToPrevFragment()
                 }
             }
-
             true
+        }
+    }
+
+    private fun showExercisePage(exerciseId: Long) {
+        saveWorkoutData { router?.showExercisePage(exerciseId) }
+    }
+
+    private fun saveWorkoutData(doAfter: () -> Unit?) {
+        val workoutTime = chooseTimeButton?.text.toString()
+        var weekdaysMask = 0
+        for (i in weekdayCheckboxes!!.indices) {
+            if (weekdayCheckboxes!![i].isChecked) {
+                weekdaysMask = weekdaysMask or (1 shl i)
+            }
+        }
+
+        val workoutName = workoutNameEditText?.text.toString()
+        when {
+            workoutName == "" -> {
+                workoutNameEditText?.setBackgroundColor(Color.RED)
+            }
+            weekdaysMask == 0 -> {
+                weekdayCheckboxes?.forEach {
+                    it.setBackgroundColor(Color.RED)
+                }
+            }
+            else -> {
+                GlobalScope.launch(Dispatchers.IO) {
+                    workout?.name = workoutName
+                    workout?.plannedTime = workoutTime
+                    workout?.weekdaysMask = weekdaysMask
+                    database?.workoutDao()?.update(workout!!)
+                    withContext(Dispatchers.Main) {
+                        doAfter()
+                    }
+                }
+            }
         }
     }
 
