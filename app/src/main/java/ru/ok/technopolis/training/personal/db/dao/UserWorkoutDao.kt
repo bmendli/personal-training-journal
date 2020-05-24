@@ -14,6 +14,9 @@ interface UserWorkoutDao {
     @Query("SELECT * FROM UserWorkoutEntity")
     fun getAll(): List<UserWorkoutEntity>
 
+    @Query("SELECT * FROM UserWorkoutEntity WHERE userId=:userId AND workoutId=:workoutId")
+    fun getById(userId: Long, workoutId: Long): UserWorkoutEntity
+
     @Query("SELECT * FROM WorkoutEntity AS we " +
         "INNER JOIN UserWorkoutEntity AS uwe ON we.id=uwe.workoutId " +
         "WHERE uwe.userId = :userId")

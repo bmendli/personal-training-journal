@@ -10,21 +10,25 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.ok.technopolis.training.personal.db.converter.DateConverter
+import ru.ok.technopolis.training.personal.db.dao.DoneExerciseDao
 import ru.ok.technopolis.training.personal.db.dao.ExerciseDao
 import ru.ok.technopolis.training.personal.db.dao.ExerciseParameterDao
 import ru.ok.technopolis.training.personal.db.dao.ExerciseTypeDao
 import ru.ok.technopolis.training.personal.db.dao.MeasureUnitDao
 import ru.ok.technopolis.training.personal.db.dao.ParameterDao
+import ru.ok.technopolis.training.personal.db.dao.ParameterResultDao
 import ru.ok.technopolis.training.personal.db.dao.ParameterTypeDao
 import ru.ok.technopolis.training.personal.db.dao.UserDao
 import ru.ok.technopolis.training.personal.db.dao.UserWorkoutDao
 import ru.ok.technopolis.training.personal.db.dao.WorkoutDao
 import ru.ok.technopolis.training.personal.db.dao.WorkoutExerciseDao
+import ru.ok.technopolis.training.personal.db.entity.DoneExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseParameterEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseTypeEntity
 import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterEntity
+import ru.ok.technopolis.training.personal.db.entity.ParameterResultEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterTypeEntity
 import ru.ok.technopolis.training.personal.db.entity.UserEntity
 import ru.ok.technopolis.training.personal.db.entity.UserWorkoutEntity
@@ -43,7 +47,9 @@ import ru.ok.technopolis.training.personal.db.generators.InitialDataGenerator
         UserEntity::class,
         UserWorkoutEntity::class,
         WorkoutEntity::class,
-        WorkoutExerciseEntity::class
+        WorkoutExerciseEntity::class,
+        DoneExerciseEntity::class,
+        ParameterResultEntity::class
     ],
     version = 1
 )
@@ -75,6 +81,7 @@ abstract class AppDatabase : RoomDatabase() {
                                     it.exerciseTypeDao().insert(InitialDataGenerator.getExerciseTypes())
                                     it.parameterTypeDao().insert(InitialDataGenerator.getParameterTypes())
                                     it.measureUnitDao().insert(InitialDataGenerator.getMeasureUnits())
+                                    it.parameterDao().insert(InitialDataGenerator.getParameters())
                                 }
                             }
                         }
@@ -96,4 +103,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userWorkoutDao(): UserWorkoutDao
     abstract fun workoutDao(): WorkoutDao
     abstract fun workoutExerciseDao(): WorkoutExerciseDao
+    abstract fun doneExerciseDao(): DoneExerciseDao
+    abstract fun parameterResultDao(): ParameterResultDao
 }

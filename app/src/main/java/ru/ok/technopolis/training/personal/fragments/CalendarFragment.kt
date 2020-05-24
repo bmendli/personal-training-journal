@@ -79,7 +79,7 @@ class CalendarFragment : BaseFragment() {
                         router?.showWorkoutPage(it.id)
                     },
                     onStartWorkoutClick = {
-                        router?.showActiveExercisePage(it.id)
+                        router?.showActiveExercisePage(userId!!, it.id)
                     },
                     onDeleteWorkoutClick = {
                         GlobalScope.launch(Dispatchers.IO) {
