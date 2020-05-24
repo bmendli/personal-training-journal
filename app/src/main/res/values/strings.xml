@@ -112,6 +112,8 @@
     <string name="day7">Sa</string>
     <string name="exercises_list">Exercises list</string>
     <string name="ok" translatable="false">OK</string>
+    <string name="next_exercise">Next exercise</string>
+    <string name="workout_progress">Workout progress</string>
 
     <string-array name="exercise_types">
         <item>Strength</item>
@@ -140,4 +142,6 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+<!--    <string name="value_with_measure_unit" translatable="false">%1$f %2$s</string>-->
 </resources>

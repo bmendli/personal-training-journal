@@ -9,10 +9,8 @@ class InitialDataGenerator {
     companion object {
         fun getParameterTypes(): List<ParameterTypeEntity> {
             return listOf(
-                ParameterTypeEntity("Цель"),
-                ParameterTypeEntity("Результат"),
-                ParameterTypeEntity("Секундомер"),
-                ParameterTypeEntity("Таймер")
+                ParameterTypeEntity("Цель", true),
+                ParameterTypeEntity("Результат", false)
             )
         }
         fun getExerciseTypes(): List<ExerciseTypeEntity> {

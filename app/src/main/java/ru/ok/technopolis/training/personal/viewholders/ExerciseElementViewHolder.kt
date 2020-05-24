@@ -72,6 +72,7 @@ class ExerciseElementViewHolder(
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 item.parameter.parameterTypeId = position.toLong() + 1
+                value.isEnabled = item.parameterTypeChoices[position].onCreateFilling
             }
         }
     }
