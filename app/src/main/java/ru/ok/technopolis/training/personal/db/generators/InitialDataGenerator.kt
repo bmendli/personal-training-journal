@@ -2,6 +2,7 @@ package ru.ok.technopolis.training.personal.db.generators
 
 import ru.ok.technopolis.training.personal.db.entity.ExerciseTypeEntity
 import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
+import ru.ok.technopolis.training.personal.db.entity.ParameterEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterTypeEntity
 
 // TODO: load initial data from the server with current app locale
@@ -30,7 +31,20 @@ class InitialDataGenerator {
                 MeasureUnitEntity("Единицы", "ед"),
                 MeasureUnitEntity("Секунды", "сек"),
                 MeasureUnitEntity("Минуты", "мин"),
-                MeasureUnitEntity("Часы", "ч")
+                MeasureUnitEntity("Часы", "ч"),
+                MeasureUnitEntity("Килограммы", "кг")
+            )
+        }
+        fun getParameters(): List<ParameterEntity> {
+            return listOf(
+                ParameterEntity("Время (цель)", 6, 1),
+                ParameterEntity("Время (результат)", 6, 2),
+                ParameterEntity("Дистанция (цель)", 3, 1),
+                ParameterEntity("Дистанция (результат)", 3, 2),
+                ParameterEntity("Повторения (цель)", 5, 1),
+                ParameterEntity("Повторения (результат)", 5, 2),
+                ParameterEntity("Вес (цель)", 9, 1),
+                ParameterEntity("Вес (результат)", 9, 2)
             )
         }
     }

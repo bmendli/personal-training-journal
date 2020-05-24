@@ -17,15 +17,19 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.db.entity.DoneExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
+import ru.ok.technopolis.training.personal.db.entity.ParameterResultEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterTypeEntity
 import ru.ok.technopolis.training.personal.db.entity.WorkoutEntity
 import ru.ok.technopolis.training.personal.db.model.ParameterModel
 import ru.ok.technopolis.training.personal.items.ItemsList
+import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.USER_ID_KEY
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.WORKOUT_ID_KEY
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.BaseListAdapter
 import ru.ok.technopolis.training.personal.viewholders.ActiveExerciseViewHolder
+import java.util.Calendar
 
 class ActiveExerciseFragment : BaseFragment() {
 
@@ -44,6 +48,9 @@ class ActiveExerciseFragment : BaseFragment() {
 
     private var measureUnitChoices: MutableList<MeasureUnitEntity>? = null
     private var parameterTypeChoices: MutableList<ParameterTypeEntity>? = null
+
+    private var userId: Long? = null
+    private var calendar = Calendar.getInstance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,11 +71,10 @@ class ActiveExerciseFragment : BaseFragment() {
         recyclerView?.adapter = activeExerciseAdapter
         recyclerView?.layoutManager = LinearLayoutManager(activity)
         recyclerView?.addItemDecoration(DividerItemDecoration(activity, LinearLayout.VERTICAL))
+        progressBar?.visibility = View.VISIBLE
 
         GlobalScope.launch(Dispatchers.IO) {
-            activity?.runOnUiThread {
-                progressBar?.visibility = View.VISIBLE
-            }
+            userId = (activity?.intent?.extras?.get(USER_ID_KEY)) as Long
             val workoutId = (activity?.intent?.extras?.get(WORKOUT_ID_KEY)) as Long
             database?.let { appDatabase ->
                 exerciseList = appDatabase.workoutExerciseDao().getExercisesForWorkout(workoutId)
@@ -77,13 +83,40 @@ class ActiveExerciseFragment : BaseFragment() {
                 parameterTypeChoices = appDatabase.parameterTypeDao().getAll().toMutableList()
             }
             withContext(Dispatchers.Main) {
+                progressBar?.visibility = View.GONE
                 loadNextExercise()
                 doneButton?.setOnClickListener {
-                    loadNextExercise()
+                    processResults()
                 }
             }
-            activity?.runOnUiThread {
-                progressBar?.visibility = View.GONE
+        }
+    }
+
+    private fun processResults() {
+        GlobalScope.launch(Dispatchers.IO) {
+            val exercise = exerciseList?.get(exerciseIndex)
+            val doneExercise = DoneExerciseEntity(
+                exercise!!.id,
+                userId!!,
+                calendar.time
+            )
+            doneExercise.id = database?.doneExerciseDao()?.insert(doneExercise)!!
+            for (parameterModel in elements.items) {
+                val paramTypeId = parameterModel.parameter.parameterTypeId
+                val isFilledWorkout = parameterModel.parameterTypeChoices[paramTypeId.toInt() - 1].onCreateFilling
+                if (isFilledWorkout) {
+                    continue
+                }
+                val resultEntity = ParameterResultEntity(
+                    doneExercise.id,
+                    parameterModel.parameter.id,
+                    parameterModel.parameter.value
+                )
+                println("saving parameter: " + resultEntity.parameterId + " => " + resultEntity.value)
+                resultEntity.id = database?.parameterResultDao()?.insert(resultEntity)!!
+            }
+            withContext(Dispatchers.Main) {
+                loadNextExercise()
             }
         }
     }

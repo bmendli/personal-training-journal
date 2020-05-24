@@ -8,6 +8,7 @@ import ru.ok.technopolis.training.personal.fragments.ActiveExerciseFragment
 import ru.ok.technopolis.training.personal.fragments.BaseFragment
 import ru.ok.technopolis.training.personal.fragments.CalendarFragment
 import ru.ok.technopolis.training.personal.fragments.ExerciseFragment
+import ru.ok.technopolis.training.personal.fragments.ResultsFragment
 import ru.ok.technopolis.training.personal.fragments.TrainingViewFragment
 import ru.ok.technopolis.training.personal.fragments.WorkoutFragment
 import ru.ok.technopolis.training.personal.fragments.settings.AccountSettingsFragment
@@ -45,6 +46,10 @@ sealed class Page : Serializable {
             override val clazz = AccountSettingsFragment::class
         }
 
+        object Results : Fragment() {
+            override val clazz = ResultsFragment::class
+        }
+
         object ActiveExercise : Fragment() {
             override val clazz = ActiveExerciseFragment::class
         }
@@ -68,6 +73,7 @@ sealed class Page : Serializable {
 
     companion object {
         const val PAGE_KEY = "PAGE"
+        const val USER_ID_KEY = "USER_ID"
         const val WORKOUT_ID_KEY = "WORKOUT_ID"
         const val EXERCISE_ID_KEY = "EXERCISE_ID"
     }

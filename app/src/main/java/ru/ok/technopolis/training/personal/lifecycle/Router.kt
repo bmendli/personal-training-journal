@@ -6,6 +6,7 @@ import android.os.Bundle
 import ru.ok.technopolis.training.personal.activities.BaseFragmentActivity
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.EXERCISE_ID_KEY
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.PAGE_KEY
+import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.USER_ID_KEY
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.WORKOUT_ID_KEY
 import ru.ok.technopolis.training.personal.utils.logger.Logger
 import kotlin.reflect.full.createInstance
@@ -30,8 +31,9 @@ class Router(private val activity: Activity) {
         showPage(Page.Fragment.TrainingView)
     }
 
-    fun showActiveExercisePage(workoutId: Long) {
-        val workoutIdBundle = Bundle(1)
+    fun showActiveExercisePage(userId: Long, workoutId: Long) {
+        val workoutIdBundle = Bundle(2)
+        workoutIdBundle.putLong(USER_ID_KEY, userId)
         workoutIdBundle.putLong(WORKOUT_ID_KEY, workoutId)
         showPage(Page.Fragment.ActiveExercise, workoutIdBundle)
     }
@@ -40,6 +42,10 @@ class Router(private val activity: Activity) {
         val exerciseIdBundle = Bundle(1)
         exerciseIdBundle.putLong(EXERCISE_ID_KEY, exerciseId)
         showPage(Page.Fragment.Exercise, exerciseIdBundle)
+    }
+
+    fun showResultsPage() {
+        showPage(Page.Fragment.Results)
     }
 
     fun showSettingsPage() {
