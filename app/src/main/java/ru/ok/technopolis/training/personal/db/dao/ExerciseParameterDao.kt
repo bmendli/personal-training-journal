@@ -33,4 +33,7 @@ interface ExerciseParameterDao {
 
     @Delete
     fun delete(exerciseParameterEntity: ExerciseParameterEntity): Int
+
+    @Query("DELETE FROM ExerciseParameterEntity WHERE exerciseId=:exerciseId AND parameterId=:parameterId")
+    fun delete(exerciseId: Long, parameterId: Long): Int
 }

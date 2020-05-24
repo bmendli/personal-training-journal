@@ -33,4 +33,7 @@ interface WorkoutExerciseDao {
 
     @Delete
     fun delete(workoutExerciseEntity: WorkoutExerciseEntity): Int
+
+    @Query("DELETE FROM WorkoutExerciseEntity WHERE workoutId=:workoutId AND exerciseId=:exerciseId")
+    fun delete(workoutId: Long, exerciseId: Long): Int
 }
