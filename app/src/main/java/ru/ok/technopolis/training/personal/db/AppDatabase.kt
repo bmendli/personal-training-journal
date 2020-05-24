@@ -75,6 +75,7 @@ abstract class AppDatabase : RoomDatabase() {
                                     it.exerciseTypeDao().insert(InitialDataGenerator.getExerciseTypes())
                                     it.parameterTypeDao().insert(InitialDataGenerator.getParameterTypes())
                                     it.measureUnitDao().insert(InitialDataGenerator.getMeasureUnits())
+                                    it.parameterDao().insert(InitialDataGenerator.getParameters())
                                 }
                             }
                         }

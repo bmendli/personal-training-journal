@@ -129,22 +129,7 @@ class ExerciseFragment : BaseFragment() {
     }
 
     private fun addParameter(parameter: ParameterEntity) {
-        val parameterModel = ParameterModel(parameter, measureUnitChoices!!, parameterTypeChoices!!)
-        if (elements!!.contains(parameterModel)) {
-            createNewParameter(parameter)
-        } else {
-            GlobalScope.launch(Dispatchers.IO) {
-                database?.exerciseParameterDao()?.insert(ExerciseParameterEntity(
-                    exerciseId!!,
-                    parameter.id
-                ))
-                withContext(Dispatchers.Main) {
-                    elements?.add(
-                        parameterModel
-                    )
-                }
-            }
-        }
+        createNewParameter(parameter)
     }
 
     override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo?) {
