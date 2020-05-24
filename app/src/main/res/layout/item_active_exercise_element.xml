@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         tools:text="Parameter name"
         android:layout_marginHorizontal="@dimen/dimens_16dp"
-        android:textSize="@dimen/text_size_25"
+        android:textSize="@dimen/text_size_15"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

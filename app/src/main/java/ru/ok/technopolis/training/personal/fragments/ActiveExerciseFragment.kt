@@ -17,15 +17,19 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.db.entity.DoneExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
+import ru.ok.technopolis.training.personal.db.entity.ParameterResultEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterTypeEntity
 import ru.ok.technopolis.training.personal.db.entity.WorkoutEntity
 import ru.ok.technopolis.training.personal.db.model.ParameterModel
 import ru.ok.technopolis.training.personal.items.ItemsList
+import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.USER_ID_KEY
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.WORKOUT_ID_KEY
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.BaseListAdapter
 import ru.ok.technopolis.training.personal.viewholders.ActiveExerciseViewHolder
+import java.util.*
 
 class ActiveExerciseFragment : BaseFragment() {
 
@@ -43,6 +47,9 @@ class ActiveExerciseFragment : BaseFragment() {
 
     private var measureUnitChoices: MutableList<MeasureUnitEntity>? = null
     private var parameterTypeChoices: MutableList<ParameterTypeEntity>? = null
+
+    private var userId: Long? = null
+    private var calendar = Calendar.getInstance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,6 +71,7 @@ class ActiveExerciseFragment : BaseFragment() {
         recyclerView?.addItemDecoration(DividerItemDecoration(activity, LinearLayout.VERTICAL))
 
         GlobalScope.launch(Dispatchers.IO) {
+            userId = (activity?.intent?.extras?.get(USER_ID_KEY)) as Long
             val workoutId = (activity?.intent?.extras?.get(WORKOUT_ID_KEY)) as Long
             database?.let { appDatabase ->
                 exerciseList = appDatabase.workoutExerciseDao().getExercisesForWorkout(workoutId)
@@ -74,8 +82,32 @@ class ActiveExerciseFragment : BaseFragment() {
             withContext(Dispatchers.Main) {
                 loadNextExercise()
                 doneButton?.setOnClickListener {
-                    loadNextExercise()
+                    processResults()
                 }
+            }
+        }
+    }
+
+    private fun processResults() {
+        GlobalScope.launch(Dispatchers.IO) {
+            val exercise = exerciseList?.get(exerciseIndex)
+            val doneExercise = DoneExerciseEntity(
+                exercise!!.id,
+                userId!!,
+                calendar.time
+            )
+            doneExercise.id = database?.doneExerciseDao()?.insert(doneExercise)!!
+            for (parameterModel in elements.items) {
+                val resultEntity = ParameterResultEntity(
+                    doneExercise.id,
+                    parameterModel.parameter.id,
+                    parameterModel.parameter.value
+                )
+                println("saving parameter: " + resultEntity.parameterId + " => " + resultEntity.value)
+                database?.parameterResultDao()?.insert(resultEntity)
+            }
+            withContext(Dispatchers.Main) {
+                loadNextExercise()
             }
         }
     }
