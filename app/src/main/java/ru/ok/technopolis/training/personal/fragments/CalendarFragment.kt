@@ -5,12 +5,14 @@ import android.view.View
 import android.widget.CalendarView
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.date.dayOfMonth
 import com.afollestad.date.month
 import com.afollestad.date.year
+import kotlinx.android.synthetic.main.fragment_calendar.*
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -32,6 +34,7 @@ class CalendarFragment : BaseFragment() {
     private var userId: Long? = null
 
     private var calendar: CalendarView? = null
+    private var progressBar: ProgressBar? = null
     private val systemCalendar = Calendar.getInstance()
     private var selectedWeekdayIndex: Int = 0
 
@@ -44,8 +47,12 @@ class CalendarFragment : BaseFragment() {
 
         addWorkoutButton = view.add_workout_button
         recyclerView = view.workout_list
+        progressBar = view.progress_bar
 
         GlobalScope.launch(Dispatchers.IO) {
+            activity?.runOnUiThread {
+                progressBar?.visibility = View.VISIBLE
+            }
             val email = CurrentUserRepository.currentUser.value!!.email
             val user = database!!.userDao().getByEmail(email)
             userId = user.id
@@ -119,6 +126,9 @@ class CalendarFragment : BaseFragment() {
                     val filtered = filterWorkouts(year, month, dayOfMonth)
                     elements!!.setData(filtered)
                 }
+            }
+            activity?.runOnUiThread {
+                progressBar?.visibility = View.GONE
             }
         }
     }
