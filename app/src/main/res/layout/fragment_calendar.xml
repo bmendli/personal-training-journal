@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -33,7 +34,7 @@
         android:id="@+id/add_workout_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_circle_black_24dp"
+        android:src="@drawable/ic_add_circle_bright_24dp"
         app:layout_constraintBottom_toBottomOf="@id/add_workout_text"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"

@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/parameter_name"
         app:layout_constraintEnd_toStartOf="@id/parameter_unit"
-         />
+        />
 
     <TextView
         android:id="@+id/parameter_unit"
