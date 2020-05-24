@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -40,37 +41,41 @@ class WorkoutFragment : BaseFragment() {
     private var workout: WorkoutEntity? = null
     private var chooseTimeButton: Button? = null
     private var weekdayCheckboxes: Array<CheckBox>? = null
+    private var elements: ItemsList<ExerciseEntity>? = null
+    private var workoutId: Long? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         workoutNameEditText = workout_name
         recyclerView = elements_list
-        addExerciseButton = add_exercise_button
         chooseTimeButton = choose_workout_time
         weekdayCheckboxes = arrayOf(day1, day2, day3, day4, day5, day6, day7)
 
+        addExerciseButton = add_exercise_button
+        addExerciseButton?.let { registerForContextMenu(it) }
+
         GlobalScope.launch(Dispatchers.IO) {
-            val workoutId = (activity?.intent?.extras?.get(WORKOUT_ID_KEY)) as Long
-            val exerciseList = database?.workoutExerciseDao()?.getExercisesForWorkout(workoutId)!!
-            workout = database?.workoutDao()?.getById(workoutId)
+            workoutId = (activity?.intent?.extras?.get(WORKOUT_ID_KEY)) as Long
+            val exerciseList = database?.workoutExerciseDao()?.getExercisesForWorkout(workoutId!!)!!
+            workout = database?.workoutDao()?.getById(workoutId!!)
 
             withContext(Dispatchers.Main) {
                 workoutNameEditText?.setText(workout?.name)
-                val elements = ItemsList(exerciseList)
+                elements = ItemsList(exerciseList)
 
                 val exerciseAdapter = ExerciseListAdapter(
                     holderType = ExerciseViewHolder::class,
                     layoutId = R.layout.item_workout_element,
-                    dataSource = elements,
+                    dataSource = elements!!,
                     onClick = {
                         showExercisePage(it.id)
                     },
                     onDeleteExerciseClick = {
                         GlobalScope.launch(Dispatchers.IO) {
-                            database?.exerciseDao()?.delete(it)
+                            database?.workoutExerciseDao()?.delete(workoutId!!, it.id)
                             withContext(Dispatchers.Main) {
-                                elements.remove(it)
+                                elements!!.remove(it)
                             }
                         }
                     }
@@ -81,20 +86,7 @@ class WorkoutFragment : BaseFragment() {
                 recyclerView?.addItemDecoration(DividerItemDecoration(activity, LinearLayout.VERTICAL))
 
                 addExerciseButton?.setOnClickListener {
-                    GlobalScope.launch(Dispatchers.IO) {
-                        val exerciseEntity = ExerciseEntity("", "", 1)
-                        exerciseEntity.id = database?.exerciseDao()?.insert(exerciseEntity)!!
-                        database?.workoutExerciseDao()?.insert(WorkoutExerciseEntity(
-                            workoutId,
-                            exerciseEntity.id
-                        ))
-                        withContext(Dispatchers.Main) {
-                            elements.add(
-                                exerciseEntity
-                            )
-                            showExercisePage(exerciseEntity.id)
-                        }
-                    }
+                    addExerciseButton?.showContextMenu()
                 }
                 workoutNameEditText!!.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
@@ -139,6 +131,57 @@ class WorkoutFragment : BaseFragment() {
         setHasOptionsMenu(true)
     }
 
+    private fun createNewExercise() {
+        GlobalScope.launch(Dispatchers.IO) {
+            val exerciseEntity = ExerciseEntity("", "", 1)
+            exerciseEntity.id = database?.exerciseDao()?.insert(exerciseEntity)!!
+            database?.workoutExerciseDao()?.insert(WorkoutExerciseEntity(
+                workoutId!!,
+                exerciseEntity.id
+            ))
+            withContext(Dispatchers.Main) {
+                elements!!.add(exerciseEntity)
+                showExercisePage(exerciseEntity.id)
+            }
+        }
+    }
+
+    private fun addExercise(exercise: ExerciseEntity) {
+        GlobalScope.launch(Dispatchers.IO) {
+            database?.workoutExerciseDao()?.insert(WorkoutExerciseEntity(
+                workoutId!!,
+                exercise.id
+            ))
+            withContext(Dispatchers.Main) {
+                elements!!.add(exercise)
+                showExercisePage(exercise.id)
+            }
+        }
+    }
+
+    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        if (v.id == add_exercise_button.id) {
+            menu.add(0, 0, 0, v.resources.getString(R.string.create_new)).setOnMenuItemClickListener {
+                createNewExercise()
+                true
+            }
+            GlobalScope.launch(Dispatchers.IO) {
+                database?.let {
+                    val exercises = it.exerciseDao().getAll()
+                    withContext(Dispatchers.Main) {
+                        for (exercise in exercises) {
+                            menu.add(1, exercise.id.toInt(), 0, exercise.name).setOnMenuItemClickListener {
+                                addExercise(exercise)
+                                true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         Logger.d(this, "onCreateOptionsMenu")
         inflater.inflate(R.menu.apply_reject_menu, menu)
@@ -177,12 +220,12 @@ class WorkoutFragment : BaseFragment() {
             }
         }
 
-        val workoutName = workoutNameEditText?.text.toString()
-        when {
-            workoutName == "" -> {
-                workoutNameEditText?.setBackgroundColor(Color.RED)
-            }
-            weekdaysMask == 0 -> {
+        var workoutName = workoutNameEditText?.text.toString()
+        if (workoutName == "") {
+            workoutName = String.format(resources.getString(R.string.default_workout_name), workoutId)
+        }
+        when (weekdaysMask) {
+            0 -> {
                 weekdayCheckboxes?.forEach {
                     it.setBackgroundColor(Color.RED)
                 }
