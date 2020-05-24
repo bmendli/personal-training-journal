@@ -48,6 +48,7 @@ object AuthRepository {
         activity.apply {
             CurrentUserRepository.currentUser.value = null
             getSharedPreferences("Training", Context.MODE_PRIVATE).edit().remove(USER_TOKEN).apply()
+            getSharedPreferences("Training", Context.MODE_PRIVATE).edit().remove(USER_INFO_KEY).apply()
             router?.showLoginPage()
             finish()
         }
