@@ -21,7 +21,6 @@ import ru.ok.technopolis.training.personal.db.entity.DoneExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterResultEntity
-import ru.ok.technopolis.training.personal.db.entity.ParameterTypeEntity
 import ru.ok.technopolis.training.personal.db.entity.WorkoutEntity
 import ru.ok.technopolis.training.personal.db.model.ParameterModel
 import ru.ok.technopolis.training.personal.items.ItemsList
@@ -47,7 +46,6 @@ class ActiveExerciseFragment : BaseFragment() {
     private var elements: ItemsList<ParameterModel> = ItemsList(mutableListOf())
 
     private var measureUnitChoices: MutableList<MeasureUnitEntity>? = null
-    private var parameterTypeChoices: MutableList<ParameterTypeEntity>? = null
 
     private var userId: Long? = null
     private var calendar = Calendar.getInstance()
@@ -80,7 +78,6 @@ class ActiveExerciseFragment : BaseFragment() {
                 exerciseList = appDatabase.workoutExerciseDao().getExercisesForWorkout(workoutId)
                 workout = appDatabase.workoutDao().getById(workoutId)
                 measureUnitChoices = appDatabase.measureUnitDao().getAll().toMutableList()
-                parameterTypeChoices = appDatabase.parameterTypeDao().getAll().toMutableList()
             }
             withContext(Dispatchers.Main) {
                 progressBar?.visibility = View.GONE
@@ -102,11 +99,6 @@ class ActiveExerciseFragment : BaseFragment() {
             )
             doneExercise.id = database?.doneExerciseDao()?.insert(doneExercise)!!
             for (parameterModel in elements.items) {
-                val paramTypeId = parameterModel.parameter.parameterTypeId
-                val isFilledWorkout = parameterModel.parameterTypeChoices[paramTypeId.toInt() - 1].onCreateFilling
-                if (isFilledWorkout) {
-                    continue
-                }
                 val resultEntity = ParameterResultEntity(
                     doneExercise.id,
                     parameterModel.parameter.id,
@@ -135,7 +127,7 @@ class ActiveExerciseFragment : BaseFragment() {
                     database?.let { appDatabase ->
                         val parameterList = appDatabase.exerciseParameterDao().getParametersForExercise(exercise.id)
                         parameterModelList = parameterList.map {
-                            ParameterModel(it, measureUnitChoices!!, parameterTypeChoices!!)
+                            ParameterModel(it, measureUnitChoices!!)
                         }.toMutableList()
                     }
                     withContext(Dispatchers.Main) {

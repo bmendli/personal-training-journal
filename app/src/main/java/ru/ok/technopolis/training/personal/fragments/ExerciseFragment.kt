@@ -25,7 +25,6 @@ import ru.ok.technopolis.training.personal.db.entity.ExerciseParameterEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseTypeEntity
 import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterEntity
-import ru.ok.technopolis.training.personal.db.entity.ParameterTypeEntity
 import ru.ok.technopolis.training.personal.db.model.ParameterModel
 import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.EXERCISE_ID_KEY
@@ -47,7 +46,6 @@ class ExerciseFragment : BaseFragment() {
     private var listAdapter: ParameterListAdapter? = null
     private var elements: ItemsList<ParameterModel>? = null
     private var measureUnitChoices: MutableList<MeasureUnitEntity>? = null
-    private var parameterTypeChoices: MutableList<ParameterTypeEntity>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -68,11 +66,10 @@ class ExerciseFragment : BaseFragment() {
             exercise = database?.exerciseDao()?.getById(exerciseId!!)
             val parametersList = database?.exerciseParameterDao()?.getParametersForExercise(exerciseId!!)!!
             measureUnitChoices = database?.measureUnitDao()?.getAll()?.toMutableList()!!
-            parameterTypeChoices = database?.parameterTypeDao()?.getAll()?.toMutableList()!!
             val exerciseTypeChoices = database?.exerciseTypeDao()?.getAll()?.toMutableList()!!
 
             val parameterModelList = parametersList.map {
-                ParameterModel(it, measureUnitChoices!!, parameterTypeChoices!!)
+                ParameterModel(it, measureUnitChoices!!)
             }.toMutableList()
 
             withContext(Dispatchers.Main) {
@@ -113,7 +110,7 @@ class ExerciseFragment : BaseFragment() {
 
     private fun createNewParameter(parameter: ParameterEntity? = null) {
         GlobalScope.launch(Dispatchers.IO) {
-            val parameterEntity = parameter?.copy() ?: ParameterEntity("", 1, 1)
+            val parameterEntity = parameter?.copy() ?: ParameterEntity("", 1)
             parameterEntity.id = 0
             parameterEntity.id = database?.parameterDao()?.insert(parameterEntity)!!
             database?.exerciseParameterDao()?.insert(ExerciseParameterEntity(
@@ -122,7 +119,7 @@ class ExerciseFragment : BaseFragment() {
             ))
             withContext(Dispatchers.Main) {
                 elements?.add(
-                    ParameterModel(parameterEntity, measureUnitChoices!!, parameterTypeChoices!!)
+                    ParameterModel(parameterEntity, measureUnitChoices!!)
                 )
             }
         }

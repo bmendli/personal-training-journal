@@ -18,7 +18,6 @@ import ru.ok.technopolis.training.personal.db.entity.DoneExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterResultEntity
-import ru.ok.technopolis.training.personal.db.entity.ParameterTypeEntity
 import ru.ok.technopolis.training.personal.db.model.ParameterResultModel
 import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.repository.CurrentUserRepository
@@ -35,7 +34,6 @@ class ResultsFragment : BaseFragment() {
     private var elements: ItemsList<ParameterResultModel> = ItemsList(mutableListOf())
 
     private var measureUnitChoices: MutableList<MeasureUnitEntity>? = null
-    private var parameterTypeChoices: MutableList<ParameterTypeEntity>? = null
 
     private var userId: Long? = null
 
@@ -72,7 +70,6 @@ class ResultsFragment : BaseFragment() {
                     list!!.addAll(appDatabase.parameterResultDao().getAllByDoneExerciseId(doneExercise.id))
                 }
                 measureUnitChoices = appDatabase.measureUnitDao().getAll().toMutableList()
-                parameterTypeChoices = appDatabase.parameterTypeDao().getAll().toMutableList()
             }
             withContext(Dispatchers.Main) {
                 exerciseButton?.setOnClickListener {
@@ -99,15 +96,12 @@ class ResultsFragment : BaseFragment() {
         GlobalScope.launch(Dispatchers.IO) {
             val exercise = database?.exerciseDao()?.getById(exerciseId)!!
             val resultsList = map[exercise]
-            val parametersList = database?.exerciseParameterDao()?.getParametersForExercise(exerciseId)!!.filter {
-                it.parameterTypeId.toInt() == 2
-            }
+            val parametersList = database?.exerciseParameterDao()?.getParametersForExercise(exerciseId)!!
             val parameterModelList = parametersList.map {
                 ParameterResultModel(
                     it,
                     resultsList!!.filter { result -> result.parameterId == it.id }.toMutableList(),
-                    measureUnitChoices!!,
-                    parameterTypeChoices!!
+                    measureUnitChoices!!
                 )
             }.toMutableList()
             withContext(Dispatchers.Main) {
