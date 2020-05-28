@@ -10,6 +10,7 @@ import ru.ok.technopolis.training.personal.fragments.CalendarFragment
 import ru.ok.technopolis.training.personal.fragments.ExerciseFragment
 import ru.ok.technopolis.training.personal.fragments.ResultsFragment
 import ru.ok.technopolis.training.personal.fragments.TrainingViewFragment
+import ru.ok.technopolis.training.personal.fragments.UploadFragment
 import ru.ok.technopolis.training.personal.fragments.WorkoutFragment
 import ru.ok.technopolis.training.personal.fragments.settings.AccountSettingsFragment
 import java.io.Serializable
@@ -48,6 +49,10 @@ sealed class Page : Serializable {
 
         object Results : Fragment() {
             override val clazz = ResultsFragment::class
+        }
+
+        object Upload : Fragment() {
+            override val clazz = UploadFragment::class
         }
 
         object ActiveExercise : Fragment() {

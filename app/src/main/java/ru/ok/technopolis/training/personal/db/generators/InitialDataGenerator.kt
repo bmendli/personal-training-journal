@@ -3,7 +3,6 @@ package ru.ok.technopolis.training.personal.db.generators
 import android.content.Context
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.db.entity.ExerciseTypeEntity
-import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterEntity
 
 class InitialDataGenerator {
@@ -21,24 +20,11 @@ class InitialDataGenerator {
                 ExerciseTypeEntity(context.resources.getString(R.string.other_type))
             )
         }
-        fun getMeasureUnits(context: Context): List<MeasureUnitEntity> {
-            return listOf(
-                MeasureUnitEntity(context.resources.getString(R.string.mm)),
-                MeasureUnitEntity(context.resources.getString(R.string.sm)),
-                MeasureUnitEntity(context.resources.getString(R.string.m)),
-                MeasureUnitEntity(context.resources.getString(R.string.km)),
-                MeasureUnitEntity(context.resources.getString(R.string.ue)),
-                MeasureUnitEntity(context.resources.getString(R.string.sec)),
-                MeasureUnitEntity(context.resources.getString(R.string.min)),
-                MeasureUnitEntity(context.resources.getString(R.string.h)),
-                MeasureUnitEntity(context.resources.getString(R.string.kg))
-            )
-        }
         fun getParameters(context: Context): List<ParameterEntity> {
             return listOf(
-                ParameterEntity(context.resources.getString(R.string.time), 6),
-                ParameterEntity(context.resources.getString(R.string.distance), 3),
-                ParameterEntity(context.resources.getString(R.string.weight), 9)
+                ParameterEntity(context.resources.getString(R.string.time), context.resources.getString(R.string.sec)),
+                ParameterEntity(context.resources.getString(R.string.distance), context.resources.getString(R.string.m)),
+                ParameterEntity(context.resources.getString(R.string.weight), context.resources.getString(R.string.kg))
             )
         }
     }

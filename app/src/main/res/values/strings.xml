@@ -134,12 +134,16 @@
     </string-array>
 
     <string-array name="exercise_elements_units">
+        <item />
         <item>mm</item>
         <item>cm</item>
-        <item>inch</item>
         <item>m</item>
         <item>km</item>
-        <item>mile</item>
+        <item>u</item>
+        <item>sec</item>
+        <item>min</item>
+        <item>h</item>
+        <item>kg</item>
     </string-array>
 
     <string-array name="sign_up_user_gender">
@@ -166,6 +170,9 @@
     <string name="time">Time</string>
     <string name="distance">Distance</string>
     <string name="weight">Weight</string>
+    <string name="drawer_item_save">Save the data</string>
+    <string name="data_saving">Saving the data…</string>
+    <string name="measure_unit">Units</string>
 
 
 </resources>

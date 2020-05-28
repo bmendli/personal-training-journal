@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.date.dayOfMonth
 import com.afollestad.date.month
 import com.afollestad.date.year
-import kotlinx.android.synthetic.main.fragment_calendar.*
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

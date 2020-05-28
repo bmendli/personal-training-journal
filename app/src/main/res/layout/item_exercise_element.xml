@@ -46,22 +46,36 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/goal_text"
         app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintEnd_toStartOf="@id/units"
+        app:layout_constraintEnd_toStartOf="@id/chosen_unit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="30"
         android:layout_marginBottom="@dimen/dimens_16dp"
         android:hint="@string/goal"
         />
 
+    <EditText
+        android:id="@+id/chosen_unit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/value"
+        app:layout_constraintEnd_toStartOf="@id/units"
+        app:layout_constraintTop_toTopOf="@id/value"
+        app:layout_constraintBottom_toBottomOf="@id/value"
+        android:hint="@string/measure_unit"
+        android:inputType="text"
+        android:text="@string/mm"
+        app:layout_constraintHorizontal_weight="30"
+        />
+
     <Spinner
         android:id="@+id/units"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/value"
+        app:layout_constraintStart_toEndOf="@id/chosen_unit"
         app:layout_constraintEnd_toStartOf="@id/result_type"
         app:layout_constraintTop_toTopOf="@id/value"
         app:layout_constraintBottom_toBottomOf="@id/value"
-        app:layout_constraintHorizontal_weight="30"
+        app:layout_constraintHorizontal_weight="10"
         android:entries="@array/exercise_elements_units"
         />
 

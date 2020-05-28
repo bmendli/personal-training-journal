@@ -14,7 +14,6 @@ import ru.ok.technopolis.training.personal.db.dao.DoneExerciseDao
 import ru.ok.technopolis.training.personal.db.dao.ExerciseDao
 import ru.ok.technopolis.training.personal.db.dao.ExerciseParameterDao
 import ru.ok.technopolis.training.personal.db.dao.ExerciseTypeDao
-import ru.ok.technopolis.training.personal.db.dao.MeasureUnitDao
 import ru.ok.technopolis.training.personal.db.dao.ParameterDao
 import ru.ok.technopolis.training.personal.db.dao.ParameterResultDao
 import ru.ok.technopolis.training.personal.db.dao.UserDao
@@ -25,7 +24,6 @@ import ru.ok.technopolis.training.personal.db.entity.DoneExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseParameterEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseTypeEntity
-import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterResultEntity
 import ru.ok.technopolis.training.personal.db.entity.UserEntity
@@ -39,7 +37,6 @@ import ru.ok.technopolis.training.personal.db.generators.InitialDataGenerator
         ExerciseEntity::class,
         ExerciseParameterEntity::class,
         ExerciseTypeEntity::class,
-        MeasureUnitEntity::class,
         ParameterEntity::class,
         UserEntity::class,
         UserWorkoutEntity::class,
@@ -76,7 +73,6 @@ abstract class AppDatabase : RoomDatabase() {
                             GlobalScope.launch(Dispatchers.IO) {
                                 instance?.let {
                                     it.exerciseTypeDao().insert(InitialDataGenerator.getExerciseTypes(context))
-                                    it.measureUnitDao().insert(InitialDataGenerator.getMeasureUnits(context))
                                     it.parameterDao().insert(InitialDataGenerator.getParameters(context))
                                 }
                             }
@@ -92,7 +88,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun exerciseDao(): ExerciseDao
     abstract fun exerciseParameterDao(): ExerciseParameterDao
     abstract fun exerciseTypeDao(): ExerciseTypeDao
-    abstract fun measureUnitDao(): MeasureUnitDao
     abstract fun parameterDao(): ParameterDao
     abstract fun userDao(): UserDao
     abstract fun userWorkoutDao(): UserWorkoutDao

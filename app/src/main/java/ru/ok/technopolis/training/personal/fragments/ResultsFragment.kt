@@ -16,7 +16,6 @@ import kotlinx.coroutines.withContext
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.db.entity.DoneExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseEntity
-import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterResultEntity
 import ru.ok.technopolis.training.personal.db.model.ParameterResultModel
 import ru.ok.technopolis.training.personal.items.ItemsList
@@ -32,8 +31,6 @@ class ResultsFragment : BaseFragment() {
     private var map: MutableMap<ExerciseEntity, MutableList<ParameterResultEntity>> = mutableMapOf()
     private var doneExercisesList: MutableList<DoneExerciseEntity>? = null
     private var elements: ItemsList<ParameterResultModel> = ItemsList(mutableListOf())
-
-    private var measureUnitChoices: MutableList<MeasureUnitEntity>? = null
 
     private var userId: Long? = null
 
@@ -69,7 +66,6 @@ class ResultsFragment : BaseFragment() {
                     val list = map[exercise]
                     list!!.addAll(appDatabase.parameterResultDao().getAllByDoneExerciseId(doneExercise.id))
                 }
-                measureUnitChoices = appDatabase.measureUnitDao().getAll().toMutableList()
             }
             withContext(Dispatchers.Main) {
                 exerciseButton?.setOnClickListener {
@@ -100,8 +96,7 @@ class ResultsFragment : BaseFragment() {
             val parameterModelList = parametersList.map {
                 ParameterResultModel(
                     it,
-                    resultsList!!.filter { result -> result.parameterId == it.id }.toMutableList(),
-                    measureUnitChoices!!
+                    resultsList!!.filter { result -> result.parameterId == it.id }.toMutableList()
                 )
             }.toMutableList()
             withContext(Dispatchers.Main) {

@@ -23,9 +23,7 @@ import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.db.entity.ExerciseEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseParameterEntity
 import ru.ok.technopolis.training.personal.db.entity.ExerciseTypeEntity
-import ru.ok.technopolis.training.personal.db.entity.MeasureUnitEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterEntity
-import ru.ok.technopolis.training.personal.db.model.ParameterModel
 import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.EXERCISE_ID_KEY
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.WORKOUT_ID_KEY
@@ -44,8 +42,7 @@ class ExerciseFragment : BaseFragment() {
     private var workoutId: Long? = null
     private var exerciseId: Long? = null
     private var listAdapter: ParameterListAdapter? = null
-    private var elements: ItemsList<ParameterModel>? = null
-    private var measureUnitChoices: MutableList<MeasureUnitEntity>? = null
+    private var elements: ItemsList<ParameterEntity>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,13 +61,8 @@ class ExerciseFragment : BaseFragment() {
                 exerciseId = (it.intent.extras?.get(EXERCISE_ID_KEY)) as Long
             }
             exercise = database?.exerciseDao()?.getById(exerciseId!!)
-            val parametersList = database?.exerciseParameterDao()?.getParametersForExercise(exerciseId!!)!!
-            measureUnitChoices = database?.measureUnitDao()?.getAll()?.toMutableList()!!
+            val parametersList = database?.exerciseParameterDao()?.getParametersForExercise(exerciseId!!)!!.toMutableList()
             val exerciseTypeChoices = database?.exerciseTypeDao()?.getAll()?.toMutableList()!!
-
-            val parameterModelList = parametersList.map {
-                ParameterModel(it, measureUnitChoices!!)
-            }.toMutableList()
 
             withContext(Dispatchers.Main) {
 
@@ -81,7 +73,7 @@ class ExerciseFragment : BaseFragment() {
 
                 exerciseNameEditText?.setText(exercise?.name)
 
-                elements = ItemsList(parameterModelList)
+                elements = ItemsList(parametersList)
 
                 listAdapter = ParameterListAdapter(
                     holderType = ExerciseElementViewHolder::class,
@@ -89,7 +81,14 @@ class ExerciseFragment : BaseFragment() {
                     dataSource = elements!!,
                     onDeleteParameterClick = {
                         GlobalScope.launch(Dispatchers.IO) {
-                            database?.exerciseParameterDao()?.delete(exerciseId!!, it.parameter.id)
+                            val exerciseParameterEntity = database?.exerciseParameterDao()?.getById(exerciseId!!, it.id)
+                            if (exerciseParameterEntity!!.serverId == -1L) {
+                                database?.exerciseParameterDao()?.delete(exerciseId!!, it.id)
+                            } else {
+                                exerciseParameterEntity.deleted = true
+                                database?.exerciseParameterDao()?.update(exerciseParameterEntity)
+                            }
+
                             withContext(Dispatchers.Main) {
                                 elements!!.remove(it)
                             }
@@ -110,7 +109,7 @@ class ExerciseFragment : BaseFragment() {
 
     private fun createNewParameter(parameter: ParameterEntity? = null) {
         GlobalScope.launch(Dispatchers.IO) {
-            val parameterEntity = parameter?.copy() ?: ParameterEntity("", 1)
+            val parameterEntity = parameter?.copy() ?: ParameterEntity("", requireContext().getString(R.string.ue))
             parameterEntity.id = 0
             parameterEntity.id = database?.parameterDao()?.insert(parameterEntity)!!
             database?.exerciseParameterDao()?.insert(ExerciseParameterEntity(
@@ -118,9 +117,7 @@ class ExerciseFragment : BaseFragment() {
                 parameterEntity.id
             ))
             withContext(Dispatchers.Main) {
-                elements?.add(
-                    ParameterModel(parameterEntity, measureUnitChoices!!)
-                )
+                elements?.add(parameterEntity)
             }
         }
     }
@@ -168,8 +165,7 @@ class ExerciseFragment : BaseFragment() {
                     database?.exerciseDao()?.update(exercise!!)
 
                     listAdapter!!.data.forEach {
-                        val parameter = it.parameter
-                        database?.parameterDao()?.update(parameter)
+                        database?.parameterDao()?.update(it)
                     }
 
                     withContext(Dispatchers.Main) {
@@ -184,7 +180,13 @@ class ExerciseFragment : BaseFragment() {
             val exerciseName = exerciseNameEditText?.text.toString()
             GlobalScope.launch(Dispatchers.IO) {
                 if (exerciseName == "") {
-                    database?.exerciseDao()?.delete(exercise!!)
+                    val workoutExercise = database?.workoutExerciseDao()?.getById(workoutId!!, exerciseId!!)
+                    if (workoutExercise!!.serverId == -1L) {
+                        database?.workoutExerciseDao()?.delete(workoutExercise)
+                    } else {
+                        workoutExercise.deleted = true
+                        database?.workoutExerciseDao()?.update(workoutExercise)
+                    }
                 }
                 withContext(Dispatchers.Main) {
                     router?.goToPrevFragment()

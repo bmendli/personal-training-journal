@@ -8,15 +8,15 @@ import android.widget.EditText
 import android.widget.TextView
 import kotlinx.android.synthetic.main.item_active_exercise_element.view.*
 import ru.ok.technopolis.training.personal.R
+import ru.ok.technopolis.training.personal.db.entity.ParameterEntity
 import ru.ok.technopolis.training.personal.db.entity.ParameterEntity.Companion.EQUALS_BETTER
 import ru.ok.technopolis.training.personal.db.entity.ParameterEntity.Companion.GREATER_BETTER
 import ru.ok.technopolis.training.personal.db.entity.ParameterEntity.Companion.LESS_BETTER
-import ru.ok.technopolis.training.personal.db.model.ParameterModel
 import kotlin.math.abs
 
 class ActiveExerciseViewHolder(
     itemView: View
-) : BaseViewHolder<ParameterModel>(itemView) {
+) : BaseViewHolder<ParameterEntity>(itemView) {
 
     private var name: TextView = itemView.parameter_name
     private var goal: EditText = itemView.parameter_value
@@ -27,15 +27,14 @@ class ActiveExerciseViewHolder(
 
     private var goalValue: Float = 0f
 
-    override fun bind(item: ParameterModel) {
-        name.text = item.parameter.name
+    override fun bind(item: ParameterEntity) {
+        name.text = item.name
 
-        val measureUnit = item.measureUnitChoices[item.parameter.measureUnitId.toInt() - 1]
-        unit1.text = measureUnit.acronym
-        unit2.text = measureUnit.acronym
-        goalValue = item.parameter.value
+        unit1.text = item.measureUnit
+        unit2.text = item.measureUnit
+        goalValue = item.value
         value.setText("")
-        goal.setText(item.parameter.value.toString())
+        goal.setText(item.value.toString())
         goal.isEnabled = false
         progress.text = ""
 
@@ -44,17 +43,17 @@ class ActiveExerciseViewHolder(
                 if (s != null && s.isNotEmpty()) {
                     val newValue: Float? = s.toString().toFloatOrNull()
                     if (newValue != null) {
-                        item.parameter.value = newValue
+                        item.value = newValue
                         if (goalValue > 0.000001) {
-                            val percents = when (item.parameter.resultType) {
+                            val percents = when (item.resultType) {
                                 LESS_BETTER -> {
-                                    goalValue * 100f / item.parameter.value
+                                    goalValue * 100f / item.value
                                 }
                                 EQUALS_BETTER -> {
-                                    100f - abs(item.parameter.value - goalValue) * 100f / goalValue
+                                    100f - abs(item.value - goalValue) * 100f / goalValue
                                 }
                                 GREATER_BETTER -> {
-                                    item.parameter.value * 100f / goalValue
+                                    item.value * 100f / goalValue
                                 }
                                 else -> {
                                     0f
