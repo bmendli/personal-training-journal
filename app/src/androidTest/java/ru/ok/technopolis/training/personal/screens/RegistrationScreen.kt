@@ -1,9 +1,10 @@
-package ru.ok.technopolis.training.personal
+package ru.ok.technopolis.training.personal.screens
 
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
+import ru.ok.technopolis.training.personal.R
 
 class RegistrationScreen {
 

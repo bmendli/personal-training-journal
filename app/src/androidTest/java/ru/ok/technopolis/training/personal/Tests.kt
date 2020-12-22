@@ -12,6 +12,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import ru.ok.technopolis.training.personal.mockActivities.auth.FakeLoginActivity
+import ru.ok.technopolis.training.personal.screens.LoginScreen
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -50,7 +51,7 @@ class Tests {
             .enterWorkoutName(uniqueName)
         createWorkoutScreen
             .pressSaveButton()
-            .getWorkoutLabel(uniqueName)
+            .scrollToWorkout(uniqueName)
             .check(matches(isDisplayed()))
     }
 }
