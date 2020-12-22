@@ -11,10 +11,6 @@ class LoginScreen {
         return Espresso.onView(ViewMatchers.withId(R.id.login_title_tv))
     }
 
-    fun getErrorView(): ViewInteraction {
-        return Espresso.onView(ViewMatchers.withId(R.id.md_root))
-    }
-
     fun typeLogin(login: String): LoginScreen {
         Espresso.onView(ViewMatchers.withId(R.id.email_et))
                 .perform(
