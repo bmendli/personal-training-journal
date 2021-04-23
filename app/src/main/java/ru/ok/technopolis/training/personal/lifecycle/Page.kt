@@ -40,8 +40,10 @@ sealed class Page : Serializable {
     sealed class Fragment : Page() {
 
         abstract val clazz: KClass<out BaseFragment>
+        val needNav: Boolean = true
 
         object AccountSettings : Fragment() {
+//            override val needNav =
             override val clazz = AccountSettingsFragment::class
         }
 

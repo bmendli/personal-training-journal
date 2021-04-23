@@ -2,7 +2,12 @@ package ru.ok.technopolis.training.personal.lifecycle
 
 import android.app.Activity
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
+import android.view.View
+import kotlinx.android.synthetic.main.activity_base_fragment.*
+import kotlinx.android.synthetic.main.activity_base_fragment.view.*
+import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.activities.BaseFragmentActivity
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.EXERCISE_ID_KEY
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.PAGE_KEY
@@ -10,6 +15,7 @@ import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.USER_ID_KEY
 import ru.ok.technopolis.training.personal.lifecycle.Page.Companion.WORKOUT_ID_KEY
 import ru.ok.technopolis.training.personal.utils.logger.Logger
 import kotlin.reflect.full.createInstance
+import kotlin.reflect.jvm.internal.impl.metadata.ProtoBuf
 
 class Router(private val activity: Activity) {
 
@@ -74,9 +80,15 @@ class Router(private val activity: Activity) {
             is Page.Fragment -> {
                 if (activity is BaseFragmentActivity) {
                     replaceFragment(page, bundle)
+                    if (page.needNav) {
+                        activity.nav_view.visibility = View.VISIBLE
+                    } else {
+                        activity.nav_view.visibility = View.GONE
+                    }
                 } else {
                     showActivityWithFragment(page, bundle)
                 }
+
             }
         }
     }
