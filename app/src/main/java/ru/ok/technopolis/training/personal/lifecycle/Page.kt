@@ -4,13 +4,7 @@ import ru.ok.technopolis.training.personal.mockActivities.auth.FakeLoginActivity
 import ru.ok.technopolis.training.personal.activities.auth.RegistrationActivity
 import ru.ok.technopolis.training.personal.activities.settings.AccountSettingsActivity
 import ru.ok.technopolis.training.personal.activities.settings.SettingsActivity
-import ru.ok.technopolis.training.personal.fragments.ActiveExerciseFragment
-import ru.ok.technopolis.training.personal.fragments.BaseFragment
-import ru.ok.technopolis.training.personal.fragments.CalendarFragment
-import ru.ok.technopolis.training.personal.fragments.ExerciseFragment
-import ru.ok.technopolis.training.personal.fragments.ResultsFragment
-import ru.ok.technopolis.training.personal.fragments.TrainingViewFragment
-import ru.ok.technopolis.training.personal.fragments.WorkoutFragment
+import ru.ok.technopolis.training.personal.fragments.*
 import ru.ok.technopolis.training.personal.fragments.settings.AccountSettingsFragment
 import java.io.Serializable
 import kotlin.reflect.KClass
@@ -55,7 +49,7 @@ sealed class Page : Serializable {
         }
 
         object Calendar : Fragment() {
-            override val clazz = CalendarFragment::class
+            override val clazz = WorkoutPlanFragment::class
         }
 
         object Exercise : Fragment() {

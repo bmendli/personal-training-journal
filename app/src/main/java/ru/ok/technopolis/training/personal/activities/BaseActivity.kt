@@ -19,6 +19,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected val taskContainer: CompositeDisposable = CompositeDisposable()
 
+
+
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
