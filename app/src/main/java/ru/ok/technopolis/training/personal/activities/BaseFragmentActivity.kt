@@ -23,7 +23,7 @@ open class BaseFragmentActivity : AppbarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        nav_view.selectedItemId = R.id.nav_home_item
         nav_view.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home_item -> {

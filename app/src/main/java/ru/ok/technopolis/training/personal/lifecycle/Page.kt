@@ -1,6 +1,5 @@
 package ru.ok.technopolis.training.personal.lifecycle
 
-import ru.ok.technopolis.training.personal.MainActivity
 import ru.ok.technopolis.training.personal.mockActivities.auth.FakeLoginActivity
 import ru.ok.technopolis.training.personal.activities.auth.RegistrationActivity
 import ru.ok.technopolis.training.personal.activities.settings.AccountSettingsActivity
@@ -20,9 +19,6 @@ sealed class Page : Serializable {
             override val clazz = FakeLoginActivity::class
         }
 
-        object Main: Activity() {
-            override val clazz = MainActivity::class
-        }
 
         object Settings : Activity() {
             override val clazz = SettingsActivity::class

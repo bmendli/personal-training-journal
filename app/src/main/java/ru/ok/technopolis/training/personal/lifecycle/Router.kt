@@ -22,9 +22,6 @@ class Router(private val activity: Activity) {
     fun showLoginPage() {
         showPage(Page.Activity.Login)
     }
-    fun showMain() {
-        showPage(Page.Activity.Main)
-    }
 
     fun showCalendarPage() {
         showPage(Page.Fragment.Calendar)
