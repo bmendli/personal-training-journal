@@ -30,6 +30,10 @@ class Router(private val activity: Activity) {
         showPage(Page.Fragment.Calendar)
     }
 
+    fun showWorkoutPlanPage() {
+        showPage(Page.Fragment.WorkoutPlan)
+    }
+
     fun showWorkoutPage(workoutId: Long) {
         val workoutIdBundle = Bundle(1)
         workoutIdBundle.putLong(WORKOUT_ID_KEY, workoutId)
@@ -76,19 +80,19 @@ class Router(private val activity: Activity) {
     private fun showPage(page: Page, bundle: Bundle? = null) {
         Logger.d(this, "showPage $page")
         when (page) {
-            is Page.Activity -> showActivity(page, bundle)
+            is Page.Activity -> {
+                println("Activity")
+                showActivity(page, bundle)
+            }
             is Page.Fragment -> {
+                println("Fragment")
                 if (activity is BaseFragmentActivity) {
+                    println("(BaseFrAct)")
                     replaceFragment(page, bundle)
-                    if (page.needNav) {
-                        activity.nav_view.visibility = View.VISIBLE
-                    } else {
-                        activity.nav_view.visibility = View.GONE
-                    }
                 } else {
+                    println("(ActWithFr)")
                     showActivityWithFragment(page, bundle)
                 }
-
             }
         }
     }

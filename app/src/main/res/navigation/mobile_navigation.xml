@@ -6,7 +6,6 @@
     app:startDestination="@id/calendarFragment">
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="ru.ok.technopolis.training.personal.fragments.CalendarFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 <!--    <fragment-->

@@ -141,4 +141,10 @@
     <string name="share_public">Доступна всем пользователям</string>
     <string name="choose_groups">Выберите группы</string>
     <string name="choose_all">Выбрать все</string>
+    <string name="navigation">Навигация</string>
+    <string name="statistics">Статистика</string>
+    <string name="home">Домашняя</string>
+    <string name="messages">Сообщения</string>
+    <string name="profile">Профиль</string>
+    <string name="share_exercise_template">Поделиться шаблоном тренировки</string>
 </resources>

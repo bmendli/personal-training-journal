@@ -46,11 +46,6 @@ class WorkoutPlanFragment : BaseFragment() {
 //        recyclerView?.addItemDecoration(DividerItemDecoration(activity, LinearLayout.VERTICAL))
     }
 
-    override fun onResume() {
-
-        super.onResume()
-    }
-
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_workout_plan
 }

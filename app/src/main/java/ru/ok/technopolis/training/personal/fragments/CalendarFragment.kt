@@ -161,4 +161,6 @@ class CalendarFragment : BaseFragment() {
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_calendar
+
+    override fun isBottomNavVisible(): Boolean = false
 }

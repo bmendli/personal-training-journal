@@ -1,11 +1,15 @@
 package ru.ok.technopolis.training.personal.activities
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_base_fragment.*
 import kotlinx.android.synthetic.main.view_appbar.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.fragments.BaseFragment
@@ -19,11 +23,24 @@ open class BaseFragmentActivity : AppbarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val navHostFragment =
-                supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        findViewById<BottomNavigationView>(R.id.nav_view)
-                .setupWithNavController(navController)
+
+        nav_view.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home_item -> {
+                    router?.showWorkoutPlanPage()
+                }
+                R.id.nav_stat_item -> {
+                    router?.showResultsPage()
+                }
+                R.id.nav_nav_item -> {
+                    router?.showSettingsPage()
+                }
+                R.id.nav_profile_item -> {
+                    router?.showCalendarPage()
+                }
+            }
+            true
+        }
 
         val fragment: Page.Fragment? = intent.getSerializableExtra(PAGE_KEY) as? Page.Fragment
 
