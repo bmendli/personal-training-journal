@@ -6,18 +6,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_workout_plan.view.*
 import ru.ok.technopolis.training.personal.R
-import ru.ok.technopolis.training.personal.items.DayItem
-import ru.ok.technopolis.training.personal.items.DaysList
-import ru.ok.technopolis.training.personal.items.EventColor
+import ru.ok.technopolis.training.personal.items.*
 import ru.ok.technopolis.training.personal.utils.recycler.adapters.DayListAdapter
+import ru.ok.technopolis.training.personal.utils.recycler.adapters.ScheduledWorkoutListAdapter
+import ru.ok.technopolis.training.personal.utils.recycler.listeners.InfinityScrollListener
 import ru.ok.technopolis.training.personal.viewholders.DayViewHolder
+import ru.ok.technopolis.training.personal.viewholders.ScheduledWorkoutViewHolder
 import java.sql.Date
+import java.sql.Time
 import java.text.DateFormatSymbols
 import java.util.*
 
 class WorkoutPlanFragment : BaseFragment() {
 
     private var recyclerView: RecyclerView? = null
+    private var workoutsRecycler: RecyclerView? = null
 
     private val calendar: Calendar = Calendar.getInstance()
     private val symbols: DateFormatSymbols = DateFormatSymbols()
@@ -26,13 +29,13 @@ class WorkoutPlanFragment : BaseFragment() {
     private var daysBefore = 0
     private var daysAfter = 0
 
-
     private val daysMutableList = mutableListOf<DayItem>()
+    private val workoutsMutableList = mutableListOf<ScheduledWorkoutItem>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.days_recycler_view
-
+        workoutsRecycler = view.scheduled_workouts_recycler
 
         calendar.time = Date(System.currentTimeMillis())
         calendar.add(Calendar.DAY_OF_MONTH, -daysBefore)
@@ -43,7 +46,6 @@ class WorkoutPlanFragment : BaseFragment() {
         }
 
         val itemsList = DaysList(daysMutableList)
-
         val dayAdapter = DayListAdapter(
                 holderType = DayViewHolder::class,
                 layoutId = R.layout.day_item,
@@ -52,60 +54,32 @@ class WorkoutPlanFragment : BaseFragment() {
                     itemsList.select(dayItem)
                 }
         )
-
         recyclerView?.adapter = dayAdapter
-        val linearLayoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
-        recyclerView?.layoutManager = linearLayoutManager
+        val dayLayoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
+        recyclerView?.layoutManager = dayLayoutManager
         recyclerView?.scrollToPosition(daysBefore - 1)
-        recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        recyclerView?.addOnScrollListener(InfinityScrollListener(
+                { ahead ->
+                    pushDay(ahead)
+                }, daysMutableList))
 
-            var previousTotal = 0
-            var loading = true
-            val visibleThreshold = 10
-            var firstVisibleItem = 0
-            var visibleItemCount = 0
-            var totalItemCount = 0
-
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dx > 0) {
-                    visibleItemCount = recyclerView.childCount
-                    totalItemCount = recyclerView.layoutManager!!.itemCount
-                    firstVisibleItem = (recyclerView.layoutManager!! as LinearLayoutManager).findFirstVisibleItemPosition()
-
-                    if (loading) {
-                        if (totalItemCount > previousTotal) {
-                            loading = false
-                            previousTotal = totalItemCount
-                        }
-                    }
-
-                    if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
-                        val initialSize = daysMutableList.size
-                        pushDay(true)
-                        val updatedSize = daysMutableList.size
-                        recyclerView.post { recyclerView.adapter!!.notifyItemRangeInserted(initialSize, updatedSize) }
-                        loading = true
-                    }
-                } else if (dx < 0) {
-                    visibleItemCount = recyclerView.childCount
-                    totalItemCount = recyclerView.layoutManager!!.itemCount
-                    firstVisibleItem = (recyclerView.layoutManager!! as LinearLayoutManager).findFirstVisibleItemPosition()
-
-                    if (loading) {
-                        if (totalItemCount > previousTotal) {
-                            loading = false
-                            previousTotal = totalItemCount
-                        }
-                    }
-
-                    if (!loading && firstVisibleItem <= visibleThreshold) {
-                        pushDay(false)
-                        recyclerView.post { recyclerView.adapter!!.notifyItemInserted(0) }
-                        loading = true
-                    }
+        for (i in 1..3) pushWorkout(i, false)
+        pushWorkout(4, true)
+        val workoutsList = ItemsList(workoutsMutableList)
+        val workoutAdapter = ScheduledWorkoutListAdapter(
+                holderType = ScheduledWorkoutViewHolder::class,
+                layoutId = R.layout.scheduled_workout_item,
+                dataSource = workoutsList,
+                onClick = { workoutItem ->
+                    println("workout ${workoutItem.id} clicked")
+                },
+                onStart = { workoutItem ->
+                    println("workout ${workoutItem.id} started")
                 }
-            }
-        })
+        )
+        workoutsRecycler?.adapter = workoutAdapter
+        val workoutLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        workoutsRecycler?.layoutManager = workoutLayoutManager
     }
 
     private fun pushDay(ahead: Boolean) {
@@ -128,7 +102,20 @@ class WorkoutPlanFragment : BaseFragment() {
                         event = EventColor.GREEN
                 )
         )
-//        recyclerView?.post { recyclerView?.adapter?.notifyItemInserted(index) }
+    }
+
+    private fun pushWorkout(id: Int, invisible: Boolean) {
+        workoutsMutableList.add(
+                ScheduledWorkoutItem(
+                        id.toString(),
+                        Time(System.currentTimeMillis()),
+                        "Моя тренировочка",
+                        "Общеукрепляющая",
+                        "ОФП",
+                        "40 минут",
+                        invisible
+                )
+        )
     }
 
     override fun getFragmentLayoutId(): Int = R.layout.fragment_workout_plan
