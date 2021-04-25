@@ -22,7 +22,8 @@ class DayViewHolder(
     private val formatter: DateFormat = getDateInstance(DateFormat.SHORT)
 
     override fun bind(item: DayItem) {
-        dayBackground.setOnClickListener { println("dayBackground") }
+        print("Bind item $item")
+//        dayBackground.setOnClickListener { println("dayBackground") }
         update(item)
     }
 
@@ -44,13 +45,13 @@ class DayViewHolder(
             item.isToday -> {
                 dayBackground.background = null
                 weekdayButton.setBackgroundResource(R.drawable.day_today_circle)
-                weekdayDate.text = ""
+                weekdayDate.text = formatter.format(item.date).substringBeforeLast('.')
                 dayLine.setBackgroundResource(R.color.white)
             }
             else -> {
                 dayBackground.background = null
                 weekdayButton.setBackgroundResource(R.drawable.day_circle)
-                weekdayDate.text = ""
+                weekdayDate.text = formatter.format(item.date).substringBeforeLast('.')
                 dayLine.setBackgroundResource(R.color.white)
             }
         }

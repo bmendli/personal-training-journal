@@ -3,7 +3,7 @@ package ru.ok.technopolis.training.personal.items
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
-class ItemsList<Item>(var items: MutableList<Item>) {
+open class ItemsList<Item>(var items: MutableList<Item>) {
 
     private val addingSubject: PublishSubject<Item> = PublishSubject.create()
     private val removingSubject: PublishSubject<Int> = PublishSubject.create()

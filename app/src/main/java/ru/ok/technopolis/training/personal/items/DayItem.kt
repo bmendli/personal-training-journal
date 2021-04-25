@@ -1,7 +1,7 @@
 package ru.ok.technopolis.training.personal.items
 
 import ru.ok.technopolis.training.personal.items.interfaces.WithId
-import java.sql.Date
+import java.util.Date
 
 data class DayItem(
     override val id: String,
