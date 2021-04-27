@@ -113,6 +113,7 @@ class WorkoutPlanFragment : BaseFragment() {
                         "Общеукрепляющая",
                         "ОФП",
                         "40 минут",
+                        true,
                         invisible
                 )
         )

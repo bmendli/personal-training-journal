@@ -10,6 +10,7 @@ data class ScheduledWorkoutItem(
     var category: String,
     var sport: String,
     var duration: String,
+    val done: Boolean,
     val invisible: Boolean
 ) : WithId
 

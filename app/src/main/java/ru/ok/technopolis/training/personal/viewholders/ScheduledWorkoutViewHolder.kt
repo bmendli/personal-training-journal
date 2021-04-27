@@ -15,6 +15,7 @@ class ScheduledWorkoutViewHolder(
 ) : BaseViewHolder<ScheduledWorkoutItem>(itemView) {
 
     private var background: ImageView = itemView.workout_background
+    private var doneImage: ImageView = itemView.done_image
     private var time: TextView = itemView.workout_time
     private var name: TextView = itemView.workout_name
     private var categoryCard: View = itemView.workout_category_card
@@ -43,6 +44,7 @@ class ScheduledWorkoutViewHolder(
         category.text = item.category
         sport.text = item.sport
         duration.text = item.duration
+        doneImage.visibility = if (item.done) VISIBLE else INVISIBLE
     }
 
     fun setOnStartClickListener(onStart: () -> Unit) {
