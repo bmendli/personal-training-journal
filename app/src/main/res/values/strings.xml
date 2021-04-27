@@ -172,4 +172,6 @@
     <string name="subscribers_text">Subscribers</string>
     <string name="schedule_workout_button">Schedule workout button</string>
     <string name="workout_done">workout done</string>
+    <string name="schedule_workout_button">Schedule workout button</string>
+    <string name="workout_done">workout done</string>
 </resources>
