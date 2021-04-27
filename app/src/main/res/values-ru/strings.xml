@@ -153,4 +153,6 @@
     <string name="shared_tr_text">Публикаций тренировок</string>
     <string name="subscriptions_text">Подписок</string>
     <string name="subscribers_text">Подписчиков</string>
+    <string name="schedule_workout_button">Запланировать тренировку</string>
+    <string name="workout_done">Тренировка выполнена</string>
 </resources>
