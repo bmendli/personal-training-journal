@@ -164,5 +164,11 @@
     <string name="home">Home</string>
     <string name="messages">Messages</string>
     <string name="profile">Profile</string>
+    <string name="training_switcher_text">Trainings</string>
+    <string name="ex_switcher_text">Exercises</string>
+    <string name="shared_ex_text">Shared exercises</string>
+    <string name="shared_tr_text">Shared trainings</string>
+    <string name="subscriptions_text">Subscriptions</string>
+    <string name="subscribers_text">Subscribers</string>
 
 </resources>

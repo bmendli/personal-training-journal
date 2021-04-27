@@ -3,15 +3,60 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<!--    <ImageView-->
-<!--        android:id="@+id/add_workout_button"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="ic_exercise_category_bg"-->
-<!--        app:layout_constraintDimensionRatio="1"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
+    android:layout_height="120dp"
+    android:layout_margin="@dimen/dimens_8dp"
+    xmlns:tools="http://schemas.android.com/tools">
 
-<!--        />-->
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/user_image"
+        android:layout_width="@dimen/padding_60"
+        android:layout_height="@dimen/padding_60"
+        app:actualImageScaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/dimens_16dp"
+        app:roundAsCircle="true" />
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="@dimen/text_size_25"
+        tools:text="User name"
+        app:layout_constraintBottom_toTopOf="@id/profile_description"
+        app:layout_constraintEnd_toStartOf="@id/complaint"
+        app:layout_constraintStart_toEndOf="@id/user_image"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/dimens_16dp"
+        />
+
+    <TextView
+        android:id="@+id/profile_description"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="@dimen/text_size_13"
+        android:textAlignment="viewEnd"
+        tools:text="Легкая атлетика"
+        app:layout_constraintTop_toBottomOf="@id/profile_name"
+        app:layout_constraintEnd_toStartOf="@id/complaint"
+        app:layout_constraintStart_toEndOf="@id/user_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/dimens_16dp"
+        android:maxLines="2"
+        />
+
+    <ImageView
+        android:id="@+id/complaint"
+        android:layout_width="@dimen/dimens_32dp"
+        android:layout_height="@dimen/dimens_32dp"
+        android:src="@drawable/ic_outline_error_outline_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/profile_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

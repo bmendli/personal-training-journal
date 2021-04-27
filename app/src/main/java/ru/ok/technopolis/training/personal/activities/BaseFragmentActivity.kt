@@ -36,7 +36,7 @@ open class BaseFragmentActivity : AppbarActivity() {
                     router?.showSettingsPage()
                 }
                 R.id.nav_profile_item -> {
-                    router?.showCalendarPage()
+                    router?.showProfilePage()
                 }
             }
             true

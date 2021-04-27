@@ -147,4 +147,10 @@
     <string name="messages">Сообщения</string>
     <string name="profile">Профиль</string>
     <string name="share_exercise_template">Поделиться шаблоном тренировки</string>
+    <string name="training_switcher_text">Тренировки</string>
+    <string name="ex_switcher_text">Упражнения</string>
+    <string name="shared_ex_text">Публикаций упражнений</string>
+    <string name="shared_tr_text">Публикаций тренировок</string>
+    <string name="subscriptions_text">Подписок</string>
+    <string name="subscribers_text">Подписчиков</string>
 </resources>
