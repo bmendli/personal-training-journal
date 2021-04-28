@@ -172,4 +172,10 @@
     <string name="subscribers_text">Subscribers</string>
     <string name="schedule_workout_button">Schedule workout button</string>
     <string name="workout_done">workout done</string>
+    <string name="workout_image">Workout image</string>
+    <string name="workout_rank">Workout rank</string>
+    <string name="workout_downloads">Workout downloads</string>
+    <string name="all_filter_text">Все</string>
+    <string name="shared_filter_text">Опубликованные</string>
+    <string name="private_filter_text">Приватные</string>
 </resources>

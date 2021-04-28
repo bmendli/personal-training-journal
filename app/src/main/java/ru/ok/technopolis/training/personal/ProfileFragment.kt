@@ -2,17 +2,22 @@ package ru.ok.technopolis.training.personal
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kotlinx.android.synthetic.main.item_profile.view.*
 import kotlinx.android.synthetic.main.item_train_ex_switcher.*
 import kotlinx.android.synthetic.main.item_train_ex_switcher.view.*
 import ru.ok.technopolis.training.personal.fragments.BaseFragment
+import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.items.ProfileItem
+import ru.ok.technopolis.training.personal.items.ShortWorkoutItem
+import ru.ok.technopolis.training.personal.utils.recycler.adapters.ShortWorkoutListAdapter
+import ru.ok.technopolis.training.personal.viewholders.ShortWorkoutViewHolder
+import java.sql.Time
 
 
 class ProfileFragment : BaseFragment() {
@@ -24,6 +29,9 @@ class ProfileFragment : BaseFragment() {
     private var sharedExercisesNumber: TextView? = null
     private var filterButtons: View? = null
 
+    private var recyclerView: RecyclerView? = null
+    private var workoutsMutableList = mutableListOf<ShortWorkoutItem>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         profileNameAndIcon = view.profile
@@ -33,7 +41,21 @@ class ProfileFragment : BaseFragment() {
         sharedTrainingsNumber = view.shared_trainings_number
         sharedExercisesNumber = view.shared_ex_number
         filterButtons = view.tr_ex_filter_buttons
-
+        recyclerView = view.profile_tr_ex_list
+        for (i in 1..3) pushWorkout(i)
+        val workoutsList = ItemsList(workoutsMutableList)
+        val workoutsAdapter = ShortWorkoutListAdapter(
+                holderType = ShortWorkoutViewHolder::class,
+                layoutId = R.layout.item_short_workout,
+                dataSource = workoutsList,
+                onClick = {workoutItem -> println("workout ${workoutItem.id} clicked")},
+                onStart = { workoutItem ->
+                    println("workout ${workoutItem.id} started")
+                }
+        )
+        recyclerView?.adapter = workoutsAdapter
+        val workoutsLayoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
+        recyclerView?.layoutManager = workoutsLayoutManager
         val tr_sw_line = view.train_switch_line
         val ex_switch_line = view.ex_switch_line
 
@@ -153,6 +175,12 @@ class ProfileFragment : BaseFragment() {
 //        switcher.train_switch.setOnClickListener { print("wow_train") }
 //        switcher.ex_switch.setOnClickListener {  print("wow ex")}
 
+    }
+
+    private fun pushWorkout(id: Int) {
+        workoutsMutableList.add(
+                ShortWorkoutItem(id.toString(), Time(System.currentTimeMillis()), "MYвшпвшпвкпиквпшкивпквпвпквпивчмпч MY", "kardio", "ofp", "40 min", true, 123, 3.7, false)
+        )
     }
     override fun getFragmentLayoutId() : Int = R.layout.fragment_profile
 
