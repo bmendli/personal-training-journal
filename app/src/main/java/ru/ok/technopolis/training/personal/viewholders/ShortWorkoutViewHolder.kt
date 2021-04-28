@@ -31,7 +31,6 @@ class ShortWorkoutViewHolder (
         } else {
             downloads.visibility = View.VISIBLE
             downloadsIcon.visibility = View.VISIBLE
-            update(item)
         }
 
         if (item.rank.roundToInt() == 0) {
@@ -40,8 +39,8 @@ class ShortWorkoutViewHolder (
         } else {
             rank.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
-            update(item)
         }
+        update(item)
     }
 
     fun update(item: ShortWorkoutItem) {

@@ -175,7 +175,7 @@
     <string name="workout_image">Workout image</string>
     <string name="workout_rank">Workout rank</string>
     <string name="workout_downloads">Workout downloads</string>
-    <string name="all_filter_text">Все</string>
-    <string name="shared_filter_text">Опубликованные</string>
-    <string name="private_filter_text">Приватные</string>
+    <string name="all_filter_text">All</string>
+    <string name="shared_filter_text">Shared</string>
+    <string name="private_filter_text">Private</string>
 </resources>
