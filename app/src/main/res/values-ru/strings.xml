@@ -32,7 +32,7 @@
     <string name="value">Значение</string>
     <string name="workout">Тренировка</string>
     <string name="settings">Настройки</string>
-    <string name="enter_workout_name">Введите название тренировки</string>
+    <string name="enter_workout_name">Название тренировки</string>
     <string name="drawer_item_settings">Настройки</string>
     <string name="account_settings">Настройки аакаунта</string>
     <string name="drawer_item_bookmarks">Закладки</string>
@@ -87,7 +87,7 @@
     <string name="star_required_text">* - Обязательные поля</string>
     <string name="scheduled_workouts">Запланированные тренировки</string>
     <string name="choose_time">Выберите время</string>
-    <string name="exercises_list">Список упражнений</string>
+    <string name="exercises_list">Упражнения</string>
     <string name="day1">Пн</string>
     <string name="day2">Вт</string>
     <string name="day3">Ср</string>
@@ -149,4 +149,5 @@
     <string name="share_exercise_template">Поделиться шаблоном тренировки</string>
     <string name="schedule_workout_button">Запланировать тренировку</string>
     <string name="workout_done">Тренировка выполнена</string>
+    <string name="next">Далее</string>
 </resources>
