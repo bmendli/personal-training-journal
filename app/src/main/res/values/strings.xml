@@ -164,6 +164,12 @@
     <string name="home">Home</string>
     <string name="messages">Messages</string>
     <string name="profile">Profile</string>
+    <string name="training_switcher_text">Trainings</string>
+    <string name="ex_switcher_text">Exercises</string>
+    <string name="shared_ex_text">Shared exercises</string>
+    <string name="shared_tr_text">Shared trainings</string>
+    <string name="subscriptions_text">Subscriptions</string>
+    <string name="subscribers_text">Subscribers</string>
     <string name="schedule_workout_button">Schedule workout button</string>
     <string name="workout_done">workout done</string>
     <string name="exercise_icon" translatable="false">Exercise icon</string>

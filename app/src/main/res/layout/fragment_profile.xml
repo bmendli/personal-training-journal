@@ -3,24 +3,230 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/dimens_8dp"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ProfileFragment">
+    >
 
+    <include
+        android:id="@+id/profile"
+        layout="@layout/item_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/user_social_info"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    app:layout_constraintTop_toBottomOf="@id/profile"
+    app:layout_constraintBottom_toTopOf="@id/switcher"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/subscribers_number"
+        android:layout_width="@dimen/padding_40"
+        android:layout_height="@dimen/padding_40"
+        android:layout_margin="@dimen/dimens_8dp"
+        android:background="@drawable/day_highlited_circle"
+        android:elevation="8dp"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/subscriptions_number"
+        tools:text="1" />
 
     <TextView
+        android:id="@+id/subscriptions_number"
+        android:layout_width="@dimen/padding_40"
+        android:layout_height="@dimen/padding_40"
+
+        android:layout_margin="@dimen/dimens_8dp"
+
+        android:background="@drawable/day_highlited_circle"
+        android:elevation="8dp"
+        android:fontFamily="sans-serif-thin"
+
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/subscribers_number"
+        app:layout_constraintStart_toEndOf="@id/subscribers_number"
+        app:layout_constraintEnd_toStartOf="@id/shared_trainings_number"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2" />
+
+    <TextView
+        android:id="@+id/shared_trainings_number"
+        android:layout_width="@dimen/padding_40"
+        android:layout_height="@dimen/padding_40"
+
+        android:layout_margin="@dimen/dimens_8dp"
+
+        android:background="@drawable/day_highlited_circle"
+        android:elevation="8dp"
+        android:fontFamily="sans-serif-thin"
+
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+
+        app:layout_constraintLeft_toRightOf="@id/subscriptions_number"
+        app:layout_constraintStart_toEndOf="@id/subscriptions_number"
+        app:layout_constraintEnd_toStartOf="@id/shared_ex_number"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="9" />
+
+    <TextView
+        android:id="@+id/shared_ex_number"
+        android:layout_width="@dimen/padding_40"
+        android:layout_height="@dimen/padding_40"
+
+        android:layout_margin="@dimen/dimens_8dp"
+
+        android:background="@drawable/day_highlited_circle"
+        android:elevation="8dp"
+        android:fontFamily="sans-serif-thin"
+
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/shared_trainings_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/shared_trainings_number"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10" />
+<!---->
+    <TextView
+        android:id="@+id/subscribers_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimens_4dp"
+        android:text="@string/subscribers_text"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subscribers_number"
+        app:layout_constraintEnd_toStartOf="@id/subscriptions_text" />
+
+    <TextView
+        android:id="@+id/subscriptions_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimens_4dp"
+        android:text="@string/subscriptions_text"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toRightOf="@id/subscribers_text"
+        app:layout_constraintStart_toEndOf="@id/subscribers_text"
+        app:layout_constraintEnd_toStartOf="@id/shared_trainings_text"
+        app:layout_constraintTop_toBottomOf="@id/subscriptions_number"
+        />
+
+    <TextView
+        android:id="@+id/shared_trainings_text"
+        android:layout_width="@dimen/padding_60"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimens_4dp"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:text="@string/shared_tr_text"
+        app:layout_constraintLeft_toRightOf="@id/subscriptions_text"
+        app:layout_constraintStart_toEndOf="@id/subscriptions_text"
+        app:layout_constraintEnd_toStartOf="@id/shared_ex_text"
+        app:layout_constraintTop_toBottomOf="@id/shared_trainings_number"
+        android:maxLines="@integer/integer_2"
+        />
+
+    <TextView
+        android:id="@+id/shared_ex_text"
+        android:layout_width="@dimen/padding_60"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimens_4dp"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:text="@string/shared_ex_text"
+        app:layout_constraintLeft_toRightOf="@id/shared_trainings_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/shared_trainings_text"
+        app:layout_constraintTop_toBottomOf="@id/shared_ex_number"
+        android:maxLines="@integer/integer_2"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/switcher"
+        layout="@layout/item_train_ex_switcher"
         android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="Songs"
-    android:gravity="center_vertical|center_horizontal"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/user_social_info"
+
     />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tr_ex_filter_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        app:layout_constraintTop_toBottomOf="@id/switcher"
+        android:layout_marginTop="@dimen/padding_10"
+        >
+        <Button
+            android:id="@+id/all_filter_button"
+            android:background="@drawable/border_button_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Все"
+            android:textSize="15sp"
+            android:textColor="@color/design_default_color_secondary_variant"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/shared_filter_button"
+            />
+        <Button
+            android:id="@+id/shared_filter_button"
+            android:background="@drawable/border_button"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:text="Опубликованные"
+            android:textSize="15sp"
+            android:textColor="@drawable/clickable_element_selector"
+            app:layout_constraintEnd_toStartOf="@id/private_filter_button"
+            app:layout_constraintStart_toEndOf="@id/all_filter_button"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <Button
+            android:id="@+id/private_filter_button"
+            android:background="@drawable/border_button"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="Приватные"
+            android:textColor="@drawable/clickable_element_selector"
+            app:layout_constraintStart_toEndOf="@id/shared_filter_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/workout_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/profile_tr_ex_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tr_ex_filter_buttons"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
         />
 
 
