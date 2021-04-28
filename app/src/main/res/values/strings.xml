@@ -175,4 +175,10 @@
     <string name="exercise_icon" translatable="false">Exercise icon</string>
     <string name="next">Next</string>
 
+    <string name="workout_image">Workout image</string>
+    <string name="workout_rank">Workout rank</string>
+    <string name="workout_downloads">Workout downloads</string>
+    <string name="all_filter_text">Все</string>
+    <string name="shared_filter_text">Опубликованные</string>
+    <string name="private_filter_text">Приватные</string>
 </resources>

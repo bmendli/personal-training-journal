@@ -156,4 +156,8 @@
     <string name="schedule_workout_button">Запланировать тренировку</string>
     <string name="workout_done">Тренировка выполнена</string>
     <string name="next">Далее</string>
+    <string name="workout_image">Workout image</string>
+    <string name="workout_rank">Workout rank</string>
+    <string name="workout_downloads">Workout downloads</string>
+    <string name="all_filter_text">Все</string>
 </resources>
