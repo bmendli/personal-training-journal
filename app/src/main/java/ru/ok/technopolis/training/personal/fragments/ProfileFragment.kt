@@ -1,9 +1,8 @@
-package ru.ok.technopolis.training.personal
+package ru.ok.technopolis.training.personal.fragments
 
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +10,7 @@ import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kotlinx.android.synthetic.main.item_profile.view.*
 import kotlinx.android.synthetic.main.item_train_ex_switcher.*
 import kotlinx.android.synthetic.main.item_train_ex_switcher.view.*
-import ru.ok.technopolis.training.personal.fragments.BaseFragment
+import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.items.ProfileItem
 import ru.ok.technopolis.training.personal.items.ShortExerciseItem
@@ -48,11 +47,11 @@ class ProfileFragment : BaseFragment() {
         recyclerView = view.profile_tr_ex_list
 
 
-        val tr_sw_line = view.train_switch_line
-        val ex_switch_line = view.ex_switch_line
+        val trSwLine = view.train_switch_line
+        val exSwitchLine = view.ex_switch_line
 
         //TODO: change to real
-        val list = listOf<String>("a", "b", "c")
+        val list = listOf("a", "b", "c")
         val prof = ProfileItem("1234", "lfldf", list, true, null, 5, 10, 23,6)
 
         profileNameAndIcon!!.profile_name.text = prof.name
@@ -68,8 +67,7 @@ class ProfileFragment : BaseFragment() {
 
         var sharedFlag = false
         var privateFlag = false
-        var allFlag = true
-        val all_cl = View.OnClickListener { view ->
+        val allCl = View.OnClickListener {
             filterButtons!!.all_filter_button.setBackgroundResource(R.drawable.border_button_selected)
             filterButtons!!.all_filter_button.setTextColor(Color.rgb(24, 120, 103))
                 filterButtons!!.shared_filter_button.setBackgroundResource(R.drawable.border_button)
@@ -81,106 +79,98 @@ class ProfileFragment : BaseFragment() {
             loadItems(flag, privateFlag, sharedFlag)
         }
 
-        val shared_cl = View.OnClickListener { view ->
+        val sharedCl = View.OnClickListener { elem ->
             sharedFlag = !sharedFlag
             if (sharedFlag) {
-                view.setBackgroundResource(R.drawable.border_button_selected)
-                view.shared_filter_button.setTextColor(Color.rgb(24, 120, 103))
+                elem.setBackgroundResource(R.drawable.border_button_selected)
+                elem.shared_filter_button.setTextColor(Color.rgb(24, 120, 103))
                 filterButtons!!.private_filter_button.setBackgroundResource(R.drawable.border_button)
                 filterButtons!!.private_filter_button.setTextColor(Color.rgb(119, 119, 119))
                 filterButtons!!.all_filter_button.setBackgroundResource(R.drawable.border_button)
                 filterButtons!!.all_filter_button.setTextColor(Color.rgb(119, 119, 119))
                 privateFlag = false
-                loadItems(flag, privateFlag, sharedFlag)
             } else {
-                view.setBackgroundResource(R.drawable.border_button)
-                view.shared_filter_button.setTextColor(Color.rgb(119, 119, 119))
+                elem.setBackgroundResource(R.drawable.border_button)
+                elem.shared_filter_button.setTextColor(Color.rgb(119, 119, 119))
                 filterButtons!!.private_filter_button.setBackgroundResource(R.drawable.border_button)
                 filterButtons!!.private_filter_button.setTextColor(Color.rgb(119, 119, 119))
                 filterButtons!!.all_filter_button.setBackgroundResource(R.drawable.border_button_selected)
                 filterButtons!!.all_filter_button.setTextColor(Color.rgb(24, 120, 103))
-                loadItems(flag, privateFlag, sharedFlag)
             }
+            loadItems(flag, privateFlag, sharedFlag)
         }
 
-        val private_cl = View.OnClickListener { view ->
+        val privateCl = View.OnClickListener { elem ->
             privateFlag = !privateFlag
             if (privateFlag) {
-                view.setBackgroundResource(R.drawable.border_button_selected)
-                view.private_filter_button.setTextColor(Color.rgb(24, 120, 103))
+                elem.setBackgroundResource(R.drawable.border_button_selected)
+                elem.private_filter_button.setTextColor(Color.rgb(24, 120, 103))
                 filterButtons!!.shared_filter_button.setBackgroundResource(R.drawable.border_button)
                 filterButtons!!.shared_filter_button.setTextColor(Color.rgb(119, 119, 119))
                 filterButtons!!.all_filter_button.setBackgroundResource(R.drawable.border_button)
                 filterButtons!!.all_filter_button.setTextColor(Color.rgb(119, 119, 119))
-                loadItems(flag, privateFlag, sharedFlag)
                 sharedFlag = false
             } else {
-                view.setBackgroundResource(R.drawable.border_button)
-                view.private_filter_button.setTextColor(Color.rgb(119, 119, 119))
+                elem.setBackgroundResource(R.drawable.border_button)
+                elem.private_filter_button.setTextColor(Color.rgb(119, 119, 119))
                 filterButtons!!.shared_filter_button.setBackgroundResource(R.drawable.border_button)
                 filterButtons!!.shared_filter_button.setTextColor(Color.rgb(119, 119, 119))
                 filterButtons!!.all_filter_button.setBackgroundResource(R.drawable.border_button_selected)
                 filterButtons!!.all_filter_button.setTextColor(Color.rgb(24, 120, 103))
-                loadItems(flag, privateFlag, sharedFlag)
             }
+            loadItems(flag, privateFlag, sharedFlag)
         }
 
-        val clL = View.OnClickListener {view ->
+        val clL = View.OnClickListener {elem ->
             flag = !flag
             print(flag)
             if (flag) {
-                if (view.id == R.id.train_switch_button) {
-                    view.train_switch_button.setTextColor(Color.rgb(24, 120, 103))
-                    tr_sw_line.setBackgroundResource(R.color.design_default_color_secondary_variant)
+                if (elem.id == R.id.train_switch_button) {
+                    elem.train_switch_button.setTextColor(Color.rgb(24, 120, 103))
+                    trSwLine.setBackgroundResource(R.color.design_default_color_secondary_variant)
                     trainSwitcher!!.ex_switch_button.setTextColor(Color.rgb(119, 119, 119))
-                    ex_switch_line.setBackgroundResource(R.color.gray_4)
-                    loadItems(flag, privateFlag, sharedFlag)
+                    exSwitchLine.setBackgroundResource(R.color.gray_4)
                 }
 
             } else {
-                if (view.id == R.id.train_switch_button) {
-                    view.train_switch_button.setTextColor(Color.rgb(119, 119, 119))
-                    tr_sw_line.setBackgroundResource(R.color.gray_4)
+                if (elem.id == R.id.train_switch_button) {
+                    elem.train_switch_button.setTextColor(Color.rgb(119, 119, 119))
+                    trSwLine.setBackgroundResource(R.color.gray_4)
                     trainSwitcher!!.ex_switch_button.setTextColor(Color.rgb(24, 120, 103))
-                    ex_switch_line.setBackgroundResource(R.color.design_default_color_secondary_variant)
-                    loadItems(flag, privateFlag, sharedFlag)
+                    exSwitchLine.setBackgroundResource(R.color.design_default_color_secondary_variant)
+
                 }
             }
+            loadItems(flag, privateFlag, sharedFlag)
         }
 
-    val ex_clL = View.OnClickListener {view ->
+    val exCll = View.OnClickListener { elem ->
         flag = !flag
             if (!flag) {
-                if (view.id == R.id.ex_switch_button) {
-                    view.ex_switch_button.setTextColor(Color.rgb(24, 120, 103))
-                    ex_switch_line.setBackgroundResource(R.color.design_default_color_secondary_variant)
+                if (elem.id == R.id.ex_switch_button) {
+                    elem.ex_switch_button.setTextColor(Color.rgb(24, 120, 103))
+                    exSwitchLine.setBackgroundResource(R.color.design_default_color_secondary_variant)
                     trainSwitcher!!.train_switch_button.setTextColor(Color.rgb(119, 119, 119))
                     train_switch_line.setBackgroundResource(R.color.gray_4)
-                    loadItems(flag, privateFlag, sharedFlag)
                 }
 
             } else {
-                if (view.id == R.id.ex_switch_button) {
-                    view.ex_switch_button.setTextColor(Color.rgb(119, 119, 119))
-                    ex_switch_line.setBackgroundResource(R.color.gray_4)
+                if (elem.id == R.id.ex_switch_button) {
+                    elem.ex_switch_button.setTextColor(Color.rgb(119, 119, 119))
+                    exSwitchLine.setBackgroundResource(R.color.gray_4)
                     trainSwitcher!!.train_switch_button.setTextColor(Color.rgb(24, 120, 103))
                     train_switch_line.setBackgroundResource(R.color.design_default_color_secondary_variant)
-                    loadItems(flag, privateFlag, sharedFlag)
                 }
             }
+            loadItems(flag, privateFlag, sharedFlag)
         }
 
 
-        filterButtons!!.all_filter_button.setOnClickListener(all_cl)
-        filterButtons!!.shared_filter_button.setOnClickListener(shared_cl)
-        filterButtons!!.private_filter_button.setOnClickListener(private_cl)
+        filterButtons!!.all_filter_button.setOnClickListener(allCl)
+        filterButtons!!.shared_filter_button.setOnClickListener(sharedCl)
+        filterButtons!!.private_filter_button.setOnClickListener(privateCl)
         trainSwitcher!!.train_switch_button.setOnClickListener(clL)
-        trainSwitcher!!.ex_switch_button.setOnClickListener(ex_clL)
-//        trainSwitcher!!.setOnClickListener(clL)
-
-//        switcher.train_switch.setOnClickListener { print("wow_train") }
-//        switcher.ex_switch.setOnClickListener {  print("wow ex")}
-
+        trainSwitcher!!.ex_switch_button.setOnClickListener(exCll)
     }
 
     private fun loadItems(flag: Boolean, privateFlag: Boolean, sharedFlag: Boolean) {
@@ -284,7 +274,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun exerciseDummyPrivate() {
-        for (i in 1..2) pusExercise(i, 0, 0.0)
+        for (i in 1..2) pushExercise(i, 0, 0.0)
         val exList = ItemsList(exerciseMutableList)
         val exAdapter = ShortExerciseListAdapter(
                 holderType = ShortExerciseViewHolder::class,
@@ -301,7 +291,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun exerciseDummyShared() {
-        for (i in 1..2) pusExercise(i, 123, 3.0)
+        for (i in 1..2) pushExercise(i, 123, 3.0)
         val exList = ItemsList(exerciseMutableList)
         val exAdapter = ShortExerciseListAdapter(
                 holderType = ShortExerciseViewHolder::class,
@@ -317,8 +307,8 @@ class ProfileFragment : BaseFragment() {
         recyclerView?.layoutManager = exLayoutManager
     }
     private fun exerciseDummyAll() {
-        for (i in 1..2) pusExercise(i, 0, 0.0)
-        for (i in 3..4) pusExercise(i, 123, 3.0)
+        for (i in 1..2) pushExercise(i, 0, 0.0)
+        for (i in 3..4) pushExercise(i, 123, 3.0)
         val exList = ItemsList(exerciseMutableList)
         val exAdapter = ShortExerciseListAdapter(
                 holderType = ShortExerciseViewHolder::class,
@@ -340,7 +330,7 @@ class ProfileFragment : BaseFragment() {
         )
     }
 
-    private fun pusExercise(id: Int, sharedNumber: Int, rank: Double) {
+    private fun pushExercise(id: Int, sharedNumber: Int, rank: Double) {
         exerciseMutableList.add(
                 ShortExerciseItem(id.toString(), Time(System.currentTimeMillis()), "dljgd hdrh rhre", "kardio", "ofp", true, sharedNumber, rank)
         )
