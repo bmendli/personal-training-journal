@@ -181,4 +181,6 @@
     <string name="all_filter_text">Все</string>
     <string name="shared_filter_text">Опубликованные</string>
     <string name="private_filter_text">Приватные</string>
+    <string name="configure_superset">Configure superset</string>
+    <string name="remove">Remove</string>
 </resources>

@@ -54,6 +54,10 @@ sealed class Page : Serializable {
             override val clazz = CalendarFragment::class
         }
 
+        object NewWorkout : Fragment() {
+            override val clazz = CreateWorkoutFragment::class
+        }
+
         object WorkoutPlan : Fragment() {
             override val clazz = WorkoutPlanFragment::class
         }

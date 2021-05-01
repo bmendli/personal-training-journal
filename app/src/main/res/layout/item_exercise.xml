@@ -20,12 +20,12 @@
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button"
+        android:id="@+id/custom_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/icon"
         app:layout_constraintEnd_toEndOf="@id/icon"
-        app:backgroundTint="@color/green"
+        app:backgroundTint="@color/white"
         android:tint="@color/white"
         app:borderWidth="2dp"
         app:fabCustomSize="28dp"
@@ -59,11 +59,12 @@
         android:textColor="@color/black"
         />
 
+<!--    TODO: MaterialCardView     -->
     <androidx.cardview.widget.CardView
         android:id="@+id/superset_background"
         android:layout_width="86dp"
         android:layout_height="42dp"
-        android:backgroundTint="@color/periwinkle"
+        app:cardBackgroundColor="@color/periwinkle"
         app:cardCornerRadius="@dimen/dimens_16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,17 +94,19 @@
                 />
         </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/exercise_background"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/periwinkle"
+        app:cardBackgroundColor="@color/periwinkle"
         app:cardCornerRadius="@dimen/dimens_16dp"
+        app:cardElevation="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/superset_counter_background"
         app:layout_constraintEnd_toEndOf="parent"
         android:labelFor="@id/superset_counter"
+        android:theme="@style/AppTheme"
         >
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

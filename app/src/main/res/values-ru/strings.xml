@@ -160,4 +160,6 @@
     <string name="workout_rank">Workout rank</string>
     <string name="workout_downloads">Workout downloads</string>
     <string name="all_filter_text">Все</string>
+    <string name="configure_superset">Суперсет</string>
+    <string name="remove">Удалить</string>
 </resources>
