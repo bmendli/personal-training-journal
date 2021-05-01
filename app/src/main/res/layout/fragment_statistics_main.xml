@@ -11,15 +11,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/rounded_outline_toggle"
-        android:orientation="horizontal"
-        app:layout_constraintHorizontal_weight="@integer/integer_2">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/toggle_switcher"
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:paddingHorizontal="@dimen/padding_20"
-            android:text="Упражнения"
+            android:text="@string/ex_switcher_text"
             android:textColor="@color/transparent"
             android:background="@drawable/rounded_outline_toggle_active"
             android:textAlignment="center"
@@ -34,7 +33,7 @@
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
         android:paddingStart="@dimen/padding_20"
-        android:text="Тренировки"
+        android:text="@string/training_switcher_text"
         android:textColor="@color/black"
         android:background="@color/transparent"
         android:textAlignment="center"
@@ -52,7 +51,7 @@
         android:gravity="end|center_vertical"
         android:foregroundGravity="right"
         android:paddingEnd="@dimen/padding_20"
-        android:text="Упражнения"
+        android:text="@string/ex_switcher_text"
         android:background="@color/transparent"
         android:textColor="@color/black"
         android:textSize="20sp"

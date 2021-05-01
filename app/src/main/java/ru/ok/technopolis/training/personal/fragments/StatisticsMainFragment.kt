@@ -5,7 +5,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.statistics_main_fragment.view.*
+import kotlinx.android.synthetic.main.fragment_statistics_main.view.*
 import ru.ok.technopolis.training.personal.R
 import ru.ok.technopolis.training.personal.items.ItemsList
 import ru.ok.technopolis.training.personal.items.ShortExerciseItem
@@ -172,5 +172,5 @@ class StatisticsMainFragment : BaseFragment() {
                     ShortExerciseItem(id.toString(), Time(System.currentTimeMillis()), "dljgd hdrh rhre", "kardio", "ofp", true, 0, 0.0)
             )
         }
-    override fun getFragmentLayoutId(): Int = R.layout.statistics_main_fragment
+    override fun getFragmentLayoutId(): Int = R.layout.fragment_statistics_main
 }
