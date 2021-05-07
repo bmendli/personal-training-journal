@@ -232,11 +232,14 @@
     <string name="difficulty">Difficulty</string>
     <string name="category">Category</string>
     <string name="kind_of_sport">Kind of sport</string>
-    <string name="edit_content_button">Edit content button</string>
-    <string name="next_image_button">Next image button</string>
-    <string name="previous_image_button">Previous image button</string>
-    <string name="increase_difficulty_button">Increase difficulty button</string>
-    <string name="decrease_difficulty_button">Decrease difficulty button</string>
-    <string name="previous_step_button">Previous step button</string>
-    <string name="next_step_button">Next step button</string>
+    <string name="edit_content_button" translatable="false">Edit content button</string>
+    <string name="next_image_button" translatable="false">Next image button</string>
+    <string name="previous_image_button" translatable="false">Previous image button</string>
+    <string name="increase_difficulty_button" translatable="false">Increase difficulty button</string>
+    <string name="decrease_difficulty_button" translatable="false">Decrease difficulty button</string>
+    <string name="previous_step_button" translatable="false">Previous step button</string>
+    <string name="next_step_button" translatable="false">Next step button</string>
+    <string name="edit_parameter" translatable="false">Edit parameter</string>
+    <string name="units" translatable="false">units</string>
+    <string name="parameter" translatable="false">Parameter</string>
 </resources>
