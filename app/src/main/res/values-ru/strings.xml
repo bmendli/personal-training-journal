@@ -104,6 +104,50 @@
     <string name="choose_the_exercise">Выберите упражнение</string>
     <string name="results">Результаты</string>
 
+    <string-array name="workout_types">
+        <item>Не указано</item>
+        <item>Аэробная</item>
+        <item>Анаэробная</item>
+        <item>Силовая</item>
+        <item>Комплексная</item>
+        <item>Круговая</item>
+        <item>Интервальная</item>
+        <item>Смешанная</item>
+        <item>Сплит</item>
+        <item>Групповая</item>
+        <item>Индивидуальная</item>
+        <item>Тренажёрный зал</item>
+    </string-array>
+
+    <string-array name="sport_types">
+        <item>Не указано</item>
+        <item>Бадминтон</item>
+        <item>Баскетбол</item>
+        <item>Бейсбол</item>
+        <item>Бокс</item>
+        <item>Волейбол</item>
+        <item>Дзюдо</item>
+        <item>Карате</item>
+        <item>Конькобежный спорт</item>
+        <item>Лёгкая атлетика</item>
+        <item>Лыжные гонки</item>
+        <item>Настольный теннис</item>
+        <item>Пауэрлифтинг</item>
+        <item>Плавание</item>
+        <item>Регби</item>
+        <item>Самбо</item>
+        <item>Сноубординг</item>
+        <item>Спортивная гимнастика</item>
+        <item>Теннис</item>
+        <item>Тхэквондо</item>
+        <item>Тяжёлая атлетика</item>
+        <item>Фигурное катание</item>
+        <item>Фитнес</item>
+        <item>Футбол</item>
+        <item>Фристайл</item>
+        <item>Хоккей</item>
+    </string-array>
+
     <string-array name="exercise_types">
         <item>Силовое</item>
         <item>Кардио</item>
@@ -162,4 +206,9 @@
     <string name="all_filter_text">Все</string>
     <string name="configure_superset">Суперсет</string>
     <string name="remove">Удалить</string>
+    <string name="prev">Назад</string>
+    <string name="description">Описание</string>
+    <string name="difficulty">Сложность</string>
+    <string name="category">Категория</string>
+    <string name="kind_of_sport">Вид спорта</string>
 </resources>

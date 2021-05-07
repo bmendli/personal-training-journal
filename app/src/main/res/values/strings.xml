@@ -137,6 +137,50 @@
         <item>Musculoskeletal</item>
     </string-array>
 
+    <string-array name="workout_types">
+        <item>Unspecified</item>
+        <item>Aerobic</item>
+        <item>Anaerobic</item>
+        <item>Power</item>
+        <item>Comprehensive</item>
+        <item>Circular</item>
+        <item>Interval</item>
+        <item>Mixed</item>
+        <item>Split</item>
+        <item>Group</item>
+        <item>Individual</item>
+        <item>Gym</item>
+    </string-array>
+
+    <string-array name="sport_types">
+        <item>Unspecified</item>
+        <item>Badminton</item>
+        <item>Basketball</item>
+        <item>Baseball</item>
+        <item>Box</item>
+        <item>Volleyball</item>
+        <item>Judo</item>
+        <item>Karate</item>
+        <item>Speed skating</item>
+        <item>Athletics</item>
+        <item>Cross-country skiing</item>
+        <item>Table tennis</item>
+        <item>Powerlifting</item>
+        <item>Swimming</item>
+        <item>Rugby</item>
+        <item>Sambo</item>
+        <item>Snowboarding</item>
+        <item>Sports gymnastics</item>
+        <item>Tennis</item>
+        <item>Taekwondo</item>
+        <item>Weightlifting</item>
+        <item>Figure skating</item>
+        <item>Fitness</item>
+        <item>Football</item>
+        <item>Freestyle</item>
+        <item>Hockey</item>
+    </string-array>
+
     <string-array name="exercise_elements_units">
         <item>mm</item>
         <item>cm</item>
@@ -183,4 +227,16 @@
     <string name="private_filter_text">Приватные</string>
     <string name="configure_superset">Configure superset</string>
     <string name="remove">Remove</string>
+    <string name="prev">Back</string>
+    <string name="description">Description</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="category">Category</string>
+    <string name="kind_of_sport">Kind of sport</string>
+    <string name="edit_content_button">Edit content button</string>
+    <string name="next_image_button">Next image button</string>
+    <string name="previous_image_button">Previous image button</string>
+    <string name="increase_difficulty_button">Increase difficulty button</string>
+    <string name="decrease_difficulty_button">Decrease difficulty button</string>
+    <string name="previous_step_button">Previous step button</string>
+    <string name="next_step_button">Next step button</string>
 </resources>
