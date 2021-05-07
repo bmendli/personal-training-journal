@@ -1,6 +1,6 @@
 package ru.ok.technopolis.training.personal.lifecycle
 
-import ru.ok.technopolis.training.personal.ProfileFragment
+import ru.ok.technopolis.training.personal.fragments.ProfileFragment
 import ru.ok.technopolis.training.personal.mockActivities.auth.FakeLoginActivity
 import ru.ok.technopolis.training.personal.activities.auth.RegistrationActivity
 import ru.ok.technopolis.training.personal.activities.settings.AccountSettingsActivity
@@ -43,7 +43,7 @@ sealed class Page : Serializable {
         }
 
         object Results : Fragment() {
-            override val clazz = ResultsFragment::class
+            override val clazz = StatisticsMainFragment::class
         }
 
         object ActiveExercise : Fragment() {

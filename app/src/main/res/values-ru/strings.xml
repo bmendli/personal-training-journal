@@ -200,10 +200,12 @@
     <string name="schedule_workout_button">Запланировать тренировку</string>
     <string name="workout_done">Тренировка выполнена</string>
     <string name="next">Далее</string>
-    <string name="workout_image">Workout image</string>
-    <string name="workout_rank">Workout rank</string>
-    <string name="workout_downloads">Workout downloads</string>
+    <string name="workout_image">Картинка тренировки</string>
+    <string name="workout_rank">Оценка тренировки</string>
+    <string name="workout_downloads">Количество загрузок</string>
     <string name="all_filter_text">Все</string>
+    <string name="shared_filter_text">Опубликованные</string>
+    <string name="private_filter_text">Приватные</string>
     <string name="configure_superset">Суперсет</string>
     <string name="remove">Удалить</string>
     <string name="prev">Назад</string>

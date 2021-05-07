@@ -25,13 +25,17 @@ class ShortWorkoutViewHolder (
     private var rank: TextView = itemView.rank_number
 
     override fun bind(item: ShortWorkoutItem) {
+        if (item.invisible) {
+            itemView.visibility = View.INVISIBLE
+        } else {
+            itemView.visibility = View.VISIBLE
+        }
         if (item.downloadsNumber == 0) {
             downloads.visibility = View.GONE
             downloadsIcon.visibility = View.GONE
         } else {
             downloads.visibility = View.VISIBLE
             downloadsIcon.visibility = View.VISIBLE
-            update(item)
         }
 
         if (item.rank.roundToInt() == 0) {
@@ -40,8 +44,16 @@ class ShortWorkoutViewHolder (
         } else {
             rank.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
-            update(item)
         }
+
+        if (item.duration.isBlank()) {
+            duration.visibility = View.GONE
+            durationIcon.visibility = View.GONE
+        } else {
+            duration.visibility = View.VISIBLE
+            durationIcon.visibility = View.VISIBLE
+        }
+        update(item)
     }
 
     fun update(item: ShortWorkoutItem) {
