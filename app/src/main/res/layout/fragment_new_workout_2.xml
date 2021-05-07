@@ -51,16 +51,6 @@
         android:src="@drawable/ic_chevron_left"
         android:contentDescription="@string/previous_image_button" />
 
-    <TextView
-        android:id="@+id/prev_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/prev_image_view"
-        android:text="@string/prev"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        />
 
     <TextView
         android:id="@+id/category_text_view"
@@ -103,7 +93,7 @@
         android:id="@+id/sport_type_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:entries="@array/workout_types"
+        android:entries="@array/sport_types"
         app:layout_constraintBottom_toTopOf="@id/difficult_card_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/workout_type_spinner"
@@ -197,41 +187,62 @@
         android:hint="@string/description"
         android:gravity="start"
         android:textSize="@dimen/text_size_20"
-        app:layout_constraintBottom_toTopOf="@id/next_text_view"
+        app:layout_constraintBottom_toTopOf="@id/next_step_card"
         android:inputType="text|textMultiLine"
         android:importantForAutofill="no" />
 
-    <ImageView
-        android:id="@+id/prev_image_view"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/prev_text_view"
-        app:layout_constraintBottom_toBottomOf="@id/next_text_view"
-        android:tint="@color/black"
-        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-        android:scaleX="-1"
-        android:contentDescription="@string/previous_step_button" />
-
-    <TextView
-        android:id="@+id/next_text_view"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/prev_step_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/next_image_view"
-        android:text="@string/next"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        />
-    <ImageView
-        android:id="@+id/next_image_view"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/gray_4"
+        app:strokeWidth="1dp"
+        app:cardCornerRadius="@dimen/dimens_16dp"
+        android:theme="@style/AppTheme"
+        android:clickable="true"
+        >
+
+        <TextView
+            android:id="@+id/prev_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prev"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_25"
+            android:drawableStart="@drawable/ic_chevron_left"
+            android:layout_marginHorizontal="@dimen/dimens_16dp"
+            android:layout_marginVertical="@dimen/dimens_4dp"
+            />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/next_step_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/next_text_view"
-        app:layout_constraintBottom_toBottomOf="@id/next_text_view"
-        android:tint="@color/black"
-        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-        android:contentDescription="@string/next_step_button" />
+        app:strokeColor="@color/gray_4"
+        app:strokeWidth="1dp"
+        app:cardCornerRadius="@dimen/dimens_16dp"
+        android:theme="@style/AppTheme"
+        android:clickable="true"
+        >
+
+        <TextView
+            android:id="@+id/next_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_25"
+            android:drawableEnd="@drawable/ic_chevron_right"
+            android:layout_marginHorizontal="@dimen/dimens_16dp"
+            android:layout_marginVertical="@dimen/dimens_4dp"
+            />
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_new_workout_1.*
@@ -23,6 +24,7 @@ class CreateWorkoutFragment : BaseFragment() {
     private var exercisesRecycler: RecyclerView? = null
     private var actionButton: FloatingActionButton? = null
     private var exercisesList: ExercisesList? = null
+    private var nextStepCard: MaterialCardView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +32,10 @@ class CreateWorkoutFragment : BaseFragment() {
         workoutName = input_workout_name
         exercisesRecycler = exercises_recycler
         actionButton = add_exercise_button
+        nextStepCard = next_step_card
+        nextStepCard?.setOnClickListener {
+            router?.showNewWorkoutPage2()
+        }
 
         exercisesList = ExercisesList(mutableListOf(
                 ExerciseItem("1", 1, "Упражнение 1", "5 подходов, 5 повторений", supersetGroupId = null),
