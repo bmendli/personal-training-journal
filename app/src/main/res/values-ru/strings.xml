@@ -23,7 +23,7 @@
     <string name="exercise_type">Тип упражнения</string>
 
     <string name="choose_exercise_type">Выберите тип упражнения</string>
-    <string name="enter_exercise_name">Введите имя упражнения</string>
+    <string name="enter_exercise_name">Название упражнения</string>
     <string name="cancel">Отмена</string>
     <string name="save">Сохранить</string>
     <string name="exercise_elements">Элементы упражнения</string>
@@ -171,6 +171,19 @@
         <item>таймер</item>
     </string-array>
 
+    <string-array name="levels_dummy">
+        <item>Уровень 1</item>
+        <item>Уровень 2</item>
+        <item>Уровень 3</item>
+        <item>Уровень 4</item>
+        <item>Уровень 5</item>
+        <item>Уровень 6</item>
+        <item>Уровень 7</item>
+        <item>Уровень 8</item>
+        <item>Уровень 9</item>
+        <item>Уровень 10</item>
+    </string-array>
+
     <string-array name="sign_up_user_gender">
         <item>Male</item>
         <item>Female</item>
@@ -219,4 +232,5 @@
     <string name="stopwatch">Секундомер</string>
     <string name="timer">Таймер</string>
     <string name="show_in_short_description">Отображать в кратком описании</string>
+    <string name="parameters_list">Параметры</string>
 </resources>

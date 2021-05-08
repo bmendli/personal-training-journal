@@ -143,7 +143,6 @@
                 android:layout_height="wrap_content"
                 app:fabSize="mini"
                 app:srcCompat="@drawable/ic_baseline_remove_24"
-                android:tint="@color/white"
                 app:layout_constraintStart_toEndOf="@id/difficulty_text"
                 app:layout_constraintEnd_toStartOf="@id/difficulty_value"
                 app:layout_constraintTop_toTopOf="parent"
