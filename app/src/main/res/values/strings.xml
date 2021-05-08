@@ -37,7 +37,7 @@
 
     <string name="active_exercise_name">Exercise</string>
     <string name="parameter_goal_dummy">34</string>
-    <string name="parameter_text_dummy">parameter1</string>
+    <string name="parameter_text_dummy">parameter 1</string>
     <string name="button_text_dummy">Set 1/1</string>
     <string name="next_exercise_dummy">next exercise</string>
     <string name="drawer_item_settings">Settings</string>
@@ -265,5 +265,6 @@
     <string name="show_in_short_description">Show in short description</string>
     <string name="delete_parameter" translatable="false">Delete parameter</string>
     <string name="parameters_list">Parameters</string>
-    <string name="add_new_parameter">Add new parameter</string>
+    <string name="add_new_parameter" translatable="false">Add new parameter</string>
+    <string name="muscle_groups">Muscle groups </string>
 </resources>

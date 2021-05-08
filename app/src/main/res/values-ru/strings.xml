@@ -233,4 +233,5 @@
     <string name="timer">Таймер</string>
     <string name="show_in_short_description">Отображать в кратком описании</string>
     <string name="parameters_list">Параметры</string>
+    <string name="muscle_groups">Группы мыщц </string>
 </resources>
