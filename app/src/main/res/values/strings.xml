@@ -242,4 +242,13 @@
     <string name="edit_parameter" translatable="false">Edit parameter</string>
     <string name="units" translatable="false">units</string>
     <string name="parameter" translatable="false">Parameter</string>
+    <string name="parameter_icon" translatable="false">Parameter icon</string>
+    <string name="goal">Goal</string>
+    <string name="evaluation_criteria">Evaluation criteria:</string>
+    <string name="change_parameter">Change parameter</string>
+    <string name="stopwatch">Stopwatch</string>
+    <string name="timer">Timer</string>
+    <string name="show_in_short_description">Show in short description</string>
+    <string name="parameter_icon">Parameter icon</string>
+    <string name="delete_parameter">Delete parameter</string>
 </resources>

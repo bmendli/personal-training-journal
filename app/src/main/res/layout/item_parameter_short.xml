@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <ImageView
         android:id="@+id/icon"
         android:layout_width="40dp"
@@ -16,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/title"
-        />
+        android:contentDescription="@string/parameter_icon" />
 
     <TextView
         android:id="@+id/title"
@@ -65,7 +64,7 @@
         android:layout_marginEnd="@dimen/dimens_16dp"
         android:maxLines="@integer/integer_2"
         app:layout_constraintHorizontal_weight="4"
-        android:labelFor="@id/edit"
+        android:labelFor="@id/value"
         />
 
     <ImageView
