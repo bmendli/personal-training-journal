@@ -25,16 +25,22 @@ class CreateWorkoutFragment : BaseFragment() {
     private var actionButton: FloatingActionButton? = null
     private var exercisesList: ExercisesList? = null
     private var nextStepCard: MaterialCardView? = null
+    private var addExerciseButton: FloatingActionButton? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        addExerciseButton = add_exercise_button
         workoutName = input_workout_name
         exercisesRecycler = exercises_recycler
         actionButton = add_exercise_button
         nextStepCard = next_step_card
         nextStepCard?.setOnClickListener {
             router?.showNewWorkoutPage2()
+        }
+
+        addExerciseButton?.setOnClickListener {
+            router?.showNewExercisePage1()
         }
 
         exercisesList = ExercisesList(mutableListOf(
