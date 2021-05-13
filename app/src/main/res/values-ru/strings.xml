@@ -234,4 +234,6 @@
     <string name="show_in_short_description">Отображать в кратком описании</string>
     <string name="parameters_list">Параметры</string>
     <string name="muscle_groups">Группы мыщц </string>
+    <string name="author_image">Author image</string>
+    <string name="send_message_icon">Send message icon</string>
 </resources>

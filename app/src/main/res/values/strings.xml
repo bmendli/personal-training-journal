@@ -267,4 +267,6 @@
     <string name="parameters_list">Parameters</string>
     <string name="add_new_parameter" translatable="false">Add new parameter</string>
     <string name="muscle_groups">Muscle groups </string>
+    <string name="author_image">Author image</string>
+    <string name="send_message_icon">Send message icon</string>
 </resources>
