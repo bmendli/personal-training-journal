@@ -161,4 +161,6 @@
     <string name="all_filter_text">Все</string>
     <string name="shared_filter_text">Опубликованные</string>
     <string name="private_filter_text">Приватные</string>
+    <string name="author_image">Author image</string>
+    <string name="send_message_icon">Send message icon</string>
 </resources>
